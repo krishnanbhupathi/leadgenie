@@ -12,7 +12,7 @@ from __future__ import annotations
 import csv
 import json
 import sqlite3
-from collections.abc import Iterator, Sequence
+from collections.abc import Callable, Iterator, Sequence
 from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import UTC, datetime
@@ -245,14 +245,22 @@ class Store:
 
     # --- exports ----------------------------------------------------------
 
-    def export_csv(self, path: str | Path, statuses: Sequence[str], fields: Sequence[str]) -> int:
-        """Rewrite `path` from the database. Returns the number of rows written."""
+    def export_csv(
+        self,
+        path: str | Path,
+        statuses: Sequence[str],
+        fields: Sequence[str],
+        flatten: Callable[[dict[str, Any]], dict[str, Any]] = lambda d: d,
+    ) -> int:
+        """Rewrite `path` from the database. Returns the number of rows written.
+
+        `flatten` turns the stored enrichment JSON into flat CSV columns."""
         rows = [row for s in statuses for row in self.results(s)]
         with open(path, "w", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=list(fields), extrasaction="ignore")
             writer.writeheader()
             for row in rows:
-                enrichment = json.loads(row["enrichment"]) if row["enrichment"] else {}
+                enrichment = flatten(json.loads(row["enrichment"])) if row["enrichment"] else {}
                 writer.writerow(
                     {
                         **enrichment,

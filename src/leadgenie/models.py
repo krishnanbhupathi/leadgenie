@@ -1,7 +1,9 @@
-"""Pydantic schemas — every LLM output must parse into EnrichedLead or it is rejected."""
+"""Pydantic schemas — input leads, and the per-field-sourced enrichment the agent must submit."""
+
+from __future__ import annotations
 
 import hashlib
-from typing import Literal
+from typing import Any, ClassVar, Literal
 
 from pydantic import BaseModel, Field
 
@@ -15,7 +17,7 @@ class Lead(BaseModel):
     title: str | None = None
 
     @classmethod
-    def from_row(cls, row: dict) -> "Lead":
+    def from_row(cls, row: dict[str, Any]) -> Lead:
         name = (row.get("name") or "").strip()
         raw_company = (row.get("raw_company") or "").strip()
         title = (row.get("title") or "").strip() or None
@@ -53,26 +55,119 @@ Industry = Literal[
     "other",
 ]
 
+# Where a value came from. Exactly one of:
+#   https://...        a page a tool retrieved during this lead's run
+#   prior:<lead_id>    an approved earlier result (lookup_prior_results)
+#   dns:mx:<domain>    an MX lookup (check_mx)
+#   input              copied/normalized from the lead row itself
+#   inferred           the model's own judgement, with no retrieved evidence
+INFERRED = "inferred"
+INPUT = "input"
+RETRIEVED_PREFIXES = ("http://", "https://", "prior:", "dns:mx:")
 
-class EnrichedLead(BaseModel):
-    """The contract the agent must fulfil. The API enforces the shape (JSON schema);
-    Pydantic enforces the constraints the API can't (e.g. confidence in [0, 1])."""
 
-    normalized_company: str = Field(
-        description="Clean, canonical company name (no legal suffixes, typos fixed)."
+def is_retrieved_source(source: str) -> bool:
+    return source.startswith(RETRIEVED_PREFIXES)
+
+
+class Sourced[T](BaseModel):
+    value: T
+    source: str = Field(description="Retrieved URL/ref, 'input', or 'inferred'.")
+    evidence: str = Field(
+        default="", description="Short verbatim quote from the source; empty for input/inferred."
     )
-    role: str = Field(description="The person's inferred job function, e.g. 'Head of Sales'.")
-    seniority: Seniority
-    industry: Industry = Field(
-        description="Closest matching industry label; use 'other' only if nothing fits."
+    confidence: float = Field(ge=0.0, le=1.0)
+
+
+class Outreach(BaseModel):
+    text: str
+    source: str
+    evidence: str = ""
+
+
+class Enrichment(BaseModel):
+    company: Sourced[str]
+    domain: Sourced[str | None]
+    role: Sourced[str]
+    seniority: Sourced[Seniority]
+    industry: Sourced[Industry]
+    accepts_email: Sourced[bool | None]
+    outreach: Outreach
+
+    SOURCED_FIELDS: ClassVar[tuple[str, ...]] = (
+        "company",
+        "domain",
+        "role",
+        "seniority",
+        "industry",
+        "accepts_email",
     )
-    outreach_line: str = Field(
-        description="One personalized, non-generic cold-outreach opening line (max ~30 words)."
-    )
-    confidence: float = Field(
-        ge=0.0,
-        le=1.0,
-        description=(
-            "Calibrated confidence in this enrichment. Below 0.75 means a human should review it."
+    # Routing confidence is the weakest of these: a lead is only as good as its least
+    # certain identifying field.
+    KEY_FIELDS: ClassVar[tuple[str, ...]] = ("company", "role", "industry")
+
+    def field(self, name: str) -> Sourced[Any]:
+        value = getattr(self, name)
+        assert isinstance(value, Sourced)
+        return value
+
+
+# --- JSON schema for the submit_enrichment tool --------------------------------------
+# Hand-written (rather than Enrichment.model_json_schema()) so it satisfies strict tool
+# use: every property required, additionalProperties false, no $refs. Numeric ranges
+# are enforced by Pydantic after the call; a violation goes back to the model as a
+# tool error it can fix.
+
+
+def _sourced_schema(value_schema: dict[str, Any], what: str) -> dict[str, Any]:
+    return {
+        "type": "object",
+        "description": what,
+        "properties": {
+            "value": value_schema,
+            "source": {"type": "string"},
+            "evidence": {"type": "string"},
+            "confidence": {"type": "number"},
+        },
+        "required": ["value", "source", "evidence", "confidence"],
+        "additionalProperties": False,
+    }
+
+
+SENIORITY_VALUES = list(Seniority.__args__)
+INDUSTRY_VALUES = list(Industry.__args__)
+
+SUBMIT_SCHEMA: dict[str, Any] = {
+    "type": "object",
+    "properties": {
+        "company": _sourced_schema(
+            {"type": "string"}, "Canonical company name (no legal suffix, typos fixed)."
         ),
-    )
+        "domain": _sourced_schema(
+            {"type": ["string", "null"]},
+            "Company website domain, e.g. 'acme.example'; null if unknown.",
+        ),
+        "role": _sourced_schema({"type": "string"}, "The person's job function."),
+        "seniority": _sourced_schema({"type": "string", "enum": SENIORITY_VALUES}, "Seniority."),
+        "industry": _sourced_schema(
+            {"type": "string", "enum": INDUSTRY_VALUES}, "Closest industry; 'other' if none fits."
+        ),
+        "accepts_email": _sourced_schema(
+            {"type": ["boolean", "null"]},
+            "Does the company domain have MX records? null if unchecked.",
+        ),
+        "outreach": {
+            "type": "object",
+            "description": "One personalized opening line grounded in a retrieved fact.",
+            "properties": {
+                "text": {"type": "string"},
+                "source": {"type": "string"},
+                "evidence": {"type": "string"},
+            },
+            "required": ["text", "source", "evidence"],
+            "additionalProperties": False,
+        },
+    },
+    "required": ["company", "domain", "role", "seniority", "industry", "accepts_email", "outreach"],
+    "additionalProperties": False,
+}
