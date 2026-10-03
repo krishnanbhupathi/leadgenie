@@ -6,7 +6,7 @@ it is either approved by these rules or lands in the review queue with reasons a
 """
 from typing import List, Tuple, get_args
 
-from models import EnrichedLead, Industry
+from leadgenie.models import EnrichedLead, Industry
 
 DEFAULT_THRESHOLD = 0.75
 

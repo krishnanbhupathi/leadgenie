@@ -10,11 +10,11 @@ import os
 
 import anthropic
 
-from agent import DEFAULT_MODEL, EnrichmentError, enrich_lead
-from models import Lead
-from observability import log_record, make_record, print_summary
-from store import ProcessedStore
-from validate import DEFAULT_THRESHOLD, route
+from leadgenie.agent import DEFAULT_MODEL, EnrichmentError, enrich_lead
+from leadgenie.models import Lead
+from leadgenie.observability import log_record, make_record, print_summary
+from leadgenie.store import ProcessedStore
+from leadgenie.validate import DEFAULT_THRESHOLD, route
 
 ENRICHED_FIELDS = [
     "lead_id", "name", "normalized_company", "role", "seniority",

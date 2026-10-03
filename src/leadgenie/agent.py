@@ -4,7 +4,7 @@ import time
 import anthropic
 from pydantic import ValidationError
 
-from models import EnrichedLead, Lead
+from leadgenie.models import EnrichedLead, Lead
 
 DEFAULT_MODEL = "claude-opus-4-8"
 MAX_ATTEMPTS = 3

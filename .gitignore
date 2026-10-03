@@ -4,3 +4,9 @@ review_queue.csv
 .processed.json
 __pycache__/
 VIDEO_SCRIPT.md
+.venv/
+*.egg-info/
+.env
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
