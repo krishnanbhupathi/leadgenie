@@ -1,20 +1,20 @@
 """LeadGenie CLI — read leads.csv, enrich each lead, validate, route, log, write outputs.
 
 Usage:
-    python3 main.py leads.csv
-    python3 main.py leads.csv --threshold 0.8 --model claude-haiku-4-5
+    leadgenie leads.csv
+    leadgenie leads.csv --threshold 0.8 --model claude-haiku-4-5
 """
 
 import argparse
 import csv
-import os
+import uuid
 
 import anthropic
 
 from leadgenie.agent import DEFAULT_MODEL, EnrichmentError, enrich_lead
 from leadgenie.models import Lead
 from leadgenie.observability import log_record, make_record, print_summary
-from leadgenie.store import ProcessedStore
+from leadgenie.store import ResultRow, Store
 from leadgenie.validate import DEFAULT_THRESHOLD, route
 
 ENRICHED_FIELDS = [
@@ -38,26 +38,19 @@ def read_leads(path: str):
                 yield lead
 
 
-def append_csv(path: str, fields, row: dict) -> None:
-    new_file = not os.path.exists(path)
-    with open(path, "a", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fields)
-        if new_file:
-            writer.writeheader()
-        writer.writerow(row)
-
-
-def enriched_row(lead: Lead, enriched) -> dict:
-    return {
-        "lead_id": lead.id,
-        "name": lead.name,
-        "normalized_company": enriched.normalized_company,
-        "role": enriched.role,
-        "seniority": enriched.seniority,
-        "industry": enriched.industry,
-        "outreach_line": enriched.outreach_line,
-        "confidence": f"{enriched.confidence:.2f}",
-    }
+def result_row(lead: Lead, run_id: str, status: str, reasons, enriched=None, error=None):
+    return ResultRow(
+        lead_id=lead.id,
+        run_id=run_id,
+        name=lead.name,
+        raw_company=lead.raw_company,
+        title=lead.title,
+        status=status,
+        reasons=list(reasons),
+        confidence=enriched.confidence if enriched else None,
+        enrichment=enriched.model_dump() if enriched else None,
+        error=error,
+    )
 
 
 def main() -> None:
@@ -70,10 +63,13 @@ def main() -> None:
         help="confidence below this → human review queue",
     )
     parser.add_argument("--model", default=DEFAULT_MODEL)
+    parser.add_argument("--db", default="leadgenie.db", help="SQLite database path")
     args = parser.parse_args()
 
     client = anthropic.Anthropic()
-    store = ProcessedStore()
+    store = Store(args.db)
+    run_id = uuid.uuid4().hex[:12]
+    store.start_run(run_id, args.model, {"threshold": args.threshold, "input": args.csv_path})
     records, skipped = [], 0
 
     for lead in read_leads(args.csv_path):
@@ -86,24 +82,12 @@ def main() -> None:
             enriched, usage, latency_ms = enrich_lead(client, lead, model=args.model)
         except EnrichmentError as err:
             # Failures are routed, never dropped: the lead goes to the review queue.
-            append_csv(
-                "review_queue.csv",
-                REVIEW_FIELDS,
-                {
-                    "lead_id": lead.id,
-                    "name": lead.name,
-                    "reasons": "enrichment_failed",
-                },
-            )
+            row = result_row(lead, run_id, "error", ["enrichment_failed"], error=str(err))
             record = make_record(lead, args.model, "error", ["enrichment_failed"], error=str(err))
             print(f"    ERROR → review queue ({err})")
         else:
             status, reasons = route(enriched, args.threshold)
-            row = enriched_row(lead, enriched)
-            if status == "approved":
-                append_csv("enriched.csv", ENRICHED_FIELDS, row)
-            else:
-                append_csv("review_queue.csv", REVIEW_FIELDS, {**row, "reasons": ";".join(reasons)})
+            row = result_row(lead, run_id, status, reasons, enriched=enriched)
             record = make_record(
                 lead,
                 args.model,
@@ -116,10 +100,15 @@ def main() -> None:
             flag = "APPROVED" if status == "approved" else f"REVIEW ({';'.join(reasons)})"
             print(f"    conf={enriched.confidence:.2f} → {flag}")
 
+        # The result row is the done-marker: written in one transaction, so a crash
+        # leaves the lead either fully recorded or untouched — never half-done.
+        store.record_result(row)
         log_record("runs.jsonl", record)
         records.append(record)
-        store.add(lead.id)
 
+    store.finish_run(run_id, {"processed": len(records), "skipped": skipped})
+    store.export_csv("enriched.csv", ["approved"], ENRICHED_FIELDS)
+    store.export_csv("review_queue.csv", ["review", "error"], REVIEW_FIELDS)
     print_summary(records, skipped)
 
 
