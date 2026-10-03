@@ -51,6 +51,8 @@ def test_company_normalization(a, b):
         ("Chief Technology Officer", True),
         ("chief technology officer", True),
         ("Head of Engineering", False),
+        ("Co-founder & CTO", True),  # compound title containing an accepted form
+        ("Technology Advisor", False),
     ],
 )
 def test_role_matching_uses_aliases(predicted, ok):

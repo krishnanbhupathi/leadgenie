@@ -63,7 +63,12 @@ def field_correct(name: str, predicted: Any, g: GoldenLead) -> bool | None:
         return norm_domain(str(predicted)) == norm_domain(label)
     if name == "role":
         accepted = {norm_role(label), *(norm_role(a) for a in g.labels.role_aliases)}
-        return norm_role(str(predicted)) in accepted
+        pred = norm_role(str(predicted))
+        # Compound titles ("Co-founder & CEO") are right if they contain an accepted form
+        # whole; exact-string matching scored them wrong and fed a bogus correction into
+        # the first live improve run.
+        pred_tokens = set(pred.split())
+        return pred in accepted or any(set(a.split()) <= pred_tokens for a in accepted)
     return bool(predicted == label)
 
 
