@@ -52,6 +52,7 @@ class EvalConfig:
     judge: bool = True
     judge_model: str = JUDGE_MODEL
     judge_concurrency: int = 4
+    limit: int | None = None  # first N leads of the split (by lead id), for cheap smoke runs
 
 
 def git_revision() -> str:
@@ -129,7 +130,7 @@ async def run_eval(
     golden_path: Path = GOLDEN_PATH,
     world_path: Path = WORLD_PATH,
 ) -> dict[str, Any]:
-    golden = select(load_golden(golden_path), cfg.split)
+    golden = select(load_golden(golden_path), cfg.split)[: cfg.limit]
     world_data = json.loads(world_path.read_text())
     world = World(pages=world_data["pages"], mx=world_data["mx"])
     by_id = {g.lead_id: g for g in golden}

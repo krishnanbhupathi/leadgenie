@@ -154,6 +154,7 @@ async def cmd_eval(args: argparse.Namespace) -> int:
         pipeline=pipeline_config(args),
         judge=not args.no_judge,
         judge_model=args.judge_model,
+        limit=args.limit,
     )
     results = await run_eval(cfg, client, judge_client=client)
     path = write_results(results, args.out, tag=args.tag)
@@ -235,6 +236,7 @@ def build_parser() -> argparse.ArgumentParser:
     ev.add_argument("--no-judge", action="store_true", help="skip the LLM outreach judge")
     ev.add_argument("--gate", help="JSON thresholds; exit 1 if any fails")
     ev.add_argument("--tag", default="", help="suffix for the results filename")
+    ev.add_argument("--limit", type=int, help="only the first N leads of the split")
     add_agent_args(ev)
     add_cassette_args(ev, "evals/cassettes/eval.jsonl")
 
