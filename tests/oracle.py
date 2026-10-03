@@ -18,11 +18,21 @@ def _lead_name(req: dict[str, Any]) -> str:
     return re.search(r"- name: (.+)", first).group(1).strip()
 
 
-def make_oracle(golden: list[GoldenLead], world: dict[str, Any], confidence: float = 0.9):
+def make_oracle(
+    golden: list[GoldenLead],
+    world: dict[str, Any],
+    confidence: float = 0.9,
+    fooled_unless: str | None = None,
+):
+    """fooled_unless: if set, look-alike leads resolve to the *wrong* twin company unless
+    this text appears in the system prompt. Used to test that the improve loop finds and
+    keeps a prompt change that fixes a real failure."""
     by_name = {g.name: g for g in golden}
 
     def script(req: dict[str, Any]):
         g = by_name[_lead_name(req)]
+        if fooled_unless and g.scenario == "lookalike" and fooled_unless not in req["system"]:
+            g = _twin(g)
         lab = g.labels
         if len(req["messages"]) == 1:
             if lab.domain is None:
@@ -35,6 +45,16 @@ def make_oracle(golden: list[GoldenLead], world: dict[str, Any], confidence: flo
         return message(tool_use(SUBMIT_TOOL, **_submission(g, world, confidence)))
 
     return script
+
+
+def _twin(g: GoldenLead) -> GoldenLead:
+    from dataclasses import replace
+
+    from leadgenie.evals.golden import LOOKALIKES, slug
+
+    name, industry, _ = LOOKALIKES[g.labels.company]
+    labels = replace(g.labels, company=name, domain=f"{slug(name)}.example", industry=industry)
+    return replace(g, labels=labels)
 
 
 def _submission(g: GoldenLead, world: dict[str, Any], conf: float) -> dict[str, Any]:
@@ -54,7 +74,10 @@ def _submission(g: GoldenLead, world: dict[str, Any], conf: float) -> dict[str, 
     team = f"{home}team"
     desc = world["pages"][home]["description"]
     blurb = desc.removeprefix(lab.company).strip(" .")
-    if lab.role is not None:
+    if lab.role is not None and g.title:
+        role = sourced(lab.role, "input", "", conf)
+        seniority = sourced(lab.seniority, "inferred", "", 0.7)
+    elif lab.role is not None:
         role = sourced(lab.role, team, f"{g.name}, {lab.role}", conf)
         seniority = sourced(lab.seniority, "inferred", "", 0.7)
     else:

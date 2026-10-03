@@ -8,6 +8,7 @@ Usage:
     leadgenie eval --split test [--replay | --record] [--no-judge] [--gate evals/gate.json]
     leadgenie judge-check
     leadgenie review --reviewer you@example.com
+    leadgenie improve --iterations 3 [--record | --replay]
 """
 
 from __future__ import annotations
@@ -28,6 +29,7 @@ from leadgenie.evals.cassette import Cassette
 from leadgenie.evals.gate import check_gate, run_judge_check
 from leadgenie.evals.outreach import JUDGE_MODEL
 from leadgenie.evals.run import EvalConfig, run_eval, write_results
+from leadgenie.improve import DEFAULT_PROMPT_PATH, ImproveConfig, Improver, load_prompt
 from leadgenie.models import Lead
 from leadgenie.pipeline import (
     ENRICHED_FIELDS,
@@ -80,6 +82,11 @@ def add_agent_args(p: argparse.ArgumentParser) -> None:
     p.add_argument("--concurrency", type=int, default=4)
     p.add_argument("--rpm", type=float, default=50.0, help="model requests per minute")
     p.add_argument("--no-fallbacks", action="store_true", help="disable refusal fallbacks")
+    p.add_argument(
+        "--prompt",
+        default=str(DEFAULT_PROMPT_PATH),
+        help="prompt config JSON kept by `improve` (base prompt if the file is missing)",
+    )
 
 
 def pipeline_config(args: argparse.Namespace) -> PipelineConfig:
@@ -89,6 +96,7 @@ def pipeline_config(args: argparse.Namespace) -> PipelineConfig:
             effort=args.effort,
             budget=Budget(max_steps=args.max_steps, max_cost_usd=args.max_cost),
             fallbacks=not args.no_fallbacks,
+            prompt=load_prompt(Path(args.prompt)),
         ),
         threshold=args.threshold,
         concurrency=args.concurrency,
@@ -178,6 +186,20 @@ def cmd_review(args: argparse.Namespace) -> int:
     return 0
 
 
+async def cmd_improve(args: argparse.Namespace) -> int:
+    cfg = ImproveConfig(
+        iterations=args.iterations,
+        min_delta=args.min_delta,
+        pipeline=pipeline_config(args),
+        prompt_path=Path(args.prompt),
+        out_dir=Path(args.out) / "improve",
+        log_path=Path(args.out) / "improve_log.jsonl",
+    )
+    summary = await Improver(cfg, model_client(args), Store(args.db)).run()
+    print(json.dumps(summary, indent=2))
+    return 0
+
+
 def add_cassette_args(p: argparse.ArgumentParser, default: str) -> None:
     g = p.add_mutually_exclusive_group()
     g.add_argument("--record", action="store_true", help="call the API and save responses")
@@ -214,6 +236,12 @@ def build_parser() -> argparse.ArgumentParser:
     rv.add_argument("--reviewer", required=True)
     rv.add_argument("--limit", type=int)
 
+    im = sub.add_parser("improve", help="self-improving loop over corrections + evals")
+    im.add_argument("--iterations", type=int, default=3)
+    im.add_argument("--min-delta", type=float, default=0.03)
+    add_agent_args(im)
+    add_cassette_args(im, "evals/cassettes/improve.jsonl")
+
     jc = sub.add_parser("judge-check", help="measure judge agreement with hand labels")
     add_cassette_args(jc, "evals/cassettes/judge-check.jsonl")
     return parser
@@ -229,6 +257,8 @@ def main(argv: list[str] | None = None) -> int:
         return asyncio.run(cmd_eval(args))
     if args.command == "review":
         return cmd_review(args)
+    if args.command == "improve":
+        return asyncio.run(cmd_improve(args))
     if args.command == "judge-check":
         return asyncio.run(cmd_judge_check(args))
     return 2
