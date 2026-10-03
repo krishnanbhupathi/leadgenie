@@ -1,0 +1,619 @@
+{
+ "pages": {
+  "https://amberlinelogistics.example/": {
+   "title": "Amberline Logistics | Manages cold-chain warehousing",
+   "description": "Amberline Logistics manages cold-chain warehousing for pharmaceutical distributors.",
+   "text": "Amberline Logistics manages cold-chain warehousing for pharmaceutical distributors. Founded in 2019 and based in Adelaide. Contact: hello@amberlinelogistics.example. See /about and /team."
+  },
+  "https://amberlinelogistics.example/about": {
+   "title": "About Amberline Logistics",
+   "text": "About us: Amberline Logistics was founded in 2019 in Adelaide. We cold-chain warehousing for pharmaceutical distributors."
+  },
+  "https://amberlinelogistics.example/team": {
+   "title": "Team | Amberline Logistics",
+   "text": "Leadership and team at Amberline Logistics: Farah Ingram, VP of Engineering.",
+   "unlisted": true
+  },
+  "https://bramblegateagency.example/": {
+   "title": "Bramblegate Agency | Runs performance-marketing campaigns",
+   "description": "Bramblegate Agency runs performance-marketing campaigns for DTC skincare brands.",
+   "text": "Bramblegate Agency runs performance-marketing campaigns for DTC skincare brands. Founded in 2016 and based in Tartu. Contact: hello@bramblegateagency.example. See /about and /team."
+  },
+  "https://bramblegateagency.example/about": {
+   "title": "About Bramblegate Agency",
+   "text": "About us: Bramblegate Agency was founded in 2016 in Tartu. We performance-marketing campaigns for DTC skincare brands."
+  },
+  "https://bramblegateagency.example/team": {
+   "title": "Team | Bramblegate Agency",
+   "text": "Leadership and team at Bramblegate Agency: Pavel Jessop, Product Manager; Pavel Hollins, VP of Engineering.",
+   "unlisted": true
+  },
+  "https://brightwaveledger.example/": {
+   "title": "Brightwave Ledger | Automates accounts-payable reconciliation",
+   "description": "Brightwave Ledger automates accounts-payable reconciliation for mid-market finance teams.",
+   "text": "Brightwave Ledger automates accounts-payable reconciliation for mid-market finance teams. Founded in 2019 and based in Gdansk. Contact: hello@brightwaveledger.example. See /about and /team."
+  },
+  "https://brightwaveledger.example/about": {
+   "title": "About Brightwave Ledger",
+   "text": "About us: Brightwave Ledger was founded in 2019 in Gdansk. We accounts-payable reconciliation for mid-market finance teams."
+  },
+  "https://brightwaveledger.example/team": {
+   "title": "Team | Brightwave Ledger",
+   "text": "Leadership and team at Brightwave Ledger: Xavi Castellan, Product Manager.",
+   "unlisted": true
+  },
+  "https://clearbrooklearning.example/": {
+   "title": "Clearbrook Learning | Teaches data-literacy courses to public-sector employees",
+   "description": "Clearbrook Learning teaches data-literacy courses to public-sector employees.",
+   "text": "Clearbrook Learning teaches data-literacy courses to public-sector employees. Founded in 2016 and based in Porto. Contact: hello@clearbrooklearning.example. See /about and /team."
+  },
+  "https://clearbrooklearning.example/about": {
+   "title": "About Clearbrook Learning",
+   "text": "About us: Clearbrook Learning was founded in 2016 in Porto. We data-literacy courses to public-sector employees."
+  },
+  "https://clearbrooklearning.example/team": {
+   "title": "Team | Clearbrook Learning",
+   "text": "Leadership and team at Clearbrook Learning: Jonas Marchetti, Head of Marketing; Yara Fairbairn, VP of Engineering.",
+   "unlisted": true
+  },
+  "https://copperleafkitchens.example/": {
+   "title": "Copperleaf Kitchens | Runs a group of ghost kitchens serving three city centres",
+   "description": "Copperleaf Kitchens runs a group of ghost kitchens serving three city centres.",
+   "text": "Copperleaf Kitchens runs a group of ghost kitchens serving three city centres. Founded in 2012 and based in Gdansk. Contact: hello@copperleafkitchens.example. See /about and /team."
+  },
+  "https://copperleafkitchens.example/about": {
+   "title": "About Copperleaf Kitchens",
+   "text": "About us: Copperleaf Kitchens was founded in 2012 in Gdansk. We a group of ghost kitchens serving three city centres."
+  },
+  "https://copperleafkitchens.example/team": {
+   "title": "Team | Copperleaf Kitchens",
+   "text": "Leadership and team at Copperleaf Kitchens: Soren Ellery, Engineering Manager.",
+   "unlisted": true
+  },
+  "https://corvidshield.example/": {
+   "title": "Corvid Shield | Detects credential-stuffing attacks against customer login pages",
+   "description": "Corvid Shield detects credential-stuffing attacks against customer login pages.",
+   "text": "Corvid Shield detects credential-stuffing attacks against customer login pages. Founded in 2023 and based in Gdansk. Contact: hello@corvidshield.example. See /about and /team."
+  },
+  "https://corvidshield.example/about": {
+   "title": "About Corvid Shield",
+   "text": "About us: Corvid Shield was founded in 2023 in Gdansk. We credential-stuffing attacks against customer login pages."
+  },
+  "https://corvidshield.example/team": {
+   "title": "Team | Corvid Shield",
+   "text": "Leadership and team at Corvid Shield: Ada Marchetti, Chief Executive Officer.",
+   "unlisted": true
+  },
+  "https://corvidshieldssigns.example/": {
+   "title": "Corvid Shields & Signs | Fabricates metal shop signage",
+   "description": "Corvid Shields & Signs fabricates metal shop signage.",
+   "text": "Corvid Shields & Signs fabricates metal shop signage. Founded in 2014 and based in Lyon. Contact: hello@corvidshieldssigns.example. See /about and /team."
+  },
+  "https://corvidshieldssigns.example/about": {
+   "title": "About Corvid Shields & Signs",
+   "text": "About us: Corvid Shields & Signs was founded in 2014 in Lyon. We metal shop signage."
+  },
+  "https://corvidshieldssigns.example/team": {
+   "title": "Team | Corvid Shields & Signs",
+   "text": "Leadership and team at Corvid Shields & Signs: Ada Fairbairn, Managing Director.",
+   "unlisted": true
+  },
+  "https://driftwooddelivery.example/": {
+   "title": "Driftwood Delivery | Operates same-day grocery delivery by cargo bike",
+   "description": "Driftwood Delivery operates same-day grocery delivery by cargo bike.",
+   "text": "Driftwood Delivery operates same-day grocery delivery by cargo bike. Founded in 2012 and based in Tartu. Contact: hello@driftwooddelivery.example. See /about and /team."
+  },
+  "https://driftwooddelivery.example/about": {
+   "title": "About Driftwood Delivery",
+   "text": "About us: Driftwood Delivery was founded in 2012 in Tartu. We same-day grocery delivery by cargo bike."
+  },
+  "https://driftwooddelivery.example/team": {
+   "title": "Team | Driftwood Delivery",
+   "text": "Leadership and team at Driftwood Delivery: Zeno Thorne, Operations Manager; Jonas Castellan, Head of Marketing.",
+   "unlisted": true
+  },
+  "https://foxglovepayments.example/": {
+   "title": "Foxglove Payments | Issues virtual cards",
+   "description": "Foxglove Payments issues virtual cards for travel-expense management.",
+   "text": "Foxglove Payments issues virtual cards for travel-expense management. Founded in 2018 and based in Porto. Contact: hello@foxglovepayments.example. See /about and /team."
+  },
+  "https://foxglovepayments.example/about": {
+   "title": "About Foxglove Payments",
+   "text": "About us: Foxglove Payments was founded in 2018 in Porto. We virtual cards for travel-expense management."
+  },
+  "https://foxglovepayments.example/team": {
+   "title": "Team | Foxglove Payments",
+   "text": "Leadership and team at Foxglove Payments: Keiko Jessop, Head of Growth; Oona Zielinski, Chief Operating Officer; Nikhil Quayle, Senior Account Executive.",
+   "unlisted": true
+  },
+  "https://granitepeakconsulting.example/": {
+   "title": "Granite Peak Consulting | Advises manufacturers on lean production rollouts",
+   "description": "Granite Peak Consulting advises manufacturers on lean production rollouts.",
+   "text": "Granite Peak Consulting advises manufacturers on lean production rollouts. Founded in 2016 and based in Adelaide. Contact: hello@granitepeakconsulting.example. See /about and /team."
+  },
+  "https://granitepeakconsulting.example/about": {
+   "title": "About Granite Peak Consulting",
+   "text": "About us: Granite Peak Consulting was founded in 2016 in Adelaide. We manufacturers on lean production rollouts."
+  },
+  "https://granitepeakconsulting.example/team": {
+   "title": "Team | Granite Peak Consulting",
+   "text": "Leadership and team at Granite Peak Consulting: Oona Dunmore, Head of Growth; Pavel Okafor, Chief Technology Officer.",
+   "unlisted": true
+  },
+  "https://halcyonstays.example/": {
+   "title": "Halcyon Stays | Manages boutique short-stay apartments in lisbon and porto",
+   "description": "Halcyon Stays manages boutique short-stay apartments in Lisbon and Porto.",
+   "text": "Halcyon Stays manages boutique short-stay apartments in Lisbon and Porto. Founded in 2012 and based in Tartu. Contact: hello@halcyonstays.example. See /about and /team."
+  },
+  "https://halcyonstays.example/about": {
+   "title": "About Halcyon Stays",
+   "text": "About us: Halcyon Stays was founded in 2012 in Tartu. We boutique short-stay apartments in Lisbon and Porto."
+  },
+  "https://halcyonstays.example/team": {
+   "title": "Team | Halcyon Stays",
+   "text": "Leadership and team at Halcyon Stays: Soren Nakamura, Data Scientist.",
+   "unlisted": true
+  },
+  "https://hearthstonerealtylabs.example/": {
+   "title": "Hearthstone Realty Labs | Provides valuation models",
+   "description": "Hearthstone Realty Labs provides valuation models for small multifamily properties.",
+   "text": "Hearthstone Realty Labs provides valuation models for small multifamily properties. Founded in 2012 and based in Porto. Contact: hello@hearthstonerealtylabs.example. See /about and /team."
+  },
+  "https://hearthstonerealtylabs.example/about": {
+   "title": "About Hearthstone Realty Labs",
+   "text": "About us: Hearthstone Realty Labs was founded in 2012 in Porto. We valuation models for small multifamily properties."
+  },
+  "https://hearthstonerealtylabs.example/team": {
+   "title": "Team | Hearthstone Realty Labs",
+   "text": "Leadership and team at Hearthstone Realty Labs: Goran Jessop, Head of Growth; Goran Thorne, Product Manager.",
+   "unlisted": true
+  },
+  "https://ironbarkitpartners.example/": {
+   "title": "Ironbark IT Partners | Provides managed it and helpdesk",
+   "description": "Ironbark IT Partners provides managed IT and helpdesk for dental practices.",
+   "text": "Ironbark IT Partners provides managed IT and helpdesk for dental practices. Founded in 2022 and based in Austin. Contact: hello@ironbarkitpartners.example. See /about and /team."
+  },
+  "https://ironbarkitpartners.example/about": {
+   "title": "About Ironbark IT Partners",
+   "text": "About us: Ironbark IT Partners was founded in 2022 in Austin. We managed IT and helpdesk for dental practices."
+  },
+  "https://ironbarkitpartners.example/team": {
+   "title": "Team | Ironbark IT Partners",
+   "text": "Leadership and team at Ironbark IT Partners: Hana Ellery, Chief Technology Officer; Viktor Ingram, Director of Sales.",
+   "unlisted": true
+  },
+  "https://juniperloop.example/": {
+   "title": "Juniper Loop | Runs structured onboarding programs",
+   "description": "Juniper Loop runs structured onboarding programs for distributed engineering teams.",
+   "text": "Juniper Loop runs structured onboarding programs for distributed engineering teams. Founded in 2015 and based in Tartu. Contact: hello@juniperloop.example. See /about and /team."
+  },
+  "https://juniperloop.example/about": {
+   "title": "About Juniper Loop",
+   "text": "About us: Juniper Loop was founded in 2015 in Tartu. We structured onboarding programs for distributed engineering teams."
+  },
+  "https://juniperloop.example/team": {
+   "title": "Team | Juniper Loop",
+   "text": "Leadership and team at Juniper Loop: Zeno Underhill, Senior Account Executive; Farah Ellery, Chief Operating Officer.",
+   "unlisted": true
+  },
+  "https://kestrelcloudpartners.example/": {
+   "title": "Kestrel Cloud Partners | Advises banks on cloud migration",
+   "description": "Kestrel Cloud Partners advises banks on cloud migration.",
+   "text": "Kestrel Cloud Partners advises banks on cloud migration. Founded in 2017 and based in Tartu. Contact: hello@kestrelcloudpartners.example. See /about and /team."
+  },
+  "https://kestrelcloudpartners.example/about": {
+   "title": "About Kestrel Cloud Partners",
+   "text": "About us: Kestrel Cloud Partners was founded in 2017 in Tartu. We banks on cloud migration."
+  },
+  "https://kestrelcloudpartners.example/team": {
+   "title": "Team | Kestrel Cloud Partners",
+   "text": "Leadership and team at Kestrel Cloud Partners: Bram Dunmore, Managing Director.",
+   "unlisted": true
+  },
+  "https://kestrelcloudworks.example/": {
+   "title": "Kestrel Cloudworks | Sells a field-service scheduling app",
+   "description": "Kestrel Cloudworks sells a field-service scheduling app for HVAC contractors.",
+   "text": "Kestrel Cloudworks sells a field-service scheduling app for HVAC contractors. Founded in 2012 and based in Rotterdam. Contact: hello@kestrelcloudworks.example. See /about and /team."
+  },
+  "https://kestrelcloudworks.example/about": {
+   "title": "About Kestrel Cloudworks",
+   "text": "About us: Kestrel Cloudworks was founded in 2012 in Rotterdam. We a field-service scheduling app for HVAC contractors."
+  },
+  "https://kestrelcloudworks.example/team": {
+   "title": "Team | Kestrel Cloudworks",
+   "text": "Leadership and team at Kestrel Cloudworks: Viktor Rasmussen, Head of Growth.",
+   "unlisted": true
+  },
+  "https://lanternfishai.example/": {
+   "title": "Lanternfish AI | Trains document-understanding models",
+   "description": "Lanternfish AI trains document-understanding models for insurance claims.",
+   "text": "Lanternfish AI trains document-understanding models for insurance claims. Founded in 2012 and based in Lyon. Contact: hello@lanternfishai.example. See /about and /team."
+  },
+  "https://lanternfishai.example/about": {
+   "title": "About Lanternfish AI",
+   "text": "About us: Lanternfish AI was founded in 2012 in Lyon. We document-understanding models for insurance claims."
+  },
+  "https://lanternfishai.example/team": {
+   "title": "Team | Lanternfish AI",
+   "text": "Leadership and team at Lanternfish AI: Zeno Abernathy, VP of Engineering.",
+   "unlisted": true
+  },
+  "https://lanternfishaquatics.example/": {
+   "title": "Lanternfish Aquatics | Sells aquarium supplies online",
+   "description": "Lanternfish Aquatics sells aquarium supplies online.",
+   "text": "Lanternfish Aquatics sells aquarium supplies online. Founded in 2013 and based in Rotterdam. Contact: hello@lanternfishaquatics.example. See /about and /team."
+  },
+  "https://lanternfishaquatics.example/about": {
+   "title": "About Lanternfish Aquatics",
+   "text": "About us: Lanternfish Aquatics was founded in 2013 in Rotterdam. We aquarium supplies online."
+  },
+  "https://lanternfishaquatics.example/team": {
+   "title": "Team | Lanternfish Aquatics",
+   "text": "Leadership and team at Lanternfish Aquatics: Yara Zielinski, Managing Director.",
+   "unlisted": true
+  },
+  "https://mosswoodrobotics.example/": {
+   "title": "Mosswood Robotics | Builds collaborative welding robots",
+   "description": "Mosswood Robotics builds collaborative welding robots for small fabrication shops.",
+   "text": "Mosswood Robotics builds collaborative welding robots for small fabrication shops. Founded in 2014 and based in Rotterdam. Contact: hello@mosswoodrobotics.example. See /about and /team."
+  },
+  "https://mosswoodrobotics.example/about": {
+   "title": "About Mosswood Robotics",
+   "text": "About us: Mosswood Robotics was founded in 2014 in Rotterdam. We collaborative welding robots for small fabrication shops."
+  },
+  "https://mosswoodrobotics.example/team": {
+   "title": "Team | Mosswood Robotics",
+   "text": "Leadership and team at Mosswood Robotics: Goran Galloway, Operations Manager.",
+   "unlisted": true
+  },
+  "https://nightjarmedia.example/": {
+   "title": "Nightjar Media | Publishes a newsletter network covering climate policy",
+   "description": "Nightjar Media publishes a newsletter network covering climate policy.",
+   "text": "Nightjar Media publishes a newsletter network covering climate policy. Founded in 2022 and based in Gdansk. Contact: hello@nightjarmedia.example. See /about and /team."
+  },
+  "https://nightjarmedia.example/about": {
+   "title": "About Nightjar Media",
+   "text": "About us: Nightjar Media was founded in 2022 in Gdansk. We a newsletter network covering climate policy."
+  },
+  "https://nightjarmedia.example/team": {
+   "title": "Team | Nightjar Media",
+   "text": "Leadership and team at Nightjar Media: Pavel Marchetti, Director of Sales.",
+   "unlisted": true
+  },
+  "https://orbitlinedevtools.example/": {
+   "title": "Orbitline Devtools | Offers a ci cache that cuts monorepo build times",
+   "description": "Orbitline Devtools offers a CI cache that cuts monorepo build times.",
+   "text": "Orbitline Devtools offers a CI cache that cuts monorepo build times. Founded in 2016 and based in Gdansk. Contact: hello@orbitlinedevtools.example. See /about and /team."
+  },
+  "https://orbitlinedevtools.example/about": {
+   "title": "About Orbitline Devtools",
+   "text": "About us: Orbitline Devtools was founded in 2016 in Gdansk. We a CI cache that cuts monorepo build times."
+  },
+  "https://orbitlinedevtools.example/team": {
+   "title": "Team | Orbitline Devtools",
+   "text": "Leadership and team at Orbitline Devtools: Tamsin Fairbairn, Engineering Manager.",
+   "unlisted": true
+  },
+  "https://pinecresthealthsystems.example/": {
+   "title": "Pinecrest Health Systems | Builds scheduling software",
+   "description": "Pinecrest Health Systems builds scheduling software for outpatient physiotherapy clinics.",
+   "text": "Pinecrest Health Systems builds scheduling software for outpatient physiotherapy clinics. Founded in 2013 and based in Rotterdam. Contact: hello@pinecresthealthsystems.example. See /about and /team."
+  },
+  "https://pinecresthealthsystems.example/about": {
+   "title": "About Pinecrest Health Systems",
+   "text": "About us: Pinecrest Health Systems was founded in 2013 in Rotterdam. We scheduling software for outpatient physiotherapy clinics."
+  },
+  "https://pinecresthealthsystems.example/team": {
+   "title": "Team | Pinecrest Health Systems",
+   "text": "Leadership and team at Pinecrest Health Systems: Uma Hollins, VP of Engineering; Jonas Pemberton, Engineering Manager.",
+   "unlisted": true
+  },
+  "https://quillfeatherlearning.example/": {
+   "title": "Quillfeather Learning | Makes adaptive maths practice",
+   "description": "Quillfeather Learning makes adaptive maths practice for secondary-school students.",
+   "text": "Quillfeather Learning makes adaptive maths practice for secondary-school students. Founded in 2020 and based in Austin. Contact: hello@quillfeatherlearning.example. See /about and /team."
+  },
+  "https://quillfeatherlearning.example/about": {
+   "title": "About Quillfeather Learning",
+   "text": "About us: Quillfeather Learning was founded in 2020 in Austin. We adaptive maths practice for secondary-school students."
+  },
+  "https://quillfeatherlearning.example/team": {
+   "title": "Team | Quillfeather Learning",
+   "text": "Leadership and team at Quillfeather Learning: Wen Marchetti, Director of Sales; Farah Brightwell, Chief Operating Officer; Yara Jessop, VP of Engineering.",
+   "unlisted": true
+  },
+  "https://ravenmoorstudio.example/": {
+   "title": "Ravenmoor Studio | Designs brand identities",
+   "description": "Ravenmoor Studio designs brand identities for craft breweries.",
+   "text": "Ravenmoor Studio designs brand identities for craft breweries. Founded in 2021 and based in Porto. Contact: hello@ravenmoorstudio.example. See /about and /team."
+  },
+  "https://ravenmoorstudio.example/about": {
+   "title": "About Ravenmoor Studio",
+   "text": "About us: Ravenmoor Studio was founded in 2021 in Porto. We brand identities for craft breweries."
+  },
+  "https://ravenmoorstudio.example/team": {
+   "title": "Team | Ravenmoor Studio",
+   "text": "Leadership and team at Ravenmoor Studio: Yara Pemberton, Senior Account Executive.",
+   "unlisted": true
+  },
+  "https://riverstoneclinics.example/": {
+   "title": "Riverstone Clinics | Operates urgent-care clinics with same-day telehealth follow-up",
+   "description": "Riverstone Clinics operates urgent-care clinics with same-day telehealth follow-up.",
+   "text": "Riverstone Clinics operates urgent-care clinics with same-day telehealth follow-up. Founded in 2017 and based in Adelaide. Contact: hello@riverstoneclinics.example. See /about and /team."
+  },
+  "https://riverstoneclinics.example/about": {
+   "title": "About Riverstone Clinics",
+   "text": "About us: Riverstone Clinics was founded in 2017 in Adelaide. We urgent-care clinics with same-day telehealth follow-up."
+  },
+  "https://riverstoneclinics.example/team": {
+   "title": "Team | Riverstone Clinics",
+   "text": "Leadership and team at Riverstone Clinics: Luca Lindqvist, Chief Technology Officer.",
+   "unlisted": true
+  },
+  "https://saltmarshcommerce.example/": {
+   "title": "Saltmarsh Commerce | Operates a marketplace",
+   "description": "Saltmarsh Commerce operates a marketplace for independent ceramic studios.",
+   "text": "Saltmarsh Commerce operates a marketplace for independent ceramic studios. Founded in 2021 and based in Gdansk. Contact: hello@saltmarshcommerce.example. See /about and /team."
+  },
+  "https://saltmarshcommerce.example/about": {
+   "title": "About Saltmarsh Commerce",
+   "text": "About us: Saltmarsh Commerce was founded in 2021 in Gdansk. We a marketplace for independent ceramic studios."
+  },
+  "https://saltmarshcommerce.example/team": {
+   "title": "Team | Saltmarsh Commerce",
+   "text": "Leadership and team at Saltmarsh Commerce: Ilse Jessop, Chief Operating Officer; Pavel Zielinski, Operations Manager.",
+   "unlisted": true
+  },
+  "https://starlingnoteco.example/": {
+   "title": "Starling Note Co. | Sells handmade paper notebooks",
+   "description": "Starling Note Co. sells handmade paper notebooks.",
+   "text": "Starling Note Co. sells handmade paper notebooks. Founded in 2018 and based in Porto. Contact: hello@starlingnoteco.example. See /about and /team."
+  },
+  "https://starlingnoteco.example/about": {
+   "title": "About Starling Note Co.",
+   "text": "About us: Starling Note Co. was founded in 2018 in Porto. We handmade paper notebooks."
+  },
+  "https://starlingnoteco.example/team": {
+   "title": "Team | Starling Note Co.",
+   "text": "Leadership and team at Starling Note Co.: Nikhil Valdez, Managing Director.",
+   "unlisted": true
+  },
+  "https://starlingnotes.example/": {
+   "title": "Starling Notes | Makes a meeting-notes tool",
+   "description": "Starling Notes makes a meeting-notes tool for customer-success teams.",
+   "text": "Starling Notes makes a meeting-notes tool for customer-success teams. Founded in 2016 and based in Adelaide. Contact: hello@starlingnotes.example. See /about and /team."
+  },
+  "https://starlingnotes.example/about": {
+   "title": "About Starling Notes",
+   "text": "About us: Starling Notes was founded in 2016 in Adelaide. We a meeting-notes tool for customer-success teams."
+  },
+  "https://starlingnotes.example/team": {
+   "title": "Team | Starling Notes",
+   "text": "Leadership and team at Starling Notes: Pavel Whitlock, Head of Growth.",
+   "unlisted": true
+  },
+  "https://sundialgrid.example/": {
+   "title": "Sundial Grid | Forecasts rooftop-solar output",
+   "description": "Sundial Grid forecasts rooftop-solar output for regional grid operators.",
+   "text": "Sundial Grid forecasts rooftop-solar output for regional grid operators. Founded in 2019 and based in Leeds. Contact: hello@sundialgrid.example. See /about and /team."
+  },
+  "https://sundialgrid.example/about": {
+   "title": "About Sundial Grid",
+   "text": "About us: Sundial Grid was founded in 2019 in Leeds. We rooftop-solar output for regional grid operators."
+  },
+  "https://sundialgrid.example/team": {
+   "title": "Team | Sundial Grid",
+   "text": "Leadership and team at Sundial Grid: Xavi Zielinski, Head of Marketing.",
+   "unlisted": true
+  },
+  "https://sundialgridevents.example/": {
+   "title": "Sundial Grid Events | Runs rooftop event venues",
+   "description": "Sundial Grid Events runs rooftop event venues.",
+   "text": "Sundial Grid Events runs rooftop event venues. Founded in 2012 and based in Rotterdam. Contact: hello@sundialgridevents.example. See /about and /team."
+  },
+  "https://sundialgridevents.example/about": {
+   "title": "About Sundial Grid Events",
+   "text": "About us: Sundial Grid Events was founded in 2012 in Rotterdam. We rooftop event venues."
+  },
+  "https://sundialgridevents.example/team": {
+   "title": "Team | Sundial Grid Events",
+   "text": "Leadership and team at Sundial Grid Events: Farah Valdez, Managing Director.",
+   "unlisted": true
+  },
+  "https://tallowmerefreight.example/": {
+   "title": "Tallowmere Freight | Runs cross-border ltl freight brokerage between germany and poland",
+   "description": "Tallowmere Freight runs cross-border LTL freight brokerage between Germany and Poland.",
+   "text": "Tallowmere Freight runs cross-border LTL freight brokerage between Germany and Poland. Founded in 2014 and based in Gdansk. Contact: hello@tallowmerefreight.example. See /about and /team."
+  },
+  "https://tallowmerefreight.example/about": {
+   "title": "About Tallowmere Freight",
+   "text": "About us: Tallowmere Freight was founded in 2014 in Gdansk. We cross-border LTL freight brokerage between Germany and Poland."
+  },
+  "https://tallowmerefreight.example/team": {
+   "title": "Team | Tallowmere Freight",
+   "text": "Leadership and team at Tallowmere Freight: Chiara Marchetti, Director of Sales; Wen Valdez, Operations Manager.",
+   "unlisted": true
+  },
+  "https://thistleanalytics.example/": {
+   "title": "Thistle Analytics | Builds demand-forecasting models",
+   "description": "Thistle Analytics builds demand-forecasting models for regional bakeries.",
+   "text": "Thistle Analytics builds demand-forecasting models for regional bakeries. Founded in 2023 and based in Rotterdam. Contact: hello@thistleanalytics.example. See /about and /team."
+  },
+  "https://thistleanalytics.example/about": {
+   "title": "About Thistle Analytics",
+   "text": "About us: Thistle Analytics was founded in 2023 in Rotterdam. We demand-forecasting models for regional bakeries."
+  },
+  "https://thistleanalytics.example/team": {
+   "title": "Team | Thistle Analytics",
+   "text": "Leadership and team at Thistle Analytics: Keiko Lindqvist, Data Scientist.",
+   "unlisted": true
+  },
+  "https://tidewaterenergylabs.example/": {
+   "title": "Tidewater Energy Labs | Develops battery-storage controllers",
+   "description": "Tidewater Energy Labs develops battery-storage controllers for commercial buildings.",
+   "text": "Tidewater Energy Labs develops battery-storage controllers for commercial buildings. Founded in 2019 and based in Porto. Contact: hello@tidewaterenergylabs.example. See /about and /team."
+  },
+  "https://tidewaterenergylabs.example/about": {
+   "title": "About Tidewater Energy Labs",
+   "text": "About us: Tidewater Energy Labs was founded in 2019 in Porto. We battery-storage controllers for commercial buildings."
+  },
+  "https://tidewaterenergylabs.example/team": {
+   "title": "Team | Tidewater Energy Labs",
+   "text": "Leadership and team at Tidewater Energy Labs: Uma Zielinski, Data Scientist; Goran Ellery, Director of Sales; Goran Yeoman, Engineering Manager.",
+   "unlisted": true
+  },
+  "https://vellumvane.example/": {
+   "title": "Vellum & Vane | Provides contract-review services",
+   "description": "Vellum & Vane provides contract-review services for venture-backed startups.",
+   "text": "Vellum & Vane provides contract-review services for venture-backed startups. Founded in 2012 and based in Adelaide. Contact: hello@vellumvane.example. See /about and /team."
+  },
+  "https://vellumvane.example/about": {
+   "title": "About Vellum & Vane",
+   "text": "About us: Vellum & Vane was founded in 2012 in Adelaide. We contract-review services for venture-backed startups."
+  },
+  "https://vellumvane.example/team": {
+   "title": "Team | Vellum & Vane",
+   "text": "Leadership and team at Vellum & Vane: Xavi Lindqvist, Operations Manager; Esi Dunmore, Chief Technology Officer; Zeno Hollins, Head of Marketing; Keiko Okafor, Product Manager.",
+   "unlisted": true
+  },
+  "https://wavecrestsecurity.example/": {
+   "title": "Wavecrest Security | Runs phishing simulations",
+   "description": "Wavecrest Security runs phishing simulations for hospital staff.",
+   "text": "Wavecrest Security runs phishing simulations for hospital staff. Founded in 2015 and based in Lyon. Contact: hello@wavecrestsecurity.example. See /about and /team."
+  },
+  "https://wavecrestsecurity.example/about": {
+   "title": "About Wavecrest Security",
+   "text": "About us: Wavecrest Security was founded in 2015 in Lyon. We phishing simulations for hospital staff."
+  },
+  "https://wavecrestsecurity.example/team": {
+   "title": "Team | Wavecrest Security",
+   "text": "Leadership and team at Wavecrest Security: Farah Galloway, Chief Technology Officer.",
+   "unlisted": true
+  }
+ },
+ "mx": {
+  "amberlinelogistics.example": [],
+  "bramblegateagency.example": [
+   "mx1.bramblegateagency.example",
+   "mx2.bramblegateagency.example"
+  ],
+  "brightwaveledger.example": [
+   "mx1.brightwaveledger.example",
+   "mx2.brightwaveledger.example"
+  ],
+  "clearbrooklearning.example": [
+   "mx1.clearbrooklearning.example",
+   "mx2.clearbrooklearning.example"
+  ],
+  "copperleafkitchens.example": [],
+  "corvidshield.example": [
+   "mx1.corvidshield.example",
+   "mx2.corvidshield.example"
+  ],
+  "corvidshieldssigns.example": [
+   "mx.corvidshieldssigns.example"
+  ],
+  "driftwooddelivery.example": [
+   "mx1.driftwooddelivery.example",
+   "mx2.driftwooddelivery.example"
+  ],
+  "foxglovepayments.example": [
+   "mx1.foxglovepayments.example",
+   "mx2.foxglovepayments.example"
+  ],
+  "granitepeakconsulting.example": [
+   "mx1.granitepeakconsulting.example",
+   "mx2.granitepeakconsulting.example"
+  ],
+  "halcyonstays.example": [
+   "mx1.halcyonstays.example",
+   "mx2.halcyonstays.example"
+  ],
+  "hearthstonerealtylabs.example": [
+   "mx1.hearthstonerealtylabs.example",
+   "mx2.hearthstonerealtylabs.example"
+  ],
+  "ironbarkitpartners.example": [
+   "mx1.ironbarkitpartners.example",
+   "mx2.ironbarkitpartners.example"
+  ],
+  "juniperloop.example": [
+   "mx1.juniperloop.example",
+   "mx2.juniperloop.example"
+  ],
+  "kestrelcloudpartners.example": [
+   "mx.kestrelcloudpartners.example"
+  ],
+  "kestrelcloudworks.example": [
+   "mx1.kestrelcloudworks.example",
+   "mx2.kestrelcloudworks.example"
+  ],
+  "lanternfishai.example": [
+   "mx1.lanternfishai.example",
+   "mx2.lanternfishai.example"
+  ],
+  "lanternfishaquatics.example": [
+   "mx.lanternfishaquatics.example"
+  ],
+  "mosswoodrobotics.example": [
+   "mx1.mosswoodrobotics.example",
+   "mx2.mosswoodrobotics.example"
+  ],
+  "nightjarmedia.example": [
+   "mx1.nightjarmedia.example",
+   "mx2.nightjarmedia.example"
+  ],
+  "orbitlinedevtools.example": [],
+  "pinecresthealthsystems.example": [
+   "mx1.pinecresthealthsystems.example",
+   "mx2.pinecresthealthsystems.example"
+  ],
+  "quillfeatherlearning.example": [
+   "mx1.quillfeatherlearning.example",
+   "mx2.quillfeatherlearning.example"
+  ],
+  "ravenmoorstudio.example": [
+   "mx1.ravenmoorstudio.example",
+   "mx2.ravenmoorstudio.example"
+  ],
+  "riverstoneclinics.example": [
+   "mx1.riverstoneclinics.example",
+   "mx2.riverstoneclinics.example"
+  ],
+  "saltmarshcommerce.example": [
+   "mx1.saltmarshcommerce.example",
+   "mx2.saltmarshcommerce.example"
+  ],
+  "starlingnoteco.example": [
+   "mx.starlingnoteco.example"
+  ],
+  "starlingnotes.example": [
+   "mx1.starlingnotes.example",
+   "mx2.starlingnotes.example"
+  ],
+  "sundialgrid.example": [
+   "mx1.sundialgrid.example",
+   "mx2.sundialgrid.example"
+  ],
+  "sundialgridevents.example": [
+   "mx.sundialgridevents.example"
+  ],
+  "tallowmerefreight.example": [
+   "mx1.tallowmerefreight.example",
+   "mx2.tallowmerefreight.example"
+  ],
+  "thistleanalytics.example": [
+   "mx1.thistleanalytics.example",
+   "mx2.thistleanalytics.example"
+  ],
+  "tidewaterenergylabs.example": [
+   "mx1.tidewaterenergylabs.example",
+   "mx2.tidewaterenergylabs.example"
+  ],
+  "vellumvane.example": [
+   "mx1.vellumvane.example",
+   "mx2.vellumvane.example"
+  ],
+  "wavecrestsecurity.example": []
+ }
+}
