@@ -7,6 +7,7 @@ Usage:
     leadgenie report <run_id>
     leadgenie eval --split test [--replay | --record] [--no-judge] [--gate evals/gate.json]
     leadgenie judge-check
+    leadgenie review --reviewer you@example.com
 """
 
 from __future__ import annotations
@@ -37,6 +38,7 @@ from leadgenie.pipeline import (
     run_pipeline,
 )
 from leadgenie.report import build_report, render_markdown, write_report
+from leadgenie.review import review_queue
 from leadgenie.store import Store
 from leadgenie.tools import World, fixture_backends, live_backends
 from leadgenie.tracing import JsonlSink
@@ -170,6 +172,12 @@ async def cmd_judge_check(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_review(args: argparse.Namespace) -> int:
+    n = review_queue(Store(args.db), args.reviewer, limit=args.limit)
+    print(f"\nrecorded {n} correction(s)")
+    return 0
+
+
 def add_cassette_args(p: argparse.ArgumentParser, default: str) -> None:
     g = p.add_mutually_exclusive_group()
     g.add_argument("--record", action="store_true", help="call the API and save responses")
@@ -202,6 +210,10 @@ def build_parser() -> argparse.ArgumentParser:
     add_agent_args(ev)
     add_cassette_args(ev, "evals/cassettes/eval.jsonl")
 
+    rv = sub.add_parser("review", help="correct review-queue leads (feeds `improve`)")
+    rv.add_argument("--reviewer", required=True)
+    rv.add_argument("--limit", type=int)
+
     jc = sub.add_parser("judge-check", help="measure judge agreement with hand labels")
     add_cassette_args(jc, "evals/cassettes/judge-check.jsonl")
     return parser
@@ -215,6 +227,8 @@ def main(argv: list[str] | None = None) -> int:
         return cmd_report(args)
     if args.command == "eval":
         return asyncio.run(cmd_eval(args))
+    if args.command == "review":
+        return cmd_review(args)
     if args.command == "judge-check":
         return asyncio.run(cmd_judge_check(args))
     return 2

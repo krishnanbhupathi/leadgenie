@@ -69,6 +69,23 @@ CREATE TABLE IF NOT EXISTS spans (
 );
 
 CREATE INDEX IF NOT EXISTS spans_run ON spans(run_id, kind);
+
+-- Human (or simulated) corrections to review-queue leads: the self-improving loop's input.
+CREATE TABLE IF NOT EXISTS corrections (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    lead_id     TEXT NOT NULL,
+    raw_company TEXT NOT NULL,
+    title       TEXT,
+    field       TEXT NOT NULL,
+    predicted   TEXT,                   -- JSON
+    predicted_source TEXT,
+    corrected   TEXT,                   -- JSON
+    note        TEXT NOT NULL DEFAULT '',
+    origin      TEXT NOT NULL CHECK (origin IN ('human', 'simulated')),
+    reviewer    TEXT NOT NULL,
+    created_at  TEXT NOT NULL,
+    UNIQUE (lead_id, field, origin)
+);
 """
 
 SPAN_COLUMNS = (
@@ -112,6 +129,20 @@ class ResultRow:
     confidence: float | None
     enrichment: dict[str, Any] | None
     error: str | None = None
+
+
+@dataclass(frozen=True)
+class Correction:
+    lead_id: str
+    raw_company: str
+    title: str | None
+    field: str
+    predicted: Any
+    predicted_source: str | None
+    corrected: Any
+    note: str
+    origin: str  # human | simulated
+    reviewer: str
 
 
 class Store:
@@ -242,6 +273,63 @@ class Store:
         return self.conn.execute(
             "SELECT * FROM results WHERE run_id = ? ORDER BY created_at", (run_id,)
         ).fetchall()
+
+    # --- corrections ------------------------------------------------------
+
+    def add_correction(self, c: Correction) -> None:
+        """Insert or replace (a later correction of the same lead field supersedes)."""
+        with self.transaction() as conn:
+            conn.execute(
+                """INSERT INTO corrections
+                   (lead_id, raw_company, title, field, predicted, predicted_source,
+                    corrected, note, origin, reviewer, created_at)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                   ON CONFLICT(lead_id, field, origin) DO UPDATE SET
+                     predicted = excluded.predicted,
+                     predicted_source = excluded.predicted_source,
+                     corrected = excluded.corrected, note = excluded.note,
+                     reviewer = excluded.reviewer, created_at = excluded.created_at""",
+                (
+                    c.lead_id,
+                    c.raw_company,
+                    c.title,
+                    c.field,
+                    json.dumps(c.predicted),
+                    c.predicted_source,
+                    json.dumps(c.corrected),
+                    c.note,
+                    c.origin,
+                    c.reviewer,
+                    utcnow(),
+                ),
+            )
+
+    def corrections(self, origin: str | None = None) -> list[Correction]:
+        query = "SELECT * FROM corrections"
+        args: tuple[str, ...] = ()
+        if origin:
+            query += " WHERE origin = ?"
+            args = (origin,)
+        rows = self.conn.execute(query + " ORDER BY created_at, id", args).fetchall()
+        return [
+            Correction(
+                lead_id=r["lead_id"],
+                raw_company=r["raw_company"],
+                title=r["title"],
+                field=r["field"],
+                predicted=json.loads(r["predicted"]),
+                predicted_source=r["predicted_source"],
+                corrected=json.loads(r["corrected"]),
+                note=r["note"],
+                origin=r["origin"],
+                reviewer=r["reviewer"],
+            )
+            for r in rows
+        ]
+
+    def clear_corrections(self, origin: str) -> None:
+        with self.transaction() as conn:
+            conn.execute("DELETE FROM corrections WHERE origin = ?", (origin,))
 
     # --- exports ----------------------------------------------------------
 
