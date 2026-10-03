@@ -7,7 +7,7 @@ from pydantic import ValidationError
 
 from leadgenie.models import EnrichedLead, Lead
 
-DEFAULT_MODEL = "claude-opus-4-8"
+DEFAULT_MODEL = "claude-opus-5-5"
 MAX_ATTEMPTS = 3
 
 SYSTEM_PROMPT = """You are a lead-enrichment agent for a B2B sales prospecting tool.

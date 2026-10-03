@@ -7,16 +7,22 @@ with a summary that answers "what did this cost and can I trust it?"
 import json
 from datetime import UTC, datetime
 
-# USD per 1M tokens (input, output)
+# USD per 1M tokens (input, output), Anthropic first-party list prices.
 PRICES = {
+    "claude-opus-5-5": (4.00, 20.00),
     "claude-opus-4-8": (5.00, 25.00),
-    "claude-sonnet-5": (3.00, 15.00),
+    "claude-sonnet-5-5": (2.00, 10.00),
+    "claude-sonnet-5": (2.00, 10.00),
     "claude-haiku-4-5": (1.00, 5.00),
 }
 
 
 def cost_usd(model: str, input_tokens: int, output_tokens: int) -> float:
-    price_in, price_out = PRICES.get(model, (0.0, 0.0))
+    # An unknown model must fail loudly: silently pricing it at $0 would make
+    # every cost budget and cost metric downstream meaningless.
+    if model not in PRICES:
+        raise KeyError(f"no price for model {model!r}; add it to PRICES")
+    price_in, price_out = PRICES[model]
     return (input_tokens * price_in + output_tokens * price_out) / 1_000_000
 
 
