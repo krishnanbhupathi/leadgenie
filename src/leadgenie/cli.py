@@ -20,11 +20,11 @@ import json
 import sys
 from collections.abc import Iterator
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import anthropic
 
-from leadgenie.agent import DEFAULT_EFFORT, DEFAULT_MODEL, AgentConfig, Budget
+from leadgenie.agent import DEFAULT_EFFORT, DEFAULT_MODEL, AgentConfig, Budget, ModelClient
 from leadgenie.evals.cassette import Cassette
 from leadgenie.evals.gate import check_gate, run_judge_check
 from leadgenie.evals.outreach import JUDGE_MODEL
@@ -109,7 +109,7 @@ async def cmd_run(args: argparse.Namespace) -> int:
     backends = fixture_backends(load_world(args.world)) if args.world else live_backends()
     run = await run_pipeline(
         read_leads(args.csv_path),
-        client=anthropic.AsyncAnthropic(max_retries=4),
+        client=live_client(),
         store=store,
         backends=backends,
         config=pipeline_config(args),
@@ -133,11 +133,17 @@ def cmd_report(args: argparse.Namespace) -> int:
     return 0
 
 
+def live_client() -> ModelClient:
+    # AsyncAnthropic satisfies ModelClient structurally at runtime; its overloaded,
+    # fully-typed create() signature just doesn't unify with the Protocol's **kwargs.
+    return cast(ModelClient, anthropic.AsyncAnthropic(max_retries=4))
+
+
 def model_client(args: argparse.Namespace) -> Any:
     """Live client, or a cassette that records (live + saved) or replays (no key needed)."""
     if args.replay:
         return Cassette(args.cassette, "replay")
-    live = anthropic.AsyncAnthropic(max_retries=4)
+    live = live_client()
     return Cassette(args.cassette, "record", inner=live) if args.record else live
 
 

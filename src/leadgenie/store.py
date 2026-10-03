@@ -269,10 +269,11 @@ class Store:
             out.append(d)
         return out
 
-    def run_results(self, run_id: str) -> list[sqlite3.Row]:
-        return self.conn.execute(
+    def run_results(self, run_id: str) -> list[dict[str, Any]]:
+        rows = self.conn.execute(
             "SELECT * FROM results WHERE run_id = ? ORDER BY created_at", (run_id,)
         ).fetchall()
+        return [dict(r) for r in rows]
 
     # --- corrections ------------------------------------------------------
 

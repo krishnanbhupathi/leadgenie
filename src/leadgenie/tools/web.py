@@ -153,13 +153,13 @@ class LiveFetcher:
             try:
                 resp = await self._client.get(origin + "/robots.txt")
                 if resp.status_code in (401, 403):
-                    rp.disallow_all = True
+                    rp.parse(["User-agent: *", "Disallow: /"])  # access-controlled → deny
                 elif resp.status_code >= 400:
-                    rp.allow_all = True
+                    rp.parse([])  # no robots.txt → no stated restriction
                 else:
                     rp.parse(resp.text.splitlines())
             except httpx2.HTTPError:
-                rp.allow_all = True  # unreachable robots.txt → no stated restriction
+                rp.parse([])  # unreachable robots.txt → no stated restriction
             self._robots[origin] = rp
         return self._robots[origin].can_fetch(USER_AGENT, url)
 

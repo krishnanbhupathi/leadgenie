@@ -32,10 +32,7 @@ class LiveMX:
             return {"domain": domain, "exists": False, "has_mx": False, "mx_hosts": []}
         except dns.resolver.NoAnswer:
             return {"domain": domain, "exists": True, "has_mx": False, "mx_hosts": []}
-        hosts = sorted(
-            (r.preference, str(r.exchange).rstrip("."))
-            for r in answer  # type: ignore[attr-defined]
-        )
+        hosts = sorted((r.preference, str(r.exchange).rstrip(".")) for r in answer)
         # A single "." exchange is a null MX (RFC 7505): the domain explicitly takes no mail.
         mx_hosts = [h for _, h in hosts if h]
         return {"domain": domain, "exists": True, "has_mx": bool(mx_hosts), "mx_hosts": mx_hosts}

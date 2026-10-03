@@ -9,9 +9,17 @@ machine-readable reasons attached.
 
 from __future__ import annotations
 
-from typing import get_args
+from typing import Any, get_args
 
-from leadgenie.models import INFERRED, INPUT, Enrichment, Industry, is_retrieved_source
+from leadgenie.models import (
+    INFERRED,
+    INPUT,
+    Enrichment,
+    Industry,
+    Outreach,
+    Sourced,
+    is_retrieved_source,
+)
 from leadgenie.tools.base import EvidenceLog
 
 DEFAULT_THRESHOLD = 0.75
@@ -38,7 +46,9 @@ GENERIC_PHRASES = (
 def provenance_violations(enrichment: Enrichment, evidence: EvidenceLog) -> list[str]:
     """Every cited source must have been retrieved in this run, and every quote found in it."""
     violations = []
-    cited = [(name, enrichment.field(name)) for name in Enrichment.SOURCED_FIELDS]
+    cited: list[tuple[str, Sourced[Any] | Outreach]] = [
+        (name, enrichment.field(name)) for name in Enrichment.SOURCED_FIELDS
+    ]
     cited.append(("outreach", enrichment.outreach))
     for name, item in cited:
         source = item.source.strip()

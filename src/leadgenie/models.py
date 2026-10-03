@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import hashlib
-from typing import Any, ClassVar, Literal
+from typing import Any, ClassVar, Literal, get_args
 
 from pydantic import BaseModel, Field
 
@@ -134,8 +134,8 @@ def _sourced_schema(value_schema: dict[str, Any], what: str) -> dict[str, Any]:
     }
 
 
-SENIORITY_VALUES = list(Seniority.__args__)
-INDUSTRY_VALUES = list(Industry.__args__)
+SENIORITY_VALUES = list(get_args(Seniority))
+INDUSTRY_VALUES = list(get_args(Industry))
 
 SUBMIT_SCHEMA: dict[str, Any] = {
     "type": "object",
