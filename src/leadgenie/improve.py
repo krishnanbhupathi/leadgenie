@@ -292,6 +292,13 @@ class Improver:
         for i in range(1, cfg.iterations + 1):
             kind = "lessons" if i % 2 else "revision"
             note = ""
+            if not [c for c in corrections if not c.field.startswith("_")]:
+                # No feedback, no change. The first live run let the LLM rewrite the prompt
+                # from zero corrections, and dev noise got that generic rewrite accepted.
+                self._log(
+                    {"iteration": i, "kind": kind, "decision": "skipped", "why": "no corrections"}
+                )
+                continue
             if kind == "lessons":
                 candidate = replace(current, lessons=lessons_from(corrections, cfg.max_lessons))
             else:

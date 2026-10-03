@@ -62,7 +62,7 @@ def improve_cfg(tmp_path, **kw) -> ImproveConfig:
     )
 
 
-async def test_loop_accepts_the_fix_and_rejects_a_useless_revision(tmp_path):
+async def test_loop_accepts_the_fix_then_stops_without_feedback(tmp_path):
     cfg = improve_cfg(tmp_path, iterations=2)
     store = Store(tmp_path / "t.db")
     summary = await Improver(cfg, flawed_client(), store).run()
@@ -73,7 +73,8 @@ async def test_loop_accepts_the_fix_and_rejects_a_useless_revision(tmp_path):
     assert baseline["corrections"] > 0
     assert lessons["kind"] == "lessons" and lessons["decision"] == "accepted", lessons["why"]
     assert lessons["dev"]["objective"] > lessons["incumbent_dev"]["objective"]
-    assert revision["kind"] == "revision" and revision["decision"] == "rejected"
+    # the fix removed every train error, so there is nothing left to learn from
+    assert revision["decision"] == "skipped" and revision["why"] == "no corrections"
     # held-out test: the fixed prompt beats the baseline and is persisted
     assert summary["test_final"]["objective"] > summary["test_baseline"]["objective"]
     assert (
@@ -81,10 +82,26 @@ async def test_loop_accepts_the_fix_and_rejects_a_useless_revision(tmp_path):
         < summary["test_baseline"]["unsafe_approval_rate"]
     )
     assert load_prompt(cfg.prompt_path).fingerprint == summary["final_prompt"]
-    # every logged result file exists
     for entry in log:
         for path in entry.get("results", []):
             assert Path(path).exists()
+
+
+async def test_useless_candidates_are_rejected_and_prompt_kept(tmp_path):
+    cfg = improve_cfg(tmp_path, iterations=2)
+    golden = load_golden(ROOT / "evals/golden.jsonl")
+    world = json.loads((ROOT / "evals/world.json").read_text())
+    # fooled unless a phrase no candidate will ever contain → nothing can fix it
+    client = FakeAnthropic(make_oracle(golden, world, fooled_unless="xyzzy-never"))
+    client.messages = FakeAnthropic(lambda _: revision_reply("Be thorough.")).messages
+    summary = await Improver(cfg, client, Store(tmp_path / "t.db")).run()
+    log = [json.loads(x) for x in cfg.log_path.read_text().splitlines()]
+    assert [(e["kind"], e["decision"]) for e in log[1:3]] == [
+        ("lessons", "rejected"),
+        ("revision", "rejected"),
+    ]
+    assert summary["final_prompt"] == summary["baseline_prompt"]
+    assert not cfg.prompt_path.exists()
 
 
 async def test_simulated_corrections_only_from_train(tmp_path):
@@ -136,6 +153,21 @@ async def test_revision_that_names_a_corrected_company_is_refused():
     c = Correction("L", "acme robotics", None, "role", "x", "inferred", "y", "n", "simulated", "s")
     with pytest.raises(ValueError, match="names corrected companies"):
         await propose_revision(leaky, PromptConfig(), [c], "claude-opus-5-5")
+
+
+async def test_no_corrections_means_no_candidate(tmp_path):
+    cfg = improve_cfg(tmp_path, iterations=2)
+    # the oracle is never fooled without fooled_unless → train audit yields no corrections
+    golden = load_golden(ROOT / "evals/golden.jsonl")
+    world = json.loads((ROOT / "evals/world.json").read_text())
+    client = FakeAnthropic(make_oracle(golden, world))
+    proposer = FakeAnthropic(lambda _: revision_reply("anything"))
+    client.messages = proposer.messages
+    summary = await Improver(cfg, client, Store(tmp_path / "t.db")).run()
+    log = [json.loads(x) for x in cfg.log_path.read_text().splitlines()]
+    assert [e.get("decision") for e in log[1:3]] == ["skipped", "skipped"]
+    assert proposer.messages.calls == []  # the LLM was never asked to rewrite blind
+    assert summary["final_prompt"] == summary["baseline_prompt"]
 
 
 def test_prompt_roundtrip(tmp_path):
