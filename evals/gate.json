@@ -1,0 +1,6 @@
+{
+  "review.recall": {"min": 0.8},
+  "review.unsafe_approval_rate": {"max": 0.15},
+  "fields.company.accuracy": {"min": 0.8},
+  "calibration.ece": {"max": 0.2}
+}
