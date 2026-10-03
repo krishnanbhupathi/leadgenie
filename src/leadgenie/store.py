@@ -142,6 +142,25 @@ class Store:
             "SELECT * FROM results WHERE status = ? ORDER BY created_at", (status,)
         ).fetchall()
 
+    def find_prior(self, company: str, limit: int = 3) -> list[sqlite3.Row]:
+        """Earlier *approved* results whose raw or normalized company name matches.
+
+        Only approved rows are returned: a review-queue row is by definition something we
+        were not sure about, and feeding it back to the agent would launder a guess into
+        a "prior result".
+        """
+        needle = company.strip().lower()
+        if not needle:
+            return []
+        return self.conn.execute(
+            """SELECT * FROM results
+               WHERE status = 'approved'
+                 AND (lower(raw_company) = ?
+                      OR lower(json_extract(enrichment, '$.company.value')) = ?)
+               ORDER BY created_at DESC LIMIT ?""",
+            (needle, needle, limit),
+        ).fetchall()
+
     # --- exports ----------------------------------------------------------
 
     def export_csv(self, path: str | Path, statuses: Sequence[str], fields: Sequence[str]) -> int:
