@@ -115,7 +115,11 @@ async def run_pipeline(
     tracer = Tracer(run_id, [store, *(extra_sinks or [])])
     limiter = TokenBucket(rate=config.requests_per_minute / 60, burst=config.concurrency)
     agent = LeadAgent(
-        client, build_registry(backends, store), tracer, config.agent, api_limiter=limiter
+        client,
+        build_registry(backends, store, current_run_id=run_id),
+        tracer,
+        config.agent,
+        api_limiter=limiter,
     )
     store.start_run(
         run_id,

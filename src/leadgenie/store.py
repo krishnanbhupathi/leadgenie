@@ -222,23 +222,26 @@ class Store:
             "SELECT * FROM results WHERE status = ? ORDER BY created_at", (status,)
         ).fetchall()
 
-    def find_prior(self, company: str, limit: int = 3) -> list[sqlite3.Row]:
+    def find_prior(
+        self, company: str, limit: int = 3, exclude_run_id: str | None = None
+    ) -> list[sqlite3.Row]:
         """Earlier *approved* results whose raw or normalized company name matches.
 
         Only approved rows are returned: a review-queue row is by definition something we
         were not sure about, and feeding it back to the agent would launder a guess into
-        a "prior result".
+        a "prior result". Rows from `exclude_run_id` (the current run) are skipped: within
+        a concurrent run, whether lead B sees lead A's answer would depend on timing.
         """
         needle = company.strip().lower()
         if not needle:
             return []
         return self.conn.execute(
             """SELECT * FROM results
-               WHERE status = 'approved'
+               WHERE status = 'approved' AND run_id IS NOT ?
                  AND (lower(raw_company) = ?
                       OR lower(json_extract(enrichment, '$.company.value')) = ?)
                ORDER BY created_at DESC LIMIT ?""",
-            (needle, needle, limit),
+            (exclude_run_id, needle, needle, limit),
         ).fetchall()
 
     # --- spans (tracing sink) --------------------------------------------

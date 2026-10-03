@@ -119,6 +119,30 @@ async def test_prior_results_only_returns_approved(registry):
     assert "prior:a" in res.documents
 
 
+async def test_prior_results_exclude_the_current_run(tmp_path):
+    from leadgenie.tools.prior import prior_tool
+
+    store = Store(tmp_path / "p.db")
+    store.start_run("now", "m", {})
+    store.record_result(
+        ResultRow(
+            lead_id="x",
+            run_id="now",
+            name="n",
+            raw_company="acme inc",
+            title=None,
+            status="approved",
+            reasons=[],
+            confidence=0.9,
+            enrichment={"company": {"value": "Acme"}},
+        )
+    )
+    same_run = await prior_tool(store, current_run_id="now").handler({"company": "acme inc"})
+    later_run = await prior_tool(store, current_run_id="later").handler({"company": "acme inc"})
+    assert json.loads(same_run.content)["results"] == []
+    assert len(json.loads(later_run.content)["results"]) == 1
+
+
 async def test_unknown_tool_and_handler_crash_become_errors(registry):
     reg, _ = registry
     assert (await reg.call("nope", {})).is_error

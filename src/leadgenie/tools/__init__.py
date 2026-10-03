@@ -52,12 +52,14 @@ def live_backends() -> Backends:
     return Backends(fetcher=LiveFetcher(), search=UnconfiguredSearch(), mx=LiveMX())
 
 
-def build_registry(backends: Backends, store: Store) -> ToolRegistry:
+def build_registry(
+    backends: Backends, store: Store, current_run_id: str | None = None
+) -> ToolRegistry:
     return ToolRegistry(
         [
             fetch_tool(backends.fetcher),
             search_tool(backends.search),
             mx_tool(backends.mx),
-            prior_tool(store),
+            prior_tool(store, current_run_id),
         ]
     )

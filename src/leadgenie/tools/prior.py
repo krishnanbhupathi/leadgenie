@@ -9,9 +9,9 @@ from leadgenie.store import Store
 from leadgenie.tools.base import Tool, ToolResult
 
 
-def prior_tool(store: Store) -> Tool:
+def prior_tool(store: Store, current_run_id: str | None = None) -> Tool:
     async def handler(args: dict[str, Any]) -> ToolResult:
-        rows = store.find_prior(args["company"])
+        rows = store.find_prior(args["company"], exclude_run_id=current_run_id)
         results = []
         docs = {}
         for row in rows:
@@ -26,10 +26,10 @@ def prior_tool(store: Store) -> Tool:
     return Tool(
         name="lookup_prior_results",
         description=(
-            "Look up approved enrichments from earlier runs for the same company (matched on "
-            "the raw or normalized company name). Each result has a 'ref' you may cite as a "
-            "source, plus the sources it cited itself. Results reflect the past; re-verify "
-            "anything that may have changed."
+            "Look up approved enrichments from earlier runs (never the current run) for "
+            "the same company, matched on the raw or normalized company name. Each result "
+            "has a 'ref' you may cite as a source, plus the sources it cited itself. "
+            "Results reflect the past; re-verify anything that may have changed."
         ),
         input_schema={
             "type": "object",
