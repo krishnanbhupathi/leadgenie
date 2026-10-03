@@ -44,7 +44,56 @@ CREATE TABLE IF NOT EXISTS results (
 );
 
 CREATE INDEX IF NOT EXISTS results_status ON results(status);
+
+CREATE TABLE IF NOT EXISTS spans (
+    span_id     TEXT PRIMARY KEY,
+    run_id      TEXT NOT NULL,
+    parent_id   TEXT,
+    lead_id     TEXT,
+    kind        TEXT NOT NULL,          -- lead | model_call | tool_call
+    name        TEXT NOT NULL,
+    step        INTEGER,
+    started_at  TEXT NOT NULL,
+    latency_ms  INTEGER,
+    status      TEXT NOT NULL,
+    error       TEXT,
+    model       TEXT,
+    input_tokens       INTEGER NOT NULL DEFAULT 0,
+    output_tokens      INTEGER NOT NULL DEFAULT 0,
+    cache_read_tokens  INTEGER NOT NULL DEFAULT 0,
+    cache_write_tokens INTEGER NOT NULL DEFAULT 0,
+    cost_usd    REAL NOT NULL DEFAULT 0,
+    input       TEXT,                   -- JSON
+    output      TEXT,                   -- JSON
+    attrs       TEXT                    -- JSON
+);
+
+CREATE INDEX IF NOT EXISTS spans_run ON spans(run_id, kind);
 """
+
+SPAN_COLUMNS = (
+    "span_id",
+    "run_id",
+    "parent_id",
+    "lead_id",
+    "kind",
+    "name",
+    "step",
+    "started_at",
+    "latency_ms",
+    "status",
+    "error",
+    "model",
+    "input_tokens",
+    "output_tokens",
+    "cache_read_tokens",
+    "cache_write_tokens",
+    "cost_usd",
+    "input",
+    "output",
+    "attrs",
+)
+_JSON_SPAN_COLUMNS = ("input", "output", "attrs")
 
 
 def utcnow() -> str:
@@ -159,6 +208,39 @@ class Store:
                       OR lower(json_extract(enrichment, '$.company.value')) = ?)
                ORDER BY created_at DESC LIMIT ?""",
             (needle, needle, limit),
+        ).fetchall()
+
+    # --- spans (tracing sink) --------------------------------------------
+
+    def write_span(self, span: dict[str, Any]) -> None:
+        values = [
+            json.dumps(span.get(c), default=str, ensure_ascii=False)
+            if c in _JSON_SPAN_COLUMNS
+            else span.get(c)
+            for c in SPAN_COLUMNS
+        ]
+        with self.transaction() as c:
+            c.execute(
+                f"INSERT INTO spans ({', '.join(SPAN_COLUMNS)}) "
+                f"VALUES ({', '.join('?' * len(SPAN_COLUMNS))})",
+                values,
+            )
+
+    def spans(self, run_id: str) -> list[dict[str, Any]]:
+        rows = self.conn.execute(
+            "SELECT * FROM spans WHERE run_id = ? ORDER BY started_at", (run_id,)
+        ).fetchall()
+        out = []
+        for row in rows:
+            d = dict(row)
+            for col in _JSON_SPAN_COLUMNS:
+                d[col] = json.loads(d[col]) if d[col] is not None else None
+            out.append(d)
+        return out
+
+    def run_results(self, run_id: str) -> list[sqlite3.Row]:
+        return self.conn.execute(
+            "SELECT * FROM results WHERE run_id = ? ORDER BY created_at", (run_id,)
         ).fetchall()
 
     # --- exports ----------------------------------------------------------
