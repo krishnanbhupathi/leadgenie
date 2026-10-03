@@ -1,4 +1,5 @@
 """The agent: one lead in → one validated EnrichedLead out, with retries + backoff."""
+
 import time
 
 import anthropic
@@ -69,7 +70,7 @@ def enrich_lead(client: anthropic.Anthropic, lead: Lead, model: str = DEFAULT_MO
             ValueError,
         ) as err:
             last_err = err
-            delay = 2 ** attempt  # 1s, 2s, 4s
+            delay = 2**attempt  # 1s, 2s, 4s
             print(f"    retry {attempt + 1}/{MAX_ATTEMPTS} for {lead.id} in {delay}s: {err}")
             time.sleep(delay)
     raise EnrichmentError(f"lead {lead.id} failed after {MAX_ATTEMPTS} attempts: {last_err}")

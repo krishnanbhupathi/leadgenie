@@ -1,6 +1,7 @@
 """Pydantic schemas — every LLM output must parse into EnrichedLead or it is rejected."""
+
 import hashlib
-from typing import Literal, Optional
+from typing import Literal
 
 from pydantic import BaseModel, Field
 
@@ -11,7 +12,7 @@ class Lead(BaseModel):
     id: str
     name: str
     raw_company: str
-    title: Optional[str] = None
+    title: str | None = None
 
     @classmethod
     def from_row(cls, row: dict) -> "Lead":
@@ -23,18 +24,33 @@ class Lead(BaseModel):
         return cls(id=digest, name=name, raw_company=raw_company, title=title)
 
 
-Seniority = Literal[
-    "founder", "c_level", "vp", "director", "manager", "senior_ic", "ic", "unknown"
-]
+Seniority = Literal["founder", "c_level", "vp", "director", "manager", "senior_ic", "ic", "unknown"]
 
 # Single source of truth for industry labels. Baking this into the schema means the API
 # *cannot* return an off-list label — v1 left industry as free text and the model drifted
 # ("enterprise software", "food delivery"), inflating the human-review rate.
 Industry = Literal[
-    "saas", "fintech", "ecommerce", "healthcare", "agency", "manufacturing",
-    "education", "real_estate", "logistics", "delivery", "media", "consulting",
-    "cybersecurity", "ai", "hr_tech", "legal", "energy", "hospitality",
-    "dev_tools", "it_services", "other",
+    "saas",
+    "fintech",
+    "ecommerce",
+    "healthcare",
+    "agency",
+    "manufacturing",
+    "education",
+    "real_estate",
+    "logistics",
+    "delivery",
+    "media",
+    "consulting",
+    "cybersecurity",
+    "ai",
+    "hr_tech",
+    "legal",
+    "energy",
+    "hospitality",
+    "dev_tools",
+    "it_services",
+    "other",
 ]
 
 
@@ -56,5 +72,7 @@ class EnrichedLead(BaseModel):
     confidence: float = Field(
         ge=0.0,
         le=1.0,
-        description="Calibrated confidence in this enrichment. Below 0.75 means a human should review it.",
+        description=(
+            "Calibrated confidence in this enrichment. Below 0.75 means a human should review it."
+        ),
     )

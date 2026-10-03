@@ -3,9 +3,9 @@
 This is how I watch the agent: every lead leaves a structured trace, and the run ends
 with a summary that answers "what did this cost and can I trust it?"
 """
+
 import json
-from datetime import datetime, timezone
-from typing import List, Optional
+from datetime import UTC, datetime
 
 # USD per 1M tokens (input, output)
 PRICES = {
@@ -20,13 +20,20 @@ def cost_usd(model: str, input_tokens: int, output_tokens: int) -> float:
     return (input_tokens * price_in + output_tokens * price_out) / 1_000_000
 
 
-def make_record(lead, model: str, status: str, reasons: List[str],
-                enriched=None, usage=None, latency_ms: Optional[int] = None,
-                error: Optional[str] = None) -> dict:
+def make_record(
+    lead,
+    model: str,
+    status: str,
+    reasons: list[str],
+    enriched=None,
+    usage=None,
+    latency_ms: int | None = None,
+    error: str | None = None,
+) -> dict:
     input_tokens = getattr(usage, "input_tokens", 0) or 0
     output_tokens = getattr(usage, "output_tokens", 0) or 0
     return {
-        "ts": datetime.now(timezone.utc).isoformat(),
+        "ts": datetime.now(UTC).isoformat(),
         "lead_id": lead.id,
         "name": lead.name,
         "model": model,
@@ -46,7 +53,7 @@ def log_record(path: str, record: dict) -> None:
         f.write(json.dumps(record) + "\n")
 
 
-def print_summary(records: List[dict], skipped: int) -> None:
+def print_summary(records: list[dict], skipped: int) -> None:
     if not records and not skipped:
         print("Nothing to do.")
         return

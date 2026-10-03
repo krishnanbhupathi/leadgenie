@@ -4,7 +4,8 @@ The API guarantees the *shape* of the output; this layer enforces what the schem
 domain rules, and the human-in-the-loop threshold. A lead never silently enters results —
 it is either approved by these rules or lands in the review queue with reasons attached.
 """
-from typing import List, Tuple, get_args
+
+from typing import get_args
 
 from leadgenie.models import EnrichedLead, Industry
 
@@ -17,7 +18,7 @@ ALLOWED_INDUSTRIES = set(get_args(Industry))
 GENERIC_PHRASES = ("i hope this finds you well", "i came across your profile", "quick question")
 
 
-def business_rule_violations(enriched: EnrichedLead) -> List[str]:
+def business_rule_violations(enriched: EnrichedLead) -> list[str]:
     violations = []
     if not enriched.role.strip():
         violations.append("role_empty")
@@ -35,7 +36,7 @@ def business_rule_violations(enriched: EnrichedLead) -> List[str]:
     return violations
 
 
-def route(enriched: EnrichedLead, threshold: float = DEFAULT_THRESHOLD) -> Tuple[str, List[str]]:
+def route(enriched: EnrichedLead, threshold: float = DEFAULT_THRESHOLD) -> tuple[str, list[str]]:
     """Returns ("approved" | "review", reasons)."""
     reasons = business_rule_violations(enriched)
     if enriched.confidence < threshold:

@@ -4,6 +4,7 @@ Usage:
     python3 main.py leads.csv
     python3 main.py leads.csv --threshold 0.8 --model claude-haiku-4-5
 """
+
 import argparse
 import csv
 import os
@@ -17,10 +18,16 @@ from leadgenie.store import ProcessedStore
 from leadgenie.validate import DEFAULT_THRESHOLD, route
 
 ENRICHED_FIELDS = [
-    "lead_id", "name", "normalized_company", "role", "seniority",
-    "industry", "outreach_line", "confidence",
+    "lead_id",
+    "name",
+    "normalized_company",
+    "role",
+    "seniority",
+    "industry",
+    "outreach_line",
+    "confidence",
 ]
-REVIEW_FIELDS = ENRICHED_FIELDS + ["reasons"]
+REVIEW_FIELDS = [*ENRICHED_FIELDS, "reasons"]
 
 
 def read_leads(path: str):
@@ -56,8 +63,12 @@ def enriched_row(lead: Lead, enriched) -> dict:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Enrich messy leads with an LLM agent.")
     parser.add_argument("csv_path", nargs="?", default="leads.csv")
-    parser.add_argument("--threshold", type=float, default=DEFAULT_THRESHOLD,
-                        help="confidence below this → human review queue")
+    parser.add_argument(
+        "--threshold",
+        type=float,
+        default=DEFAULT_THRESHOLD,
+        help="confidence below this → human review queue",
+    )
     parser.add_argument("--model", default=DEFAULT_MODEL)
     args = parser.parse_args()
 
@@ -75,9 +86,15 @@ def main() -> None:
             enriched, usage, latency_ms = enrich_lead(client, lead, model=args.model)
         except EnrichmentError as err:
             # Failures are routed, never dropped: the lead goes to the review queue.
-            append_csv("review_queue.csv", REVIEW_FIELDS, {
-                "lead_id": lead.id, "name": lead.name, "reasons": "enrichment_failed",
-            })
+            append_csv(
+                "review_queue.csv",
+                REVIEW_FIELDS,
+                {
+                    "lead_id": lead.id,
+                    "name": lead.name,
+                    "reasons": "enrichment_failed",
+                },
+            )
             record = make_record(lead, args.model, "error", ["enrichment_failed"], error=str(err))
             print(f"    ERROR → review queue ({err})")
         else:
@@ -87,8 +104,15 @@ def main() -> None:
                 append_csv("enriched.csv", ENRICHED_FIELDS, row)
             else:
                 append_csv("review_queue.csv", REVIEW_FIELDS, {**row, "reasons": ";".join(reasons)})
-            record = make_record(lead, args.model, status, reasons,
-                                 enriched=enriched, usage=usage, latency_ms=latency_ms)
+            record = make_record(
+                lead,
+                args.model,
+                status,
+                reasons,
+                enriched=enriched,
+                usage=usage,
+                latency_ms=latency_ms,
+            )
             flag = "APPROVED" if status == "approved" else f"REVIEW ({';'.join(reasons)})"
             print(f"    conf={enriched.confidence:.2f} → {flag}")
 
