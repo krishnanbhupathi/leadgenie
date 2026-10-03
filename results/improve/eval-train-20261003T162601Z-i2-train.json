@@ -1,0 +1,2704 @@
+{
+  "meta": {
+    "created_at": "2026-10-03T16:26:01+00:00",
+    "git": "ca4ca1a",
+    "split": "train",
+    "n": 30,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "prompt_fingerprint": "1ece14027510",
+    "lessons": 3,
+    "threshold": 0.75,
+    "budget": {
+      "max_steps": 8,
+      "max_cost_usd": 0.25,
+      "warn_cost_fraction": 0.75
+    },
+    "judge_model": null
+  },
+  "fields": {
+    "company": {
+      "n": 27,
+      "accuracy": 1.0,
+      "coverage": 1.0
+    },
+    "domain": {
+      "n": 27,
+      "accuracy": 1.0,
+      "coverage": 1.0
+    },
+    "role": {
+      "n": 28,
+      "accuracy": 1.0,
+      "coverage": 1.0
+    },
+    "seniority": {
+      "n": 28,
+      "accuracy": 0.964,
+      "coverage": 1.0
+    },
+    "industry": {
+      "n": 27,
+      "accuracy": 1.0,
+      "coverage": 1.0
+    },
+    "accepts_email": {
+      "n": 27,
+      "accuracy": 1.0,
+      "coverage": 1.0
+    }
+  },
+  "calibration": {
+    "ece": 0.1212,
+    "reliability": [
+      {
+        "bin": "0.3-0.4",
+        "n": 1,
+        "mean_confidence": 0.3,
+        "accuracy": 0.0,
+        "gap": -0.3
+      },
+      {
+        "bin": "0.4-0.5",
+        "n": 1,
+        "mean_confidence": 0.4,
+        "accuracy": 1.0,
+        "gap": 0.6
+      },
+      {
+        "bin": "0.5-0.6",
+        "n": 8,
+        "mean_confidence": 0.531,
+        "accuracy": 1.0,
+        "gap": 0.469
+      },
+      {
+        "bin": "0.6-0.7",
+        "n": 7,
+        "mean_confidence": 0.621,
+        "accuracy": 1.0,
+        "gap": 0.379
+      },
+      {
+        "bin": "0.7-0.8",
+        "n": 8,
+        "mean_confidence": 0.738,
+        "accuracy": 1.0,
+        "gap": 0.262
+      },
+      {
+        "bin": "0.8-0.9",
+        "n": 11,
+        "mean_confidence": 0.837,
+        "accuracy": 1.0,
+        "gap": 0.163
+      },
+      {
+        "bin": "0.9-1.0",
+        "n": 128,
+        "mean_confidence": 0.932,
+        "accuracy": 1.0,
+        "gap": 0.068
+      }
+    ]
+  },
+  "review": {
+    "tp": 7,
+    "fp": 4,
+    "fn": 0,
+    "tn": 19,
+    "precision": 0.636,
+    "recall": 1.0,
+    "f1": 0.778,
+    "review_rate": 0.367,
+    "unsafe_approval_rate": 0.0
+  },
+  "scenarios": {
+    "clean": {
+      "n": 12,
+      "routed_to_review": 3,
+      "needs_review": 0,
+      "key_fields_all_correct": 12
+    },
+    "lookalike": {
+      "n": 3,
+      "routed_to_review": 0,
+      "needs_review": 0,
+      "key_fields_all_correct": 3
+    },
+    "messy_company": {
+      "n": 5,
+      "routed_to_review": 1,
+      "needs_review": 0,
+      "key_fields_all_correct": 5
+    },
+    "no_mx": {
+      "n": 2,
+      "routed_to_review": 2,
+      "needs_review": 2,
+      "key_fields_all_correct": 2
+    },
+    "title_on_site": {
+      "n": 3,
+      "routed_to_review": 0,
+      "needs_review": 0,
+      "key_fields_all_correct": 3
+    },
+    "title_unknown": {
+      "n": 2,
+      "routed_to_review": 2,
+      "needs_review": 2,
+      "key_fields_all_correct": 2
+    },
+    "unidentifiable": {
+      "n": 3,
+      "routed_to_review": 3,
+      "needs_review": 3,
+      "key_fields_all_correct": 3
+    }
+  },
+  "cost_usd": {
+    "agent_total": 1.303549,
+    "per_lead_mean": 0.043452,
+    "per_lead_p95": 0.047487
+  },
+  "latency_ms": {
+    "per_lead_p50": 13847,
+    "per_lead_p95": 16501
+  },
+  "steps_mean": 2.87,
+  "stops": {
+    "submitted": 30
+  },
+  "tools": {
+    "check_mx": {
+      "calls": 27,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p50_latency_ms": 0
+    },
+    "fetch_company_site": {
+      "calls": 56,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p50_latency_ms": 0
+    },
+    "lookup_prior_results": {
+      "calls": 28,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p50_latency_ms": 0
+    },
+    "web_search": {
+      "calls": 28,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p50_latency_ms": 2
+    }
+  },
+  "outreach": {
+    "n": 30,
+    "deterministic_pass_rate": {
+      "length_ok": 0.967,
+      "word_count_ok": 1.0,
+      "not_generic": 1.0,
+      "personalized": 0.967,
+      "grounded": 0.9,
+      "no_unsupported_numbers": 1.0,
+      "no_placeholders": 1.0,
+      "all_pass": 0.9
+    }
+  },
+  "predictions": [
+    {
+      "lead_id": "01066df945d2",
+      "scenario": "messy_company",
+      "input": {
+        "name": "Jonas Castellan",
+        "raw_company": "driftwood delivery",
+        "title": "marketing lead"
+      },
+      "labels": {
+        "company": "Driftwood Delivery",
+        "domain": "driftwooddelivery.example",
+        "role": "Head of Marketing",
+        "role_aliases": [
+          "marketing lead"
+        ],
+        "seniority": "director",
+        "industry": "delivery",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.9,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.043843,
+      "latency_ms": 15069,
+      "enrichment": {
+        "company": {
+          "value": "Driftwood Delivery",
+          "source": "https://driftwooddelivery.example/",
+          "evidence": "Driftwood Delivery operates same-day grocery delivery by cargo bike.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "driftwooddelivery.example",
+          "source": "https://driftwooddelivery.example/",
+          "evidence": "Contact: hello@driftwooddelivery.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Head of Marketing",
+          "source": "https://driftwooddelivery.example/team",
+          "evidence": "Jonas Castellan, Head of Marketing.",
+          "confidence": 0.9
+        },
+        "seniority": {
+          "value": "director",
+          "source": "https://driftwooddelivery.example/team",
+          "evidence": "Jonas Castellan, Head of Marketing.",
+          "confidence": 0.65
+        },
+        "industry": {
+          "value": "delivery",
+          "source": "https://driftwooddelivery.example/",
+          "evidence": "Driftwood Delivery operates same-day grocery delivery by cargo bike.",
+          "confidence": 0.9
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:driftwooddelivery.example",
+          "evidence": "mx1.driftwooddelivery.example",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Jonas, same-day grocery delivery by cargo bike in Tartu is a story that sells itself. I'd love to hear how you're telling it as Head of Marketing.",
+          "source": "https://driftwooddelivery.example/",
+          "evidence": "Driftwood Delivery operates same-day grocery delivery by cargo bike. Founded in 2012 and based in Tartu."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "22122162abf0",
+      "scenario": "title_on_site",
+      "input": {
+        "name": "Farah Brightwell",
+        "raw_company": "quillfeather learning",
+        "title": ""
+      },
+      "labels": {
+        "company": "Quillfeather Learning",
+        "domain": "quillfeatherlearning.example",
+        "role": "Chief Operating Officer",
+        "role_aliases": [
+          "coo"
+        ],
+        "seniority": "c_level",
+        "industry": "education",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.85,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.043771,
+      "latency_ms": 15140,
+      "enrichment": {
+        "company": {
+          "value": "Quillfeather Learning",
+          "source": "https://quillfeatherlearning.example/",
+          "evidence": "Quillfeather Learning makes adaptive maths practice for secondary-school students.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "quillfeatherlearning.example",
+          "source": "https://quillfeatherlearning.example/",
+          "evidence": "Contact: hello@quillfeatherlearning.example.",
+          "confidence": 0.93
+        },
+        "role": {
+          "value": "Chief Operating Officer",
+          "source": "https://quillfeatherlearning.example/team",
+          "evidence": "Farah Brightwell, Chief Operating Officer",
+          "confidence": 0.9
+        },
+        "seniority": {
+          "value": "c_level",
+          "source": "https://quillfeatherlearning.example/team",
+          "evidence": "Farah Brightwell, Chief Operating Officer",
+          "confidence": 0.9
+        },
+        "industry": {
+          "value": "education",
+          "source": "https://quillfeatherlearning.example/",
+          "evidence": "Quillfeather Learning makes adaptive maths practice for secondary-school students.",
+          "confidence": 0.85
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:quillfeatherlearning.example",
+          "evidence": "mx1.quillfeatherlearning.example",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Farah, running operations for adaptive maths practice for secondary-school students must mean balancing school calendars with product delivery. How is Quillfeather scaling that from Austin?",
+          "source": "https://quillfeatherlearning.example/",
+          "evidence": "Quillfeather Learning makes adaptive maths practice for secondary-school students. Founded in 2020 and based in Austin."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "2e147d064600",
+      "scenario": "clean",
+      "input": {
+        "name": "Luca Lindqvist",
+        "raw_company": "riverstone clinics",
+        "title": "CTO"
+      },
+      "labels": {
+        "company": "Riverstone Clinics",
+        "domain": "riverstoneclinics.example",
+        "role": "Chief Technology Officer",
+        "role_aliases": [
+          "cto"
+        ],
+        "seniority": "c_level",
+        "industry": "healthcare",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.93,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.043538,
+      "latency_ms": 12360,
+      "enrichment": {
+        "company": {
+          "value": "Riverstone Clinics",
+          "source": "https://riverstoneclinics.example/",
+          "evidence": "Riverstone Clinics operates urgent-care clinics with same-day telehealth follow-up.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "riverstoneclinics.example",
+          "source": "https://riverstoneclinics.example/",
+          "evidence": "Contact: hello@riverstoneclinics.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Chief Technology Officer",
+          "source": "https://riverstoneclinics.example/team",
+          "evidence": "Luca Lindqvist, Chief Technology Officer.",
+          "confidence": 0.93
+        },
+        "seniority": {
+          "value": "c_level",
+          "source": "https://riverstoneclinics.example/team",
+          "evidence": "Luca Lindqvist, Chief Technology Officer.",
+          "confidence": 0.92
+        },
+        "industry": {
+          "value": "healthcare",
+          "source": "https://riverstoneclinics.example/",
+          "evidence": "Riverstone Clinics operates urgent-care clinics with same-day telehealth follow-up.",
+          "confidence": 0.93
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:riverstoneclinics.example",
+          "evidence": "\"has_mx\": true",
+          "confidence": 0.97
+        },
+        "outreach": {
+          "text": "Luca, running urgent-care clinics with same-day telehealth follow-up must make the handoff between in-person visits and virtual care a real technology challenge.",
+          "source": "https://riverstoneclinics.example/",
+          "evidence": "Riverstone Clinics operates urgent-care clinics with same-day telehealth follow-up."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "30b93d9869d3",
+      "scenario": "clean",
+      "input": {
+        "name": "Oona Dunmore",
+        "raw_company": "granite peak consulting",
+        "title": "Head of Growth"
+      },
+      "labels": {
+        "company": "Granite Peak Consulting",
+        "domain": "granitepeakconsulting.example",
+        "role": "Head of Growth",
+        "role_aliases": [
+          "growth lead"
+        ],
+        "seniority": "director",
+        "industry": "consulting",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.88,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.04448,
+      "latency_ms": 17520,
+      "enrichment": {
+        "company": {
+          "value": "Granite Peak Consulting",
+          "source": "https://granitepeakconsulting.example/",
+          "evidence": "Granite Peak Consulting advises manufacturers on lean production rollouts.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "granitepeakconsulting.example",
+          "source": "https://granitepeakconsulting.example/",
+          "evidence": "Contact: hello@granitepeakconsulting.example.",
+          "confidence": 0.93
+        },
+        "role": {
+          "value": "Head of Growth",
+          "source": "https://granitepeakconsulting.example/team",
+          "evidence": "Oona Dunmore, Head of Growth",
+          "confidence": 0.92
+        },
+        "seniority": {
+          "value": "director",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.5
+        },
+        "industry": {
+          "value": "consulting",
+          "source": "https://granitepeakconsulting.example/",
+          "evidence": "Granite Peak Consulting advises manufacturers on lean production rollouts.",
+          "confidence": 0.88
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:granitepeakconsulting.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.granitepeakconsulting.example\", \"mx2.granitepeakconsulting.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Oona, helping manufacturers roll out lean production is a specialised niche. I'm curious how you're growing Granite Peak's client base beyond Adelaide.",
+          "source": "https://granitepeakconsulting.example/",
+          "evidence": "Granite Peak Consulting advises manufacturers on lean production rollouts. Founded in 2016 and based in Adelaide."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "322abe5c5ee3",
+      "scenario": "clean",
+      "input": {
+        "name": "Wen Marchetti",
+        "raw_company": "quillfeather learning",
+        "title": "Director of Sales"
+      },
+      "labels": {
+        "company": "Quillfeather Learning",
+        "domain": "quillfeatherlearning.example",
+        "role": "Director of Sales",
+        "role_aliases": [
+          "sales director"
+        ],
+        "seniority": "director",
+        "industry": "education",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.9,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.044061,
+      "latency_ms": 12999,
+      "enrichment": {
+        "company": {
+          "value": "Quillfeather Learning",
+          "source": "https://quillfeatherlearning.example/",
+          "evidence": "Quillfeather Learning makes adaptive maths practice for secondary-school students.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "quillfeatherlearning.example",
+          "source": "https://quillfeatherlearning.example/",
+          "evidence": "Contact: hello@quillfeatherlearning.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Director of Sales",
+          "source": "https://quillfeatherlearning.example/team",
+          "evidence": "Wen Marchetti, Director of Sales",
+          "confidence": 0.93
+        },
+        "seniority": {
+          "value": "director",
+          "source": "https://quillfeatherlearning.example/team",
+          "evidence": "Wen Marchetti, Director of Sales",
+          "confidence": 0.9
+        },
+        "industry": {
+          "value": "education",
+          "source": "https://quillfeatherlearning.example/",
+          "evidence": "Quillfeather Learning makes adaptive maths practice for secondary-school students.",
+          "confidence": 0.9
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:quillfeatherlearning.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.quillfeatherlearning.example\", \"mx2.quillfeatherlearning.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Wen, adaptive maths practice for secondary-school students is a crowded space to sell into. How is Quillfeather Learning's sales team winning schools over?",
+          "source": "https://quillfeatherlearning.example/",
+          "evidence": "Quillfeather Learning makes adaptive maths practice for secondary-school students."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "34e907dccd79",
+      "scenario": "unidentifiable",
+      "input": {
+        "name": "Keiko Zielinski",
+        "raw_company": "tbd",
+        "title": "Ops Manager"
+      },
+      "labels": {
+        "company": null,
+        "domain": null,
+        "role": "Operations Manager",
+        "role_aliases": [
+          "ops manager"
+        ],
+        "seniority": "manager",
+        "industry": null,
+        "accepts_email": null,
+        "should_review": true
+      },
+      "status": "review",
+      "reasons": [
+        "company_empty",
+        "outreach_ungrounded",
+        "low_confidence:0.00<0.75"
+      ],
+      "routing_confidence": 0.0,
+      "stop": "submitted",
+      "steps": 2,
+      "cost_usd": 0.035349,
+      "latency_ms": 11418,
+      "enrichment": {
+        "company": {
+          "value": "",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.0
+        },
+        "domain": {
+          "value": null,
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.0
+        },
+        "role": {
+          "value": "Operations Manager",
+          "source": "input",
+          "evidence": "",
+          "confidence": 0.6
+        },
+        "seniority": {
+          "value": "manager",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.4
+        },
+        "industry": {
+          "value": "other",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.05
+        },
+        "accepts_email": {
+          "value": null,
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.0
+        },
+        "outreach": {
+          "text": "Keiko, as an operations manager, I'd love to hear which workflows take up most of your team's week.",
+          "source": "input",
+          "evidence": ""
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": false,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": false
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "3c78ee42c2ec",
+      "scenario": "lookalike",
+      "input": {
+        "name": "Xavi Zielinski",
+        "raw_company": "sundial grid",
+        "title": "Head of Marketing"
+      },
+      "labels": {
+        "company": "Sundial Grid",
+        "domain": "sundialgrid.example",
+        "role": "Head of Marketing",
+        "role_aliases": [
+          "marketing lead"
+        ],
+        "seniority": "director",
+        "industry": "energy",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.85,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.044324,
+      "latency_ms": 13758,
+      "enrichment": {
+        "company": {
+          "value": "Sundial Grid",
+          "source": "https://sundialgrid.example/",
+          "evidence": "Sundial Grid forecasts rooftop-solar output for regional grid operators.",
+          "confidence": 0.93
+        },
+        "domain": {
+          "value": "sundialgrid.example",
+          "source": "https://sundialgrid.example/team",
+          "evidence": "Leadership and team at Sundial Grid: Xavi Zielinski, Head of Marketing.",
+          "confidence": 0.93
+        },
+        "role": {
+          "value": "Head of Marketing",
+          "source": "https://sundialgrid.example/team",
+          "evidence": "Xavi Zielinski, Head of Marketing.",
+          "confidence": 0.92
+        },
+        "seniority": {
+          "value": "director",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.55
+        },
+        "industry": {
+          "value": "energy",
+          "source": "https://sundialgrid.example/",
+          "evidence": "Sundial Grid forecasts rooftop-solar output for regional grid operators.",
+          "confidence": 0.85
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:sundialgrid.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.sundialgrid.example\", \"mx2.sundialgrid.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Xavi, forecasting rooftop-solar output for regional grid operators is a niche story to tell—curious how you're marketing Sundial Grid's forecasts beyond Leeds.",
+          "source": "https://sundialgrid.example/",
+          "evidence": "Sundial Grid forecasts rooftop-solar output for regional grid operators. Founded in 2019 and based in Leeds."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "52ff14432841",
+      "scenario": "clean",
+      "input": {
+        "name": "Keiko Lindqvist",
+        "raw_company": "thistle analytics",
+        "title": "data scientist"
+      },
+      "labels": {
+        "company": "Thistle Analytics",
+        "domain": "thistleanalytics.example",
+        "role": "Data Scientist",
+        "role_aliases": [
+          "data scientist"
+        ],
+        "seniority": "ic",
+        "industry": "ai",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "review",
+      "reasons": [
+        "low_confidence:0.55<0.75"
+      ],
+      "routing_confidence": 0.55,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.044035,
+      "latency_ms": 13492,
+      "enrichment": {
+        "company": {
+          "value": "Thistle Analytics",
+          "source": "https://thistleanalytics.example/",
+          "evidence": "Thistle Analytics builds demand-forecasting models for regional bakeries.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "thistleanalytics.example",
+          "source": "https://thistleanalytics.example/",
+          "evidence": "Contact: hello@thistleanalytics.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Data Scientist",
+          "source": "https://thistleanalytics.example/team",
+          "evidence": "Keiko Lindqvist, Data Scientist.",
+          "confidence": 0.9
+        },
+        "seniority": {
+          "value": "ic",
+          "source": "https://thistleanalytics.example/team",
+          "evidence": "Keiko Lindqvist, Data Scientist.",
+          "confidence": 0.75
+        },
+        "industry": {
+          "value": "ai",
+          "source": "https://thistleanalytics.example/",
+          "evidence": "Thistle Analytics builds demand-forecasting models for regional bakeries.",
+          "confidence": 0.55
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:thistleanalytics.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.thistleanalytics.example\", \"mx2.thistleanalytics.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Keiko, building demand-forecasting models for regional bakeries sounds like a fun problem. Perishable goods and local demand swings must make every forecast count.",
+          "source": "https://thistleanalytics.example/",
+          "evidence": "Thistle Analytics builds demand-forecasting models for regional bakeries."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "5e253b42f2f2",
+      "scenario": "clean",
+      "input": {
+        "name": "Keiko Jessop",
+        "raw_company": "foxglove payments",
+        "title": "head of growth"
+      },
+      "labels": {
+        "company": "Foxglove Payments",
+        "domain": "foxglovepayments.example",
+        "role": "Head of Growth",
+        "role_aliases": [
+          "growth lead"
+        ],
+        "seniority": "director",
+        "industry": "fintech",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.9,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.043002,
+      "latency_ms": 12737,
+      "enrichment": {
+        "company": {
+          "value": "Foxglove Payments",
+          "source": "https://foxglovepayments.example/",
+          "evidence": "Foxglove Payments issues virtual cards for travel-expense management.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "foxglovepayments.example",
+          "source": "https://foxglovepayments.example/",
+          "evidence": "Contact: hello@foxglovepayments.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Head of Growth",
+          "source": "https://foxglovepayments.example/team",
+          "evidence": "Keiko Jessop, Head of Growth",
+          "confidence": 0.93
+        },
+        "seniority": {
+          "value": "director",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.55
+        },
+        "industry": {
+          "value": "fintech",
+          "source": "https://foxglovepayments.example/",
+          "evidence": "Foxglove Payments issues virtual cards for travel-expense management.",
+          "confidence": 0.9
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:foxglovepayments.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.foxglovepayments.example\", \"mx2.foxglovepayments.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Keiko, Foxglove Payments has been issuing virtual cards for travel-expense management since 2018. I'd love to hear how you're growing that out of Porto.",
+          "source": "https://foxglovepayments.example/",
+          "evidence": "Foxglove Payments issues virtual cards for travel-expense management. Founded in 2018 and based in Porto."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "6a91b76f1bc1",
+      "scenario": "messy_company",
+      "input": {
+        "name": "Goran Thorne",
+        "raw_company": "HEARTHSTONE REALTY LABS LLC",
+        "title": "Product Manager"
+      },
+      "labels": {
+        "company": "Hearthstone Realty Labs",
+        "domain": "hearthstonerealtylabs.example",
+        "role": "Product Manager",
+        "role_aliases": [
+          "product manager"
+        ],
+        "seniority": "ic",
+        "industry": "real_estate",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "review",
+      "reasons": [
+        "low_confidence:0.70<0.75"
+      ],
+      "routing_confidence": 0.7,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.04654,
+      "latency_ms": 14827,
+      "enrichment": {
+        "company": {
+          "value": "Hearthstone Realty Labs",
+          "source": "https://hearthstonerealtylabs.example/",
+          "evidence": "Hearthstone Realty Labs provides valuation models for small multifamily properties.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "hearthstonerealtylabs.example",
+          "source": "https://hearthstonerealtylabs.example/",
+          "evidence": "Contact: hello@hearthstonerealtylabs.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Product Manager",
+          "source": "https://hearthstonerealtylabs.example/team",
+          "evidence": "Goran Thorne, Product Manager.",
+          "confidence": 0.9
+        },
+        "seniority": {
+          "value": "ic",
+          "source": "https://hearthstonerealtylabs.example/team",
+          "evidence": "Goran Thorne, Product Manager.",
+          "confidence": 0.65
+        },
+        "industry": {
+          "value": "real_estate",
+          "source": "https://hearthstonerealtylabs.example/",
+          "evidence": "Hearthstone Realty Labs provides valuation models for small multifamily properties.",
+          "confidence": 0.7
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:hearthstonerealtylabs.example",
+          "evidence": "mx1.hearthstonerealtylabs.example",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Goran, valuing small multifamily properties is notoriously messy. I'm curious how Hearthstone Realty Labs' product team keeps its valuation models accurate as you add more markets.",
+          "source": "https://hearthstonerealtylabs.example/",
+          "evidence": "Hearthstone Realty Labs provides valuation models for small multifamily properties."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "715c857ede5f",
+      "scenario": "messy_company",
+      "input": {
+        "name": "Pavel Okafor",
+        "raw_company": "Granite Peak Consulting (LLC)",
+        "title": "Chief Technology Officer"
+      },
+      "labels": {
+        "company": "Granite Peak Consulting",
+        "domain": "granitepeakconsulting.example",
+        "role": "Chief Technology Officer",
+        "role_aliases": [
+          "cto"
+        ],
+        "seniority": "c_level",
+        "industry": "consulting",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.9,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.04371,
+      "latency_ms": 13938,
+      "enrichment": {
+        "company": {
+          "value": "Granite Peak Consulting",
+          "source": "https://granitepeakconsulting.example/",
+          "evidence": "Granite Peak Consulting advises manufacturers on lean production rollouts.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "granitepeakconsulting.example",
+          "source": "https://granitepeakconsulting.example/",
+          "evidence": "Contact: hello@granitepeakconsulting.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Chief Technology Officer",
+          "source": "https://granitepeakconsulting.example/team",
+          "evidence": "Pavel Okafor, Chief Technology Officer.",
+          "confidence": 0.95
+        },
+        "seniority": {
+          "value": "c_level",
+          "source": "https://granitepeakconsulting.example/team",
+          "evidence": "Pavel Okafor, Chief Technology Officer.",
+          "confidence": 0.93
+        },
+        "industry": {
+          "value": "consulting",
+          "source": "https://granitepeakconsulting.example/",
+          "evidence": "Granite Peak Consulting advises manufacturers on lean production rollouts.",
+          "confidence": 0.9
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:granitepeakconsulting.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.granitepeakconsulting.example\", \"mx2.granitepeakconsulting.example\"]",
+          "confidence": 0.97
+        },
+        "outreach": {
+          "text": "Pavel, as CTO at a firm advising manufacturers on lean production rollouts, how is Granite Peak using technology to speed up those rollouts for clients?",
+          "source": "https://granitepeakconsulting.example/",
+          "evidence": "Granite Peak Consulting advises manufacturers on lean production rollouts."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "7fca4bfd3409",
+      "scenario": "lookalike",
+      "input": {
+        "name": "Viktor Rasmussen",
+        "raw_company": "kestrel cloudworks",
+        "title": "head of growth"
+      },
+      "labels": {
+        "company": "Kestrel Cloudworks",
+        "domain": "kestrelcloudworks.example",
+        "role": "Head of Growth",
+        "role_aliases": [
+          "growth lead"
+        ],
+        "seniority": "director",
+        "industry": "saas",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.8,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.046886,
+      "latency_ms": 15067,
+      "enrichment": {
+        "company": {
+          "value": "Kestrel Cloudworks",
+          "source": "https://kestrelcloudworks.example/",
+          "evidence": "Kestrel Cloudworks sells a field-service scheduling app for HVAC contractors.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "kestrelcloudworks.example",
+          "source": "https://kestrelcloudworks.example/team",
+          "evidence": "Leadership and team at Kestrel Cloudworks: Viktor Rasmussen, Head of Growth.",
+          "confidence": 0.93
+        },
+        "role": {
+          "value": "Head of Growth",
+          "source": "https://kestrelcloudworks.example/team",
+          "evidence": "Viktor Rasmussen, Head of Growth.",
+          "confidence": 0.92
+        },
+        "seniority": {
+          "value": "director",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.55
+        },
+        "industry": {
+          "value": "saas",
+          "source": "https://kestrelcloudworks.example/",
+          "evidence": "Kestrel Cloudworks sells a field-service scheduling app for HVAC contractors.",
+          "confidence": 0.8
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:kestrelcloudworks.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.kestrelcloudworks.example\", \"mx2.kestrelcloudworks.example\"]",
+          "confidence": 0.97
+        },
+        "outreach": {
+          "text": "Viktor, growing a field-service scheduling app for HVAC contractors out of Rotterdam is a focused niche. I'd love to hear what's driving growth at Kestrel Cloudworks right now.",
+          "source": "https://kestrelcloudworks.example/",
+          "evidence": "Kestrel Cloudworks sells a field-service scheduling app for HVAC contractors. Founded in 2012 and based in Rotterdam."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "82ff66ca521c",
+      "scenario": "title_unknown",
+      "input": {
+        "name": "Oona Okafor",
+        "raw_company": "ravenmoor studio",
+        "title": ""
+      },
+      "labels": {
+        "company": "Ravenmoor Studio",
+        "domain": "ravenmoorstudio.example",
+        "role": null,
+        "role_aliases": [],
+        "seniority": null,
+        "industry": "agency",
+        "accepts_email": true,
+        "should_review": true
+      },
+      "status": "review",
+      "reasons": [
+        "role_empty",
+        "low_confidence:0.00<0.75"
+      ],
+      "routing_confidence": 0.0,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.04338,
+      "latency_ms": 13793,
+      "enrichment": {
+        "company": {
+          "value": "Ravenmoor Studio",
+          "source": "https://ravenmoorstudio.example/",
+          "evidence": "Ravenmoor Studio designs brand identities for craft breweries.",
+          "confidence": 0.9
+        },
+        "domain": {
+          "value": "ravenmoorstudio.example",
+          "source": "https://ravenmoorstudio.example/",
+          "evidence": "Contact: hello@ravenmoorstudio.example.",
+          "confidence": 0.9
+        },
+        "role": {
+          "value": "",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.0
+        },
+        "seniority": {
+          "value": "unknown",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.3
+        },
+        "industry": {
+          "value": "agency",
+          "source": "https://ravenmoorstudio.example/",
+          "evidence": "Ravenmoor Studio designs brand identities for craft breweries.",
+          "confidence": 0.8
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:ravenmoorstudio.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.ravenmoorstudio.example\", \"mx2.ravenmoorstudio.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Oona, Ravenmoor Studio's focus on brand identities for craft breweries out of Porto caught my eye. That's a sharp niche.",
+          "source": "https://ravenmoorstudio.example/",
+          "evidence": "Ravenmoor Studio designs brand identities for craft breweries. Founded in 2021 and based in Porto."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "89e078b1daf0",
+      "scenario": "clean",
+      "input": {
+        "name": "Xavi Castellan",
+        "raw_company": "brightwave ledger",
+        "title": "PM"
+      },
+      "labels": {
+        "company": "Brightwave Ledger",
+        "domain": "brightwaveledger.example",
+        "role": "Product Manager",
+        "role_aliases": [
+          "product manager"
+        ],
+        "seniority": "ic",
+        "industry": "fintech",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.75,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.045513,
+      "latency_ms": 16117,
+      "enrichment": {
+        "company": {
+          "value": "Brightwave Ledger",
+          "source": "https://brightwaveledger.example/",
+          "evidence": "Brightwave Ledger automates accounts-payable reconciliation for mid-market finance teams.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "brightwaveledger.example",
+          "source": "https://brightwaveledger.example/",
+          "evidence": "Contact: hello@brightwaveledger.example.",
+          "confidence": 0.93
+        },
+        "role": {
+          "value": "Product Manager",
+          "source": "https://brightwaveledger.example/team",
+          "evidence": "Xavi Castellan, Product Manager.",
+          "confidence": 0.9
+        },
+        "seniority": {
+          "value": "ic",
+          "source": "https://brightwaveledger.example/team",
+          "evidence": "Xavi Castellan, Product Manager.",
+          "confidence": 0.7
+        },
+        "industry": {
+          "value": "fintech",
+          "source": "https://brightwaveledger.example/",
+          "evidence": "Brightwave Ledger automates accounts-payable reconciliation for mid-market finance teams.",
+          "confidence": 0.75
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:brightwaveledger.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.brightwaveledger.example\", \"mx2.brightwaveledger.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Xavi, automating accounts-payable reconciliation for mid-market finance teams is a sharp focus. I'd love to hear how you're shaping the product roadmap at Brightwave Ledger.",
+          "source": "https://brightwaveledger.example/",
+          "evidence": "Brightwave Ledger automates accounts-payable reconciliation for mid-market finance teams."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "8d6b86af15ef",
+      "scenario": "title_on_site",
+      "input": {
+        "name": "Viktor Ingram",
+        "raw_company": "ironbark it partners",
+        "title": ""
+      },
+      "labels": {
+        "company": "Ironbark IT Partners",
+        "domain": "ironbarkitpartners.example",
+        "role": "Director of Sales",
+        "role_aliases": [
+          "sales director"
+        ],
+        "seniority": "director",
+        "industry": "it_services",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.9,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.044677,
+      "latency_ms": 15526,
+      "enrichment": {
+        "company": {
+          "value": "Ironbark IT Partners",
+          "source": "https://ironbarkitpartners.example/",
+          "evidence": "Ironbark IT Partners provides managed IT and helpdesk for dental practices.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "ironbarkitpartners.example",
+          "source": "https://ironbarkitpartners.example/",
+          "evidence": "Contact: hello@ironbarkitpartners.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Director of Sales",
+          "source": "https://ironbarkitpartners.example/team",
+          "evidence": "Viktor Ingram, Director of Sales.",
+          "confidence": 0.9
+        },
+        "seniority": {
+          "value": "director",
+          "source": "https://ironbarkitpartners.example/team",
+          "evidence": "Viktor Ingram, Director of Sales.",
+          "confidence": 0.9
+        },
+        "industry": {
+          "value": "it_services",
+          "source": "https://ironbarkitpartners.example/",
+          "evidence": "Ironbark IT Partners provides managed IT and helpdesk for dental practices.",
+          "confidence": 0.9
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:ironbarkitpartners.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.ironbarkitpartners.example\", \"mx2.ironbarkitpartners.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Viktor, focusing Ironbark's managed IT and helpdesk on dental practices is a sharp niche. I'm curious how you're growing sales in that market from Austin.",
+          "source": "https://ironbarkitpartners.example/",
+          "evidence": "Ironbark IT Partners provides managed IT and helpdesk for dental practices. Founded in 2022 and based in Austin."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "a0396cee45e2",
+      "scenario": "clean",
+      "input": {
+        "name": "Hana Ellery",
+        "raw_company": "ironbark it partners",
+        "title": "cto"
+      },
+      "labels": {
+        "company": "Ironbark IT Partners",
+        "domain": "ironbarkitpartners.example",
+        "role": "Chief Technology Officer",
+        "role_aliases": [
+          "cto"
+        ],
+        "seniority": "c_level",
+        "industry": "it_services",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.9,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.043801,
+      "latency_ms": 15441,
+      "enrichment": {
+        "company": {
+          "value": "Ironbark IT Partners",
+          "source": "https://ironbarkitpartners.example/",
+          "evidence": "Ironbark IT Partners provides managed IT and helpdesk for dental practices.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "ironbarkitpartners.example",
+          "source": "https://ironbarkitpartners.example/",
+          "evidence": "Contact: hello@ironbarkitpartners.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Chief Technology Officer",
+          "source": "https://ironbarkitpartners.example/team",
+          "evidence": "Hana Ellery, Chief Technology Officer",
+          "confidence": 0.93
+        },
+        "seniority": {
+          "value": "c_level",
+          "source": "https://ironbarkitpartners.example/team",
+          "evidence": "Hana Ellery, Chief Technology Officer",
+          "confidence": 0.92
+        },
+        "industry": {
+          "value": "it_services",
+          "source": "https://ironbarkitpartners.example/",
+          "evidence": "Ironbark IT Partners provides managed IT and helpdesk for dental practices.",
+          "confidence": 0.9
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:ironbarkitpartners.example",
+          "evidence": "mx1.ironbarkitpartners.example",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Hana, running managed IT and helpdesk specifically for dental practices out of Austin is a sharp niche. How are you scaling support as Ironbark grows?",
+          "source": "https://ironbarkitpartners.example/",
+          "evidence": "Ironbark IT Partners provides managed IT and helpdesk for dental practices. Founded in 2022 and based in Austin."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "a112d0a706fe",
+      "scenario": "unidentifiable",
+      "input": {
+        "name": "Dmitri Nakamura",
+        "raw_company": "self-employed",
+        "title": "Ops Manager"
+      },
+      "labels": {
+        "company": null,
+        "domain": null,
+        "role": "Operations Manager",
+        "role_aliases": [
+          "ops manager"
+        ],
+        "seniority": "manager",
+        "industry": null,
+        "accepts_email": null,
+        "should_review": true
+      },
+      "status": "review",
+      "reasons": [
+        "outreach_empty",
+        "low_confidence:0.10<0.75"
+      ],
+      "routing_confidence": 0.1,
+      "stop": "submitted",
+      "steps": 1,
+      "cost_usd": 0.033506,
+      "latency_ms": 11338,
+      "enrichment": {
+        "company": {
+          "value": "self-employed",
+          "source": "input",
+          "evidence": "",
+          "confidence": 0.1
+        },
+        "domain": {
+          "value": null,
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.1
+        },
+        "role": {
+          "value": "Operations Manager",
+          "source": "input",
+          "evidence": "",
+          "confidence": 0.5
+        },
+        "seniority": {
+          "value": "unknown",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.3
+        },
+        "industry": {
+          "value": "other",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.1
+        },
+        "accepts_email": {
+          "value": null,
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.0
+        },
+        "outreach": {
+          "text": "",
+          "source": "inferred",
+          "evidence": ""
+        }
+      },
+      "outreach_checks": {
+        "length_ok": false,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": false,
+        "grounded": false,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": false
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "a67d14e6d6cd",
+      "scenario": "unidentifiable",
+      "input": {
+        "name": "Jonas Hollins",
+        "raw_company": "confidential",
+        "title": "Co-founder & CEO"
+      },
+      "labels": {
+        "company": null,
+        "domain": null,
+        "role": "Chief Executive Officer",
+        "role_aliases": [
+          "ceo",
+          "founder",
+          "co-founder"
+        ],
+        "seniority": "founder",
+        "industry": null,
+        "accepts_email": null,
+        "should_review": true
+      },
+      "status": "review",
+      "reasons": [
+        "outreach_ungrounded",
+        "low_confidence:0.05<0.75"
+      ],
+      "routing_confidence": 0.05,
+      "stop": "submitted",
+      "steps": 1,
+      "cost_usd": 0.032686,
+      "latency_ms": 10458,
+      "enrichment": {
+        "company": {
+          "value": "Unknown (withheld as 'confidential')",
+          "source": "input",
+          "evidence": "",
+          "confidence": 0.05
+        },
+        "domain": {
+          "value": null,
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.05
+        },
+        "role": {
+          "value": "Chief Executive Officer",
+          "source": "input",
+          "evidence": "",
+          "confidence": 0.6
+        },
+        "seniority": {
+          "value": "founder",
+          "source": "input",
+          "evidence": "",
+          "confidence": 0.6
+        },
+        "industry": {
+          "value": "other",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.1
+        },
+        "accepts_email": {
+          "value": null,
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.05
+        },
+        "outreach": {
+          "text": "Jonas, as co-founder and CEO you're likely balancing growth with keeping a lean team. I'd value hearing what's top of mind for you this quarter.",
+          "source": "input",
+          "evidence": ""
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": false,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": false
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "a9670da8d2d1",
+      "scenario": "title_on_site",
+      "input": {
+        "name": "Nikhil Quayle",
+        "raw_company": "foxglove payments",
+        "title": ""
+      },
+      "labels": {
+        "company": "Foxglove Payments",
+        "domain": "foxglovepayments.example",
+        "role": "Senior Account Executive",
+        "role_aliases": [
+          "account executive",
+          "ae"
+        ],
+        "seniority": "senior_ic",
+        "industry": "fintech",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.9,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.041367,
+      "latency_ms": 11069,
+      "enrichment": {
+        "company": {
+          "value": "Foxglove Payments",
+          "source": "https://foxglovepayments.example/",
+          "evidence": "Foxglove Payments issues virtual cards for travel-expense management.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "foxglovepayments.example",
+          "source": "https://foxglovepayments.example/",
+          "evidence": "Contact: hello@foxglovepayments.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Senior Account Executive",
+          "source": "https://foxglovepayments.example/team",
+          "evidence": "Nikhil Quayle, Senior Account Executive.",
+          "confidence": 0.9
+        },
+        "seniority": {
+          "value": "senior_ic",
+          "source": "https://foxglovepayments.example/team",
+          "evidence": "Nikhil Quayle, Senior Account Executive.",
+          "confidence": 0.8
+        },
+        "industry": {
+          "value": "fintech",
+          "source": "https://foxglovepayments.example/",
+          "evidence": "Foxglove Payments issues virtual cards for travel-expense management.",
+          "confidence": 0.9
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:foxglovepayments.example",
+          "evidence": "mx1.foxglovepayments.example",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Nikhil, issuing virtual cards for travel-expense management out of Porto is a sharp niche. I'd love to hear how you pitch it to finance teams.",
+          "source": "https://foxglovepayments.example/",
+          "evidence": "Foxglove Payments issues virtual cards for travel-expense management. Founded in 2018 and based in Porto."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "b5023ed2874b",
+      "scenario": "title_unknown",
+      "input": {
+        "name": "Tamsin Thorne",
+        "raw_company": "brightwave ledger",
+        "title": ""
+      },
+      "labels": {
+        "company": "Brightwave Ledger",
+        "domain": "brightwaveledger.example",
+        "role": null,
+        "role_aliases": [],
+        "seniority": null,
+        "industry": "fintech",
+        "accepts_email": true,
+        "should_review": true
+      },
+      "status": "review",
+      "reasons": [
+        "low_confidence:0.10<0.75"
+      ],
+      "routing_confidence": 0.1,
+      "stop": "submitted",
+      "steps": 4,
+      "cost_usd": 0.047594,
+      "latency_ms": 16501,
+      "enrichment": {
+        "company": {
+          "value": "Brightwave Ledger",
+          "source": "https://brightwaveledger.example/",
+          "evidence": "Brightwave Ledger automates accounts-payable reconciliation for mid-market finance teams.",
+          "confidence": 0.9
+        },
+        "domain": {
+          "value": "brightwaveledger.example",
+          "source": "https://brightwaveledger.example/",
+          "evidence": "Contact: hello@brightwaveledger.example.",
+          "confidence": 0.9
+        },
+        "role": {
+          "value": "unknown (unverified: no title in the lead, and Tamsin Thorne is not on the company's /team page)",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.1
+        },
+        "seniority": {
+          "value": "unknown",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.3
+        },
+        "industry": {
+          "value": "fintech",
+          "source": "https://brightwaveledger.example/",
+          "evidence": "Brightwave Ledger automates accounts-payable reconciliation for mid-market finance teams.",
+          "confidence": 0.75
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:brightwaveledger.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.brightwaveledger.example\", \"mx2.brightwaveledger.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Since Brightwave Ledger began in Gdansk in 2019 to automate accounts-payable reconciliation for mid-market finance teams, how has the reconciliation work your customers bring you changed?",
+          "source": "https://brightwaveledger.example/about",
+          "evidence": "Brightwave Ledger was founded in 2019 in Gdansk. We accounts-payable reconciliation for mid-market finance teams."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "c15c0492c15a",
+      "scenario": "clean",
+      "input": {
+        "name": "Jonas Marchetti",
+        "raw_company": "clearbrook learning",
+        "title": "marketing lead"
+      },
+      "labels": {
+        "company": "Clearbrook Learning",
+        "domain": "clearbrooklearning.example",
+        "role": "Head of Marketing",
+        "role_aliases": [
+          "marketing lead"
+        ],
+        "seniority": "director",
+        "industry": "education",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.9,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.046217,
+      "latency_ms": 14366,
+      "enrichment": {
+        "company": {
+          "value": "Clearbrook Learning",
+          "source": "https://clearbrooklearning.example/",
+          "evidence": "Clearbrook Learning teaches data-literacy courses to public-sector employees.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "clearbrooklearning.example",
+          "source": "https://clearbrooklearning.example/",
+          "evidence": "Contact: hello@clearbrooklearning.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Head of Marketing",
+          "source": "https://clearbrooklearning.example/team",
+          "evidence": "Jonas Marchetti, Head of Marketing",
+          "confidence": 0.9
+        },
+        "seniority": {
+          "value": "director",
+          "source": "https://clearbrooklearning.example/team",
+          "evidence": "Jonas Marchetti, Head of Marketing",
+          "confidence": 0.65
+        },
+        "industry": {
+          "value": "education",
+          "source": "https://clearbrooklearning.example/",
+          "evidence": "Clearbrook Learning teaches data-literacy courses to public-sector employees.",
+          "confidence": 0.9
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:clearbrooklearning.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.clearbrooklearning.example\", \"mx2.clearbrooklearning.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Jonas, getting public-sector employees comfortable with data is hard to market. How is Clearbrook Learning bringing its data-literacy courses to new agencies?",
+          "source": "https://clearbrooklearning.example/",
+          "evidence": "Clearbrook Learning teaches data-literacy courses to public-sector employees."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "c6876e500f1e",
+      "scenario": "clean",
+      "input": {
+        "name": "Goran Jessop",
+        "raw_company": "hearthstone realty labs",
+        "title": "Head of Growth"
+      },
+      "labels": {
+        "company": "Hearthstone Realty Labs",
+        "domain": "hearthstonerealtylabs.example",
+        "role": "Head of Growth",
+        "role_aliases": [
+          "growth lead"
+        ],
+        "seniority": "director",
+        "industry": "real_estate",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "review",
+      "reasons": [
+        "low_confidence:0.60<0.75"
+      ],
+      "routing_confidence": 0.6,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.047487,
+      "latency_ms": 14622,
+      "enrichment": {
+        "company": {
+          "value": "Hearthstone Realty Labs",
+          "source": "https://hearthstonerealtylabs.example/",
+          "evidence": "Hearthstone Realty Labs provides valuation models for small multifamily properties.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "hearthstonerealtylabs.example",
+          "source": "https://hearthstonerealtylabs.example/",
+          "evidence": "Contact: hello@hearthstonerealtylabs.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Head of Growth",
+          "source": "https://hearthstonerealtylabs.example/team",
+          "evidence": "Goran Jessop, Head of Growth",
+          "confidence": 0.9
+        },
+        "seniority": {
+          "value": "director",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.5
+        },
+        "industry": {
+          "value": "real_estate",
+          "source": "https://hearthstonerealtylabs.example/",
+          "evidence": "Hearthstone Realty Labs provides valuation models for small multifamily properties.",
+          "confidence": 0.6
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:hearthstonerealtylabs.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.hearthstonerealtylabs.example\", \"mx2.hearthstonerealtylabs.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Goran, valuation models built specifically for small multifamily properties is a sharp niche. I'm curious how you're growing Hearthstone's reach with those owners and investors.",
+          "source": "https://hearthstonerealtylabs.example/",
+          "evidence": "Hearthstone Realty Labs provides valuation models for small multifamily properties."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "d77b196aa392",
+      "scenario": "messy_company",
+      "input": {
+        "name": "Wen Valdez",
+        "raw_company": "tallowmere freight gmbh",
+        "title": "Ops Manager"
+      },
+      "labels": {
+        "company": "Tallowmere Freight",
+        "domain": "tallowmerefreight.example",
+        "role": "Operations Manager",
+        "role_aliases": [
+          "ops manager"
+        ],
+        "seniority": "manager",
+        "industry": "logistics",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.9,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.045195,
+      "latency_ms": 16098,
+      "enrichment": {
+        "company": {
+          "value": "Tallowmere Freight",
+          "source": "https://tallowmerefreight.example/",
+          "evidence": "Tallowmere Freight runs cross-border LTL freight brokerage between Germany and Poland.",
+          "confidence": 0.9
+        },
+        "domain": {
+          "value": "tallowmerefreight.example",
+          "source": "https://tallowmerefreight.example/team",
+          "evidence": "Wen Valdez, Operations Manager.",
+          "confidence": 0.9
+        },
+        "role": {
+          "value": "Operations Manager",
+          "source": "https://tallowmerefreight.example/team",
+          "evidence": "Wen Valdez, Operations Manager.",
+          "confidence": 0.9
+        },
+        "seniority": {
+          "value": "manager",
+          "source": "https://tallowmerefreight.example/team",
+          "evidence": "Wen Valdez, Operations Manager.",
+          "confidence": 0.75
+        },
+        "industry": {
+          "value": "logistics",
+          "source": "https://tallowmerefreight.example/",
+          "evidence": "Tallowmere Freight runs cross-border LTL freight brokerage between Germany and Poland.",
+          "confidence": 0.9
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:tallowmerefreight.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.tallowmerefreight.example\", \"mx2.tallowmerefreight.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Wen, running operations for cross-border LTL brokerage between Germany and Poland must mean juggling a lot of partial loads at the border. How do you coordinate them today?",
+          "source": "https://tallowmerefreight.example/",
+          "evidence": "Tallowmere Freight runs cross-border LTL freight brokerage between Germany and Poland."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "d7fa34e936e7",
+      "scenario": "clean",
+      "input": {
+        "name": "Yara Pemberton",
+        "raw_company": "ravenmoor studio",
+        "title": "Senior Account Executive"
+      },
+      "labels": {
+        "company": "Ravenmoor Studio",
+        "domain": "ravenmoorstudio.example",
+        "role": "Senior Account Executive",
+        "role_aliases": [
+          "account executive",
+          "ae"
+        ],
+        "seniority": "senior_ic",
+        "industry": "agency",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.85,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.044387,
+      "latency_ms": 13404,
+      "enrichment": {
+        "company": {
+          "value": "Ravenmoor Studio",
+          "source": "https://ravenmoorstudio.example/",
+          "evidence": "Ravenmoor Studio designs brand identities for craft breweries.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "ravenmoorstudio.example",
+          "source": "https://ravenmoorstudio.example/",
+          "evidence": "Contact: hello@ravenmoorstudio.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Senior Account Executive",
+          "source": "https://ravenmoorstudio.example/team",
+          "evidence": "Yara Pemberton, Senior Account Executive.",
+          "confidence": 0.93
+        },
+        "seniority": {
+          "value": "senior_ic",
+          "source": "https://ravenmoorstudio.example/team",
+          "evidence": "Yara Pemberton, Senior Account Executive.",
+          "confidence": 0.75
+        },
+        "industry": {
+          "value": "agency",
+          "source": "https://ravenmoorstudio.example/",
+          "evidence": "Ravenmoor Studio designs brand identities for craft breweries.",
+          "confidence": 0.85
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:ravenmoorstudio.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.ravenmoorstudio.example\", \"mx2.ravenmoorstudio.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Yara, Ravenmoor Studio's focus on brand identities for craft breweries is a sharp niche. I'm curious how you find new brewery clients from Porto.",
+          "source": "https://ravenmoorstudio.example/",
+          "evidence": "Ravenmoor Studio designs brand identities for craft breweries. Founded in 2021 and based in Porto."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "d92b13d7c846",
+      "scenario": "clean",
+      "input": {
+        "name": "Zeno Underhill",
+        "raw_company": "juniper loop",
+        "title": "Sr. AE"
+      },
+      "labels": {
+        "company": "Juniper Loop",
+        "domain": "juniperloop.example",
+        "role": "Senior Account Executive",
+        "role_aliases": [
+          "account executive",
+          "ae"
+        ],
+        "seniority": "senior_ic",
+        "industry": "hr_tech",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "review",
+      "reasons": [
+        "low_confidence:0.55<0.75"
+      ],
+      "routing_confidence": 0.55,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.044054,
+      "latency_ms": 14707,
+      "enrichment": {
+        "company": {
+          "value": "Juniper Loop",
+          "source": "https://juniperloop.example/",
+          "evidence": "Juniper Loop runs structured onboarding programs for distributed engineering teams.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "juniperloop.example",
+          "source": "https://juniperloop.example/",
+          "evidence": "Contact: hello@juniperloop.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Senior Account Executive",
+          "source": "https://juniperloop.example/team",
+          "evidence": "Zeno Underhill, Senior Account Executive",
+          "confidence": 0.93
+        },
+        "seniority": {
+          "value": "senior_ic",
+          "source": "https://juniperloop.example/team",
+          "evidence": "Zeno Underhill, Senior Account Executive",
+          "confidence": 0.85
+        },
+        "industry": {
+          "value": "hr_tech",
+          "source": "https://juniperloop.example/",
+          "evidence": "Juniper Loop runs structured onboarding programs for distributed engineering teams.",
+          "confidence": 0.55
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:juniperloop.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.juniperloop.example\", \"mx2.juniperloop.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Zeno, running structured onboarding programs for distributed engineering teams out of Tartu must make for an interesting sales conversation. How do buyers usually frame that need?",
+          "source": "https://juniperloop.example/",
+          "evidence": "Juniper Loop runs structured onboarding programs for distributed engineering teams. Founded in 2015 and based in Tartu."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "df8ce283f039",
+      "scenario": "messy_company",
+      "input": {
+        "name": "Oona Zielinski",
+        "raw_company": "foxglovepayments",
+        "title": "Chief Operating Officer"
+      },
+      "labels": {
+        "company": "Foxglove Payments",
+        "domain": "foxglovepayments.example",
+        "role": "Chief Operating Officer",
+        "role_aliases": [
+          "coo"
+        ],
+        "seniority": "c_level",
+        "industry": "fintech",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.9,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.044615,
+      "latency_ms": 12970,
+      "enrichment": {
+        "company": {
+          "value": "Foxglove Payments",
+          "source": "https://foxglovepayments.example/",
+          "evidence": "Foxglove Payments issues virtual cards for travel-expense management.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "foxglovepayments.example",
+          "source": "https://foxglovepayments.example/",
+          "evidence": "Contact: hello@foxglovepayments.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Chief Operating Officer",
+          "source": "https://foxglovepayments.example/team",
+          "evidence": "Oona Zielinski, Chief Operating Officer",
+          "confidence": 0.93
+        },
+        "seniority": {
+          "value": "c_level",
+          "source": "https://foxglovepayments.example/team",
+          "evidence": "Oona Zielinski, Chief Operating Officer",
+          "confidence": 0.92
+        },
+        "industry": {
+          "value": "fintech",
+          "source": "https://foxglovepayments.example/",
+          "evidence": "Foxglove Payments issues virtual cards for travel-expense management.",
+          "confidence": 0.9
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:foxglovepayments.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.foxglovepayments.example\", \"mx2.foxglovepayments.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Oona, running operations for a Porto company issuing virtual cards for travel-expense management must mean juggling card controls and spend visibility at once.",
+          "source": "https://foxglovepayments.example/",
+          "evidence": "Foxglove Payments issues virtual cards for travel-expense management. Founded in 2018 and based in Porto."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "e26b0e39e87c",
+      "scenario": "no_mx",
+      "input": {
+        "name": "Farah Ingram",
+        "raw_company": "amberline logistics",
+        "title": "vp eng"
+      },
+      "labels": {
+        "company": "Amberline Logistics",
+        "domain": "amberlinelogistics.example",
+        "role": "VP of Engineering",
+        "role_aliases": [
+          "vp engineering",
+          "vice president engineering"
+        ],
+        "seniority": "vp",
+        "industry": "logistics",
+        "accepts_email": false,
+        "should_review": true
+      },
+      "status": "review",
+      "reasons": [
+        "domain_rejects_mail"
+      ],
+      "routing_confidence": 0.9,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.043281,
+      "latency_ms": 13242,
+      "enrichment": {
+        "company": {
+          "value": "Amberline Logistics",
+          "source": "https://amberlinelogistics.example/",
+          "evidence": "Amberline Logistics manages cold-chain warehousing for pharmaceutical distributors.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "amberlinelogistics.example",
+          "source": "https://amberlinelogistics.example/",
+          "evidence": "Contact: hello@amberlinelogistics.example.",
+          "confidence": 0.93
+        },
+        "role": {
+          "value": "VP of Engineering",
+          "source": "https://amberlinelogistics.example/team",
+          "evidence": "Farah Ingram, VP of Engineering.",
+          "confidence": 0.93
+        },
+        "seniority": {
+          "value": "vp",
+          "source": "https://amberlinelogistics.example/team",
+          "evidence": "Farah Ingram, VP of Engineering.",
+          "confidence": 0.92
+        },
+        "industry": {
+          "value": "logistics",
+          "source": "https://amberlinelogistics.example/",
+          "evidence": "Amberline Logistics manages cold-chain warehousing for pharmaceutical distributors.",
+          "confidence": 0.9
+        },
+        "accepts_email": {
+          "value": false,
+          "source": "dns:mx:amberlinelogistics.example",
+          "evidence": "\"exists\": true, \"has_mx\": false, \"mx_hosts\": []",
+          "confidence": 0.8
+        },
+        "outreach": {
+          "text": "Farah, running engineering for cold-chain warehousing for pharmaceutical distributors must mean temperature data can't ever go missing. How does your team handle that across Amberline's warehouses?",
+          "source": "https://amberlinelogistics.example/",
+          "evidence": "Amberline Logistics manages cold-chain warehousing for pharmaceutical distributors."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "e6bf7c601567",
+      "scenario": "lookalike",
+      "input": {
+        "name": "Zeno Abernathy",
+        "raw_company": "lanternfish ai",
+        "title": "VP of Engineering"
+      },
+      "labels": {
+        "company": "Lanternfish AI",
+        "domain": "lanternfishai.example",
+        "role": "VP of Engineering",
+        "role_aliases": [
+          "vp engineering",
+          "vice president engineering"
+        ],
+        "seniority": "vp",
+        "industry": "ai",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.88,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.042827,
+      "latency_ms": 12662,
+      "enrichment": {
+        "company": {
+          "value": "Lanternfish AI",
+          "source": "https://lanternfishai.example/",
+          "evidence": "Lanternfish AI trains document-understanding models for insurance claims.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "lanternfishai.example",
+          "source": "https://lanternfishai.example/",
+          "evidence": "Contact: hello@lanternfishai.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "VP of Engineering",
+          "source": "https://lanternfishai.example/team",
+          "evidence": "Zeno Abernathy, VP of Engineering.",
+          "confidence": 0.93
+        },
+        "seniority": {
+          "value": "vp",
+          "source": "https://lanternfishai.example/team",
+          "evidence": "Zeno Abernathy, VP of Engineering.",
+          "confidence": 0.92
+        },
+        "industry": {
+          "value": "ai",
+          "source": "https://lanternfishai.example/",
+          "evidence": "Lanternfish AI trains document-understanding models for insurance claims.",
+          "confidence": 0.88
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:lanternfishai.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.lanternfishai.example\", \"mx2.lanternfishai.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Zeno, training document-understanding models for insurance claims means messy, high-stakes inputs. Curious how your engineering team at Lanternfish AI handles model iteration at scale.",
+          "source": "https://lanternfishai.example/",
+          "evidence": "Lanternfish AI trains document-understanding models for insurance claims."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "f24db9d820a6",
+      "scenario": "no_mx",
+      "input": {
+        "name": "Tamsin Fairbairn",
+        "raw_company": "orbitline devtools",
+        "title": "Engineering Manager"
+      },
+      "labels": {
+        "company": "Orbitline Devtools",
+        "domain": "orbitlinedevtools.example",
+        "role": "Engineering Manager",
+        "role_aliases": [
+          "engineering manager"
+        ],
+        "seniority": "manager",
+        "industry": "dev_tools",
+        "accepts_email": false,
+        "should_review": true
+      },
+      "status": "review",
+      "reasons": [
+        "domain_rejects_mail"
+      ],
+      "routing_confidence": 0.9,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.046896,
+      "latency_ms": 14310,
+      "enrichment": {
+        "company": {
+          "value": "Orbitline Devtools",
+          "source": "https://orbitlinedevtools.example/",
+          "evidence": "Orbitline Devtools offers a CI cache that cuts monorepo build times.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "orbitlinedevtools.example",
+          "source": "https://orbitlinedevtools.example/",
+          "evidence": "Contact: hello@orbitlinedevtools.example.",
+          "confidence": 0.93
+        },
+        "role": {
+          "value": "Engineering Manager",
+          "source": "https://orbitlinedevtools.example/team",
+          "evidence": "Tamsin Fairbairn, Engineering Manager.",
+          "confidence": 0.9
+        },
+        "seniority": {
+          "value": "manager",
+          "source": "https://orbitlinedevtools.example/team",
+          "evidence": "Tamsin Fairbairn, Engineering Manager.",
+          "confidence": 0.75
+        },
+        "industry": {
+          "value": "dev_tools",
+          "source": "https://orbitlinedevtools.example/",
+          "evidence": "Orbitline Devtools offers a CI cache that cuts monorepo build times.",
+          "confidence": 0.9
+        },
+        "accepts_email": {
+          "value": false,
+          "source": "dns:mx:orbitlinedevtools.example",
+          "evidence": "\"exists\": true, \"has_mx\": false, \"mx_hosts\": []",
+          "confidence": 0.85
+        },
+        "outreach": {
+          "text": "Tamsin, cutting monorepo build times with a CI cache is a sharp focus. I'm curious how your engineering team at Orbitline measures cache hit rates across customers.",
+          "source": "https://orbitlinedevtools.example/",
+          "evidence": "Orbitline Devtools offers a CI cache that cuts monorepo build times."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "f7fd61736a36",
+      "scenario": "clean",
+      "input": {
+        "name": "Chiara Marchetti",
+        "raw_company": "tallowmere freight",
+        "title": "sales director"
+      },
+      "labels": {
+        "company": "Tallowmere Freight",
+        "domain": "tallowmerefreight.example",
+        "role": "Director of Sales",
+        "role_aliases": [
+          "sales director"
+        ],
+        "seniority": "director",
+        "industry": "logistics",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.9,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.042527,
+      "latency_ms": 13847,
+      "enrichment": {
+        "company": {
+          "value": "Tallowmere Freight",
+          "source": "https://tallowmerefreight.example/",
+          "evidence": "Tallowmere Freight runs cross-border LTL freight brokerage between Germany and Poland.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "tallowmerefreight.example",
+          "source": "https://tallowmerefreight.example/",
+          "evidence": "Contact: hello@tallowmerefreight.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Director of Sales",
+          "source": "https://tallowmerefreight.example/team",
+          "evidence": "Chiara Marchetti, Director of Sales",
+          "confidence": 0.9
+        },
+        "seniority": {
+          "value": "director",
+          "source": "https://tallowmerefreight.example/team",
+          "evidence": "Chiara Marchetti, Director of Sales",
+          "confidence": 0.9
+        },
+        "industry": {
+          "value": "logistics",
+          "source": "https://tallowmerefreight.example/",
+          "evidence": "Tallowmere Freight runs cross-border LTL freight brokerage between Germany and Poland.",
+          "confidence": 0.92
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:tallowmerefreight.example",
+          "evidence": "mx1.tallowmerefreight.example",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Chiara, running cross-border LTL brokerage between Germany and Poland from Gdansk must make every lane's sales story unique. How is your team winning new shippers?",
+          "source": "https://tallowmerefreight.example/",
+          "evidence": "Tallowmere Freight runs cross-border LTL freight brokerage between Germany and Poland. Founded in 2014 and based in Gdansk."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    }
+  ]
+}

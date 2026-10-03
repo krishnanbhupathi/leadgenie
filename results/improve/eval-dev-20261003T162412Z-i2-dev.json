@@ -1,0 +1,1440 @@
+{
+  "meta": {
+    "created_at": "2026-10-03T16:24:12+00:00",
+    "git": "ca4ca1a",
+    "split": "dev",
+    "n": 15,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "prompt_fingerprint": "1ece14027510",
+    "lessons": 3,
+    "threshold": 0.75,
+    "budget": {
+      "max_steps": 8,
+      "max_cost_usd": 0.25,
+      "warn_cost_fraction": 0.75
+    },
+    "judge_model": null
+  },
+  "fields": {
+    "company": {
+      "n": 14,
+      "accuracy": 1.0,
+      "coverage": 1.0
+    },
+    "domain": {
+      "n": 14,
+      "accuracy": 1.0,
+      "coverage": 1.0
+    },
+    "role": {
+      "n": 13,
+      "accuracy": 1.0,
+      "coverage": 1.0
+    },
+    "seniority": {
+      "n": 13,
+      "accuracy": 0.923,
+      "coverage": 1.0
+    },
+    "industry": {
+      "n": 14,
+      "accuracy": 1.0,
+      "coverage": 1.0
+    },
+    "accepts_email": {
+      "n": 14,
+      "accuracy": 1.0,
+      "coverage": 1.0
+    }
+  },
+  "calibration": {
+    "ece": 0.0933,
+    "reliability": [
+      {
+        "bin": "0.5-0.6",
+        "n": 2,
+        "mean_confidence": 0.5,
+        "accuracy": 1.0,
+        "gap": 0.5
+      },
+      {
+        "bin": "0.6-0.7",
+        "n": 1,
+        "mean_confidence": 0.65,
+        "accuracy": 1.0,
+        "gap": 0.35
+      },
+      {
+        "bin": "0.7-0.8",
+        "n": 3,
+        "mean_confidence": 0.717,
+        "accuracy": 1.0,
+        "gap": 0.283
+      },
+      {
+        "bin": "0.8-0.9",
+        "n": 15,
+        "mean_confidence": 0.837,
+        "accuracy": 0.933,
+        "gap": 0.096
+      },
+      {
+        "bin": "0.9-1.0",
+        "n": 61,
+        "mean_confidence": 0.934,
+        "accuracy": 1.0,
+        "gap": 0.066
+      }
+    ]
+  },
+  "review": {
+    "tp": 4,
+    "fp": 0,
+    "fn": 0,
+    "tn": 11,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "review_rate": 0.267,
+    "unsafe_approval_rate": 0.0
+  },
+  "scenarios": {
+    "clean": {
+      "n": 6,
+      "routed_to_review": 0,
+      "needs_review": 0,
+      "key_fields_all_correct": 6
+    },
+    "lookalike": {
+      "n": 1,
+      "routed_to_review": 0,
+      "needs_review": 0,
+      "key_fields_all_correct": 1
+    },
+    "messy_company": {
+      "n": 3,
+      "routed_to_review": 0,
+      "needs_review": 0,
+      "key_fields_all_correct": 3
+    },
+    "no_mx": {
+      "n": 1,
+      "routed_to_review": 1,
+      "needs_review": 1,
+      "key_fields_all_correct": 1
+    },
+    "title_on_site": {
+      "n": 1,
+      "routed_to_review": 0,
+      "needs_review": 0,
+      "key_fields_all_correct": 1
+    },
+    "title_unknown": {
+      "n": 2,
+      "routed_to_review": 2,
+      "needs_review": 2,
+      "key_fields_all_correct": 2
+    },
+    "unidentifiable": {
+      "n": 1,
+      "routed_to_review": 1,
+      "needs_review": 1,
+      "key_fields_all_correct": 1
+    }
+  },
+  "cost_usd": {
+    "agent_total": 0.655269,
+    "per_lead_mean": 0.043685,
+    "per_lead_p95": 0.0462192
+  },
+  "latency_ms": {
+    "per_lead_p50": 14950,
+    "per_lead_p95": 21254
+  },
+  "steps_mean": 3.2,
+  "stops": {
+    "submitted": 15
+  },
+  "tools": {
+    "check_mx": {
+      "calls": 14,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p50_latency_ms": 0
+    },
+    "fetch_company_site": {
+      "calls": 31,
+      "errors": 1,
+      "error_rate": 0.032,
+      "p50_latency_ms": 0
+    },
+    "lookup_prior_results": {
+      "calls": 15,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p50_latency_ms": 0
+    },
+    "web_search": {
+      "calls": 16,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p50_latency_ms": 1
+    }
+  },
+  "outreach": {
+    "n": 15,
+    "deterministic_pass_rate": {
+      "length_ok": 0.933,
+      "word_count_ok": 1.0,
+      "not_generic": 1.0,
+      "personalized": 0.933,
+      "grounded": 0.933,
+      "no_unsupported_numbers": 1.0,
+      "no_placeholders": 1.0,
+      "all_pass": 0.933
+    }
+  },
+  "predictions": [
+    {
+      "lead_id": "11f75e786256",
+      "scenario": "clean",
+      "input": {
+        "name": "Pavel Jessop",
+        "raw_company": "bramblegate agency",
+        "title": "PM"
+      },
+      "labels": {
+        "company": "Bramblegate Agency",
+        "domain": "bramblegateagency.example",
+        "role": "Product Manager",
+        "role_aliases": [
+          "product manager"
+        ],
+        "seniority": "ic",
+        "industry": "agency",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.9,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.045257,
+      "latency_ms": 17680,
+      "enrichment": {
+        "company": {
+          "value": "Bramblegate Agency",
+          "source": "https://bramblegateagency.example/",
+          "evidence": "Bramblegate Agency runs performance-marketing campaigns for DTC skincare brands.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "bramblegateagency.example",
+          "source": "https://bramblegateagency.example/",
+          "evidence": "Contact: hello@bramblegateagency.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Product Manager",
+          "source": "https://bramblegateagency.example/team",
+          "evidence": "Pavel Jessop, Product Manager",
+          "confidence": 0.9
+        },
+        "seniority": {
+          "value": "ic",
+          "source": "https://bramblegateagency.example/team",
+          "evidence": "Pavel Jessop, Product Manager",
+          "confidence": 0.65
+        },
+        "industry": {
+          "value": "agency",
+          "source": "https://bramblegateagency.example/",
+          "evidence": "Bramblegate Agency runs performance-marketing campaigns for DTC skincare brands.",
+          "confidence": 0.9
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:bramblegateagency.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.bramblegateagency.example\", \"mx2.bramblegateagency.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Pavel, running performance-marketing campaigns for DTC skincare brands from Tartu must keep product priorities shifting fast. How do you manage that as Bramblegate's Product Manager?",
+          "source": "https://bramblegateagency.example/",
+          "evidence": "Bramblegate Agency runs performance-marketing campaigns for DTC skincare brands. Founded in 2016 and based in Tartu."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "243d4a01cfda",
+      "scenario": "lookalike",
+      "input": {
+        "name": "Ada Marchetti",
+        "raw_company": "corvid shield",
+        "title": "Co-founder & CEO"
+      },
+      "labels": {
+        "company": "Corvid Shield",
+        "domain": "corvidshield.example",
+        "role": "Chief Executive Officer",
+        "role_aliases": [
+          "ceo",
+          "founder",
+          "co-founder"
+        ],
+        "seniority": "founder",
+        "industry": "cybersecurity",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.9,
+      "stop": "submitted",
+      "steps": 4,
+      "cost_usd": 0.044687,
+      "latency_ms": 16788,
+      "enrichment": {
+        "company": {
+          "value": "Corvid Shield",
+          "source": "https://corvidshield.example/",
+          "evidence": "Corvid Shield detects credential-stuffing attacks against customer login pages.",
+          "confidence": 0.93
+        },
+        "domain": {
+          "value": "corvidshield.example",
+          "source": "https://corvidshield.example/",
+          "evidence": "Contact: hello@corvidshield.example.",
+          "confidence": 0.93
+        },
+        "role": {
+          "value": "Chief Executive Officer",
+          "source": "https://corvidshield.example/team",
+          "evidence": "Ada Marchetti, Chief Executive Officer.",
+          "confidence": 0.9
+        },
+        "seniority": {
+          "value": "c_level",
+          "source": "https://corvidshield.example/team",
+          "evidence": "Ada Marchetti, Chief Executive Officer.",
+          "confidence": 0.85
+        },
+        "industry": {
+          "value": "cybersecurity",
+          "source": "https://corvidshield.example/",
+          "evidence": "Corvid Shield detects credential-stuffing attacks against customer login pages.",
+          "confidence": 0.92
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:corvidshield.example",
+          "evidence": "\"has_mx\": true",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Ada, credential-stuffing against customer login pages is a tough problem, and it's interesting to see Corvid Shield tackling it from Gdansk since 2023.",
+          "source": "https://corvidshield.example/about",
+          "evidence": "Corvid Shield was founded in 2023 in Gdansk."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "2c4ff55b7630",
+      "scenario": "messy_company",
+      "input": {
+        "name": "Keiko Okafor",
+        "raw_company": "vellum&vane",
+        "title": "PM"
+      },
+      "labels": {
+        "company": "Vellum & Vane",
+        "domain": "vellumvane.example",
+        "role": "Product Manager",
+        "role_aliases": [
+          "product manager"
+        ],
+        "seniority": "ic",
+        "industry": "legal",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.8,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.042896,
+      "latency_ms": 15738,
+      "enrichment": {
+        "company": {
+          "value": "Vellum & Vane",
+          "source": "https://vellumvane.example/",
+          "evidence": "Vellum & Vane provides contract-review services for venture-backed startups.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "vellumvane.example",
+          "source": "https://vellumvane.example/",
+          "evidence": "Contact: hello@vellumvane.example.",
+          "confidence": 0.93
+        },
+        "role": {
+          "value": "Product Manager",
+          "source": "https://vellumvane.example/team",
+          "evidence": "Keiko Okafor, Product Manager.",
+          "confidence": 0.92
+        },
+        "seniority": {
+          "value": "ic",
+          "source": "https://vellumvane.example/team",
+          "evidence": "Keiko Okafor, Product Manager.",
+          "confidence": 0.7
+        },
+        "industry": {
+          "value": "legal",
+          "source": "https://vellumvane.example/",
+          "evidence": "Vellum & Vane provides contract-review services for venture-backed startups.",
+          "confidence": 0.8
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:vellumvane.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.vellumvane.example\", \"mx2.vellumvane.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Keiko, building product for contract review aimed at venture-backed startups must mean balancing legal rigor with founders' need for speed. How does your team handle that?",
+          "source": "https://vellumvane.example/",
+          "evidence": "Vellum & Vane provides contract-review services for venture-backed startups."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "5d5099b8e140",
+      "scenario": "no_mx",
+      "input": {
+        "name": "Farah Galloway",
+        "raw_company": "wavecrest security",
+        "title": "Chief Technology Officer"
+      },
+      "labels": {
+        "company": "Wavecrest Security",
+        "domain": "wavecrestsecurity.example",
+        "role": "Chief Technology Officer",
+        "role_aliases": [
+          "cto"
+        ],
+        "seniority": "c_level",
+        "industry": "cybersecurity",
+        "accepts_email": false,
+        "should_review": true
+      },
+      "status": "review",
+      "reasons": [
+        "domain_rejects_mail"
+      ],
+      "routing_confidence": 0.9,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.04172,
+      "latency_ms": 13890,
+      "enrichment": {
+        "company": {
+          "value": "Wavecrest Security",
+          "source": "https://wavecrestsecurity.example/",
+          "evidence": "Wavecrest Security runs phishing simulations for hospital staff.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "wavecrestsecurity.example",
+          "source": "https://wavecrestsecurity.example/",
+          "evidence": "Contact: hello@wavecrestsecurity.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Chief Technology Officer",
+          "source": "https://wavecrestsecurity.example/team",
+          "evidence": "Farah Galloway, Chief Technology Officer.",
+          "confidence": 0.95
+        },
+        "seniority": {
+          "value": "c_level",
+          "source": "https://wavecrestsecurity.example/team",
+          "evidence": "Farah Galloway, Chief Technology Officer.",
+          "confidence": 0.93
+        },
+        "industry": {
+          "value": "cybersecurity",
+          "source": "https://wavecrestsecurity.example/",
+          "evidence": "Wavecrest Security runs phishing simulations for hospital staff.",
+          "confidence": 0.9
+        },
+        "accepts_email": {
+          "value": false,
+          "source": "dns:mx:wavecrestsecurity.example",
+          "evidence": "\"has_mx\": false",
+          "confidence": 0.85
+        },
+        "outreach": {
+          "text": "Farah, running phishing simulations built specifically for hospital staff is a sharp niche. I'm curious how your team tailors scenarios to clinical workflows.",
+          "source": "https://wavecrestsecurity.example/",
+          "evidence": "Wavecrest Security runs phishing simulations for hospital staff."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "60de2984371b",
+      "scenario": "messy_company",
+      "input": {
+        "name": "Esi Dunmore",
+        "raw_company": "vellum&vane",
+        "title": "CTO"
+      },
+      "labels": {
+        "company": "Vellum & Vane",
+        "domain": "vellumvane.example",
+        "role": "Chief Technology Officer",
+        "role_aliases": [
+          "cto"
+        ],
+        "seniority": "c_level",
+        "industry": "legal",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.8,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.041953,
+      "latency_ms": 12180,
+      "enrichment": {
+        "company": {
+          "value": "Vellum & Vane",
+          "source": "https://vellumvane.example/",
+          "evidence": "Vellum & Vane provides contract-review services for venture-backed startups.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "vellumvane.example",
+          "source": "https://vellumvane.example/",
+          "evidence": "Contact: hello@vellumvane.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Chief Technology Officer",
+          "source": "https://vellumvane.example/team",
+          "evidence": "Esi Dunmore, Chief Technology Officer",
+          "confidence": 0.95
+        },
+        "seniority": {
+          "value": "c_level",
+          "source": "https://vellumvane.example/team",
+          "evidence": "Esi Dunmore, Chief Technology Officer",
+          "confidence": 0.93
+        },
+        "industry": {
+          "value": "legal",
+          "source": "https://vellumvane.example/",
+          "evidence": "Vellum & Vane provides contract-review services for venture-backed startups.",
+          "confidence": 0.8
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:vellumvane.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.vellumvane.example\", \"mx2.vellumvane.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Esi, running the technology behind contract review for venture-backed startups, built up since Vellum & Vane's founding in Adelaide in 2012, must mean plenty of document workflow challenges.",
+          "source": "https://vellumvane.example/",
+          "evidence": "Founded in 2012 and based in Adelaide."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "700c8a259fa6",
+      "scenario": "clean",
+      "input": {
+        "name": "Ilse Jessop",
+        "raw_company": "saltmarsh commerce",
+        "title": "Chief Operating Officer"
+      },
+      "labels": {
+        "company": "Saltmarsh Commerce",
+        "domain": "saltmarshcommerce.example",
+        "role": "Chief Operating Officer",
+        "role_aliases": [
+          "coo"
+        ],
+        "seniority": "c_level",
+        "industry": "ecommerce",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.8,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.044287,
+      "latency_ms": 14439,
+      "enrichment": {
+        "company": {
+          "value": "Saltmarsh Commerce",
+          "source": "https://saltmarshcommerce.example/",
+          "evidence": "Saltmarsh Commerce operates a marketplace for independent ceramic studios.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "saltmarshcommerce.example",
+          "source": "https://saltmarshcommerce.example/",
+          "evidence": "Contact: hello@saltmarshcommerce.example.",
+          "confidence": 0.93
+        },
+        "role": {
+          "value": "Chief Operating Officer",
+          "source": "https://saltmarshcommerce.example/team",
+          "evidence": "Ilse Jessop, Chief Operating Officer",
+          "confidence": 0.93
+        },
+        "seniority": {
+          "value": "c_level",
+          "source": "https://saltmarshcommerce.example/team",
+          "evidence": "Ilse Jessop, Chief Operating Officer",
+          "confidence": 0.92
+        },
+        "industry": {
+          "value": "ecommerce",
+          "source": "https://saltmarshcommerce.example/",
+          "evidence": "Saltmarsh Commerce operates a marketplace for independent ceramic studios.",
+          "confidence": 0.8
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:saltmarshcommerce.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.saltmarshcommerce.example\", \"mx2.saltmarshcommerce.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Ilse, running operations for a marketplace of independent ceramic studios must mean coordinating many small makers at once. I'd love to hear how Saltmarsh handles that from Gdansk.",
+          "source": "https://saltmarshcommerce.example/",
+          "evidence": "Saltmarsh Commerce operates a marketplace for independent ceramic studios. Founded in 2021 and based in Gdansk."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "74e531e5a87b",
+      "scenario": "title_unknown",
+      "input": {
+        "name": "Quinn Marchetti",
+        "raw_company": "tallowmere freight",
+        "title": ""
+      },
+      "labels": {
+        "company": "Tallowmere Freight",
+        "domain": "tallowmerefreight.example",
+        "role": null,
+        "role_aliases": [],
+        "seniority": null,
+        "industry": "logistics",
+        "accepts_email": true,
+        "should_review": true
+      },
+      "status": "review",
+      "reasons": [
+        "low_confidence:0.10<0.75"
+      ],
+      "routing_confidence": 0.1,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.043102,
+      "latency_ms": 14312,
+      "enrichment": {
+        "company": {
+          "value": "Tallowmere Freight",
+          "source": "https://tallowmerefreight.example/about",
+          "evidence": "Tallowmere Freight was founded in 2014 in Gdansk.",
+          "confidence": 0.9
+        },
+        "domain": {
+          "value": "tallowmerefreight.example",
+          "source": "https://tallowmerefreight.example/about",
+          "evidence": "About us: Tallowmere Freight was founded in 2014 in Gdansk.",
+          "confidence": 0.88
+        },
+        "role": {
+          "value": "unknown",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.1
+        },
+        "seniority": {
+          "value": "unknown",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.3
+        },
+        "industry": {
+          "value": "logistics",
+          "source": "https://tallowmerefreight.example/about",
+          "evidence": "We cross-border LTL freight brokerage between Germany and Poland.",
+          "confidence": 0.9
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:tallowmerefreight.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.tallowmerefreight.example\", \"mx2.tallowmerefreight.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Quinn, running cross-border LTL freight brokerage between Germany and Poland out of Gdansk since 2014 must give Tallowmere a sharp view of how lanes have changed.",
+          "source": "https://tallowmerefreight.example/about",
+          "evidence": "Tallowmere Freight was founded in 2014 in Gdansk. We cross-border LTL freight brokerage between Germany and Poland."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "7b3c23b5437f",
+      "scenario": "clean",
+      "input": {
+        "name": "Pavel Zielinski",
+        "raw_company": "saltmarsh commerce",
+        "title": "Ops Manager"
+      },
+      "labels": {
+        "company": "Saltmarsh Commerce",
+        "domain": "saltmarshcommerce.example",
+        "role": "Operations Manager",
+        "role_aliases": [
+          "ops manager"
+        ],
+        "seniority": "manager",
+        "industry": "ecommerce",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.85,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.046176,
+      "latency_ms": 15446,
+      "enrichment": {
+        "company": {
+          "value": "Saltmarsh Commerce",
+          "source": "https://saltmarshcommerce.example/",
+          "evidence": "Saltmarsh Commerce operates a marketplace for independent ceramic studios.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "saltmarshcommerce.example",
+          "source": "https://saltmarshcommerce.example/",
+          "evidence": "Contact: hello@saltmarshcommerce.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Operations Manager",
+          "source": "https://saltmarshcommerce.example/team",
+          "evidence": "Pavel Zielinski, Operations Manager.",
+          "confidence": 0.9
+        },
+        "seniority": {
+          "value": "manager",
+          "source": "https://saltmarshcommerce.example/team",
+          "evidence": "Ilse Jessop, Chief Operating Officer; Pavel Zielinski, Operations Manager.",
+          "confidence": 0.7
+        },
+        "industry": {
+          "value": "ecommerce",
+          "source": "https://saltmarshcommerce.example/",
+          "evidence": "Saltmarsh Commerce operates a marketplace for independent ceramic studios.",
+          "confidence": 0.85
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:saltmarshcommerce.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.saltmarshcommerce.example\", \"mx2.saltmarshcommerce.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Pavel, running operations for a marketplace of independent ceramic studios out of Gdansk must mean juggling many small sellers—curious how you keep fulfilment consistent.",
+          "source": "https://saltmarshcommerce.example/",
+          "evidence": "Saltmarsh Commerce operates a marketplace for independent ceramic studios. Founded in 2021 and based in Gdansk."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "863144b245ca",
+      "scenario": "unidentifiable",
+      "input": {
+        "name": "Zeno Galloway",
+        "raw_company": "xyz holdings",
+        "title": "VP Engineering"
+      },
+      "labels": {
+        "company": null,
+        "domain": null,
+        "role": "VP of Engineering",
+        "role_aliases": [
+          "vp engineering",
+          "vice president engineering"
+        ],
+        "seniority": "vp",
+        "industry": null,
+        "accepts_email": null,
+        "should_review": true
+      },
+      "status": "review",
+      "reasons": [
+        "outreach_empty",
+        "low_confidence:0.10<0.75"
+      ],
+      "routing_confidence": 0.1,
+      "stop": "submitted",
+      "steps": 5,
+      "cost_usd": 0.043573,
+      "latency_ms": 21254,
+      "enrichment": {
+        "company": {
+          "value": "XYZ Holdings",
+          "source": "input",
+          "evidence": "",
+          "confidence": 0.3
+        },
+        "domain": {
+          "value": null,
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.1
+        },
+        "role": {
+          "value": "VP Engineering",
+          "source": "input",
+          "evidence": "",
+          "confidence": 0.5
+        },
+        "seniority": {
+          "value": "vp",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.5
+        },
+        "industry": {
+          "value": "other",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.1
+        },
+        "accepts_email": {
+          "value": null,
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.0
+        },
+        "outreach": {
+          "text": "",
+          "source": "inferred",
+          "evidence": ""
+        }
+      },
+      "outreach_checks": {
+        "length_ok": false,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": false,
+        "grounded": false,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": false
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "953a4f1c8939",
+      "scenario": "messy_company",
+      "input": {
+        "name": "Pavel Hollins",
+        "raw_company": "bramblegate agency ltd",
+        "title": "VP of Engineering"
+      },
+      "labels": {
+        "company": "Bramblegate Agency",
+        "domain": "bramblegateagency.example",
+        "role": "VP of Engineering",
+        "role_aliases": [
+          "vp engineering",
+          "vice president engineering"
+        ],
+        "seniority": "vp",
+        "industry": "agency",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.9,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.043202,
+      "latency_ms": 14950,
+      "enrichment": {
+        "company": {
+          "value": "Bramblegate Agency",
+          "source": "https://bramblegateagency.example/",
+          "evidence": "Bramblegate Agency runs performance-marketing campaigns for DTC skincare brands.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "bramblegateagency.example",
+          "source": "https://bramblegateagency.example/",
+          "evidence": "Contact: hello@bramblegateagency.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "VP of Engineering",
+          "source": "https://bramblegateagency.example/team",
+          "evidence": "Pavel Hollins, VP of Engineering.",
+          "confidence": 0.93
+        },
+        "seniority": {
+          "value": "vp",
+          "source": "https://bramblegateagency.example/team",
+          "evidence": "Pavel Hollins, VP of Engineering.",
+          "confidence": 0.92
+        },
+        "industry": {
+          "value": "agency",
+          "source": "https://bramblegateagency.example/",
+          "evidence": "Bramblegate Agency runs performance-marketing campaigns for DTC skincare brands.",
+          "confidence": 0.9
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:bramblegateagency.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.bramblegateagency.example\", \"mx2.bramblegateagency.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Pavel, running performance-marketing campaigns for DTC skincare brands takes solid engineering underneath. Curious how your team at Bramblegate supports campaign delivery today.",
+          "source": "https://bramblegateagency.example/",
+          "evidence": "Bramblegate Agency runs performance-marketing campaigns for DTC skincare brands."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "b54b2f459e17",
+      "scenario": "title_on_site",
+      "input": {
+        "name": "Goran Yeoman",
+        "raw_company": "tidewater energy labs",
+        "title": ""
+      },
+      "labels": {
+        "company": "Tidewater Energy Labs",
+        "domain": "tidewaterenergylabs.example",
+        "role": "Engineering Manager",
+        "role_aliases": [
+          "engineering manager"
+        ],
+        "seniority": "manager",
+        "industry": "energy",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.85,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.046219,
+      "latency_ms": 16894,
+      "enrichment": {
+        "company": {
+          "value": "Tidewater Energy Labs",
+          "source": "https://tidewaterenergylabs.example/",
+          "evidence": "Tidewater Energy Labs develops battery-storage controllers for commercial buildings.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "tidewaterenergylabs.example",
+          "source": "https://tidewaterenergylabs.example/",
+          "evidence": "Contact: hello@tidewaterenergylabs.example.",
+          "confidence": 0.93
+        },
+        "role": {
+          "value": "Engineering Manager",
+          "source": "https://tidewaterenergylabs.example/team",
+          "evidence": "Goran Yeoman, Engineering Manager.",
+          "confidence": 0.85
+        },
+        "seniority": {
+          "value": "manager",
+          "source": "https://tidewaterenergylabs.example/team",
+          "evidence": "Goran Yeoman, Engineering Manager.",
+          "confidence": 0.8
+        },
+        "industry": {
+          "value": "energy",
+          "source": "https://tidewaterenergylabs.example/",
+          "evidence": "Tidewater Energy Labs develops battery-storage controllers for commercial buildings.",
+          "confidence": 0.85
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:tidewaterenergylabs.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.tidewaterenergylabs.example\", \"mx2.tidewaterenergylabs.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Goran, leading engineering on battery-storage controllers for commercial buildings at Tidewater Energy Labs must mean juggling hardware and software timelines. Curious how your team handles that.",
+          "source": "https://tidewaterenergylabs.example/",
+          "evidence": "Tidewater Energy Labs develops battery-storage controllers for commercial buildings."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "c708c86491db",
+      "scenario": "clean",
+      "input": {
+        "name": "Uma Zielinski",
+        "raw_company": "tidewater energy labs",
+        "title": "data scientist"
+      },
+      "labels": {
+        "company": "Tidewater Energy Labs",
+        "domain": "tidewaterenergylabs.example",
+        "role": "Data Scientist",
+        "role_aliases": [
+          "data scientist"
+        ],
+        "seniority": "ic",
+        "industry": "energy",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.88,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.043839,
+      "latency_ms": 15620,
+      "enrichment": {
+        "company": {
+          "value": "Tidewater Energy Labs",
+          "source": "https://tidewaterenergylabs.example/",
+          "evidence": "Tidewater Energy Labs develops battery-storage controllers for commercial buildings.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "tidewaterenergylabs.example",
+          "source": "https://tidewaterenergylabs.example/",
+          "evidence": "Contact: hello@tidewaterenergylabs.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Data Scientist",
+          "source": "https://tidewaterenergylabs.example/team",
+          "evidence": "Uma Zielinski, Data Scientist",
+          "confidence": 0.92
+        },
+        "seniority": {
+          "value": "ic",
+          "source": "https://tidewaterenergylabs.example/team",
+          "evidence": "Uma Zielinski, Data Scientist",
+          "confidence": 0.8
+        },
+        "industry": {
+          "value": "energy",
+          "source": "https://tidewaterenergylabs.example/",
+          "evidence": "Tidewater Energy Labs develops battery-storage controllers for commercial buildings.",
+          "confidence": 0.88
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:tidewaterenergylabs.example",
+          "evidence": "mx1.tidewaterenergylabs.example",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Uma, battery-storage controllers for commercial buildings must produce rich load data. I'm curious how your data science work at Tidewater shapes the control strategies.",
+          "source": "https://tidewaterenergylabs.example/",
+          "evidence": "Tidewater Energy Labs develops battery-storage controllers for commercial buildings."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "f1eacaea7c6a",
+      "scenario": "clean",
+      "input": {
+        "name": "Pavel Marchetti",
+        "raw_company": "nightjar media",
+        "title": "sales director"
+      },
+      "labels": {
+        "company": "Nightjar Media",
+        "domain": "nightjarmedia.example",
+        "role": "Director of Sales",
+        "role_aliases": [
+          "sales director"
+        ],
+        "seniority": "director",
+        "industry": "media",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.9,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.042143,
+      "latency_ms": 13412,
+      "enrichment": {
+        "company": {
+          "value": "Nightjar Media",
+          "source": "https://nightjarmedia.example/",
+          "evidence": "Nightjar Media publishes a newsletter network covering climate policy.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "nightjarmedia.example",
+          "source": "https://nightjarmedia.example/",
+          "evidence": "Contact: hello@nightjarmedia.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Director of Sales",
+          "source": "https://nightjarmedia.example/team",
+          "evidence": "Pavel Marchetti, Director of Sales.",
+          "confidence": 0.9
+        },
+        "seniority": {
+          "value": "director",
+          "source": "https://nightjarmedia.example/team",
+          "evidence": "Pavel Marchetti, Director of Sales.",
+          "confidence": 0.85
+        },
+        "industry": {
+          "value": "media",
+          "source": "https://nightjarmedia.example/",
+          "evidence": "Nightjar Media publishes a newsletter network covering climate policy.",
+          "confidence": 0.9
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:nightjarmedia.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.nightjarmedia.example\", \"mx2.nightjarmedia.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Pavel, selling sponsorships across a whole newsletter network on climate policy is a specialized job. I'd love to hear how Nightjar Media packages its audience for advertisers.",
+          "source": "https://nightjarmedia.example/",
+          "evidence": "Nightjar Media publishes a newsletter network covering climate policy."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "f3261f6aca5d",
+      "scenario": "clean",
+      "input": {
+        "name": "Soren Nakamura",
+        "raw_company": "halcyon stays",
+        "title": "Data Scientist"
+      },
+      "labels": {
+        "company": "Halcyon Stays",
+        "domain": "halcyonstays.example",
+        "role": "Data Scientist",
+        "role_aliases": [
+          "data scientist"
+        ],
+        "seniority": "ic",
+        "industry": "hospitality",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.85,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.043933,
+      "latency_ms": 13840,
+      "enrichment": {
+        "company": {
+          "value": "Halcyon Stays",
+          "source": "https://halcyonstays.example/",
+          "evidence": "Halcyon Stays manages boutique short-stay apartments in Lisbon and Porto.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "halcyonstays.example",
+          "source": "https://halcyonstays.example/",
+          "evidence": "Contact: hello@halcyonstays.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Data Scientist",
+          "source": "https://halcyonstays.example/team",
+          "evidence": "Leadership and team at Halcyon Stays: Soren Nakamura, Data Scientist.",
+          "confidence": 0.92
+        },
+        "seniority": {
+          "value": "ic",
+          "source": "https://halcyonstays.example/team",
+          "evidence": "Soren Nakamura, Data Scientist.",
+          "confidence": 0.75
+        },
+        "industry": {
+          "value": "hospitality",
+          "source": "https://halcyonstays.example/",
+          "evidence": "Halcyon Stays manages boutique short-stay apartments in Lisbon and Porto.",
+          "confidence": 0.85
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:halcyonstays.example",
+          "evidence": "mx1.halcyonstays.example",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Soren, running boutique short-stay apartments across both Lisbon and Porto must create interesting data puzzles around pricing and occupancy for a data scientist.",
+          "source": "https://halcyonstays.example/",
+          "evidence": "Halcyon Stays manages boutique short-stay apartments in Lisbon and Porto."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "f7dbf01b2a82",
+      "scenario": "title_unknown",
+      "input": {
+        "name": "Viktor Galloway",
+        "raw_company": "halcyon stays",
+        "title": ""
+      },
+      "labels": {
+        "company": "Halcyon Stays",
+        "domain": "halcyonstays.example",
+        "role": null,
+        "role_aliases": [],
+        "seniority": null,
+        "industry": "hospitality",
+        "accepts_email": true,
+        "should_review": true
+      },
+      "status": "review",
+      "reasons": [
+        "evidence_mismatch:accepts_email",
+        "low_confidence:0.10<0.75"
+      ],
+      "routing_confidence": 0.1,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.042282,
+      "latency_ms": 12492,
+      "enrichment": {
+        "company": {
+          "value": "Halcyon Stays",
+          "source": "https://halcyonstays.example/",
+          "evidence": "Halcyon Stays manages boutique short-stay apartments in Lisbon and Porto.",
+          "confidence": 0.9
+        },
+        "domain": {
+          "value": "halcyonstays.example",
+          "source": "https://halcyonstays.example/",
+          "evidence": "Contact: hello@halcyonstays.example.",
+          "confidence": 0.9
+        },
+        "role": {
+          "value": "unknown",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.1
+        },
+        "seniority": {
+          "value": "unknown",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.3
+        },
+        "industry": {
+          "value": "hospitality",
+          "source": "https://halcyonstays.example/",
+          "evidence": "Halcyon Stays manages boutique short-stay apartments in Lisbon and Porto.",
+          "confidence": 0.85
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:halcyonstays.example",
+          "evidence": "mx1.halcyonstays.example, mx2.halcyonstays.example",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Viktor, running boutique short-stay apartments across both Lisbon and Porto from a Tartu base must make cross-city operations an interesting puzzle.",
+          "source": "https://halcyonstays.example/",
+          "evidence": "Halcyon Stays manages boutique short-stay apartments in Lisbon and Porto. Founded in 2012 and based in Tartu."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    }
+  ]
+}

@@ -2,7 +2,8 @@ runs.jsonl
 enriched.csv
 review_queue.csv
 .processed.json
-leadgenie.db*
+*.db
+*.db-*
 __pycache__/
 VIDEO_SCRIPT.md
 .venv/

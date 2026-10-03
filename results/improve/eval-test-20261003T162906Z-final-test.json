@@ -1,0 +1,1455 @@
+{
+  "meta": {
+    "created_at": "2026-10-03T16:29:06+00:00",
+    "git": "ca4ca1a",
+    "split": "test",
+    "n": 15,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "prompt_fingerprint": "1ece14027510",
+    "lessons": 3,
+    "threshold": 0.75,
+    "budget": {
+      "max_steps": 8,
+      "max_cost_usd": 0.25,
+      "warn_cost_fraction": 0.75
+    },
+    "judge_model": null
+  },
+  "fields": {
+    "company": {
+      "n": 13,
+      "accuracy": 1.0,
+      "coverage": 1.0
+    },
+    "domain": {
+      "n": 13,
+      "accuracy": 1.0,
+      "coverage": 1.0
+    },
+    "role": {
+      "n": 14,
+      "accuracy": 1.0,
+      "coverage": 1.0
+    },
+    "seniority": {
+      "n": 14,
+      "accuracy": 1.0,
+      "coverage": 1.0
+    },
+    "industry": {
+      "n": 13,
+      "accuracy": 0.769,
+      "coverage": 1.0
+    },
+    "accepts_email": {
+      "n": 13,
+      "accuracy": 1.0,
+      "coverage": 1.0
+    }
+  },
+  "calibration": {
+    "ece": 0.1129,
+    "reliability": [
+      {
+        "bin": "0.4-0.5",
+        "n": 1,
+        "mean_confidence": 0.4,
+        "accuracy": 1.0,
+        "gap": 0.6
+      },
+      {
+        "bin": "0.5-0.6",
+        "n": 6,
+        "mean_confidence": 0.542,
+        "accuracy": 1.0,
+        "gap": 0.458
+      },
+      {
+        "bin": "0.6-0.7",
+        "n": 5,
+        "mean_confidence": 0.6,
+        "accuracy": 0.6,
+        "gap": 0.0
+      },
+      {
+        "bin": "0.7-0.8",
+        "n": 2,
+        "mean_confidence": 0.725,
+        "accuracy": 0.5,
+        "gap": -0.225
+      },
+      {
+        "bin": "0.8-0.9",
+        "n": 10,
+        "mean_confidence": 0.83,
+        "accuracy": 1.0,
+        "gap": 0.17
+      },
+      {
+        "bin": "0.9-1.0",
+        "n": 56,
+        "mean_confidence": 0.937,
+        "accuracy": 1.0,
+        "gap": 0.063
+      }
+    ]
+  },
+  "review": {
+    "tp": 6,
+    "fp": 1,
+    "fn": 0,
+    "tn": 8,
+    "precision": 0.857,
+    "recall": 1.0,
+    "f1": 0.923,
+    "review_rate": 0.467,
+    "unsafe_approval_rate": 0.0
+  },
+  "scenarios": {
+    "clean": {
+      "n": 6,
+      "routed_to_review": 2,
+      "needs_review": 2,
+      "key_fields_all_correct": 4
+    },
+    "lookalike": {
+      "n": 1,
+      "routed_to_review": 0,
+      "needs_review": 0,
+      "key_fields_all_correct": 1
+    },
+    "messy_company": {
+      "n": 2,
+      "routed_to_review": 1,
+      "needs_review": 0,
+      "key_fields_all_correct": 2
+    },
+    "no_mx": {
+      "n": 1,
+      "routed_to_review": 1,
+      "needs_review": 1,
+      "key_fields_all_correct": 0
+    },
+    "title_on_site": {
+      "n": 2,
+      "routed_to_review": 0,
+      "needs_review": 0,
+      "key_fields_all_correct": 2
+    },
+    "title_unknown": {
+      "n": 1,
+      "routed_to_review": 1,
+      "needs_review": 1,
+      "key_fields_all_correct": 1
+    },
+    "unidentifiable": {
+      "n": 2,
+      "routed_to_review": 2,
+      "needs_review": 2,
+      "key_fields_all_correct": 2
+    }
+  },
+  "cost_usd": {
+    "agent_total": 0.652097,
+    "per_lead_mean": 0.043473,
+    "per_lead_p95": 0.0461532
+  },
+  "latency_ms": {
+    "per_lead_p50": 14495,
+    "per_lead_p95": 17932
+  },
+  "steps_mean": 3.0,
+  "stops": {
+    "submitted": 15
+  },
+  "tools": {
+    "check_mx": {
+      "calls": 13,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p50_latency_ms": 0
+    },
+    "fetch_company_site": {
+      "calls": 28,
+      "errors": 1,
+      "error_rate": 0.036,
+      "p50_latency_ms": 0
+    },
+    "lookup_prior_results": {
+      "calls": 15,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p50_latency_ms": 0
+    },
+    "web_search": {
+      "calls": 16,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p50_latency_ms": 2
+    }
+  },
+  "outreach": {
+    "n": 15,
+    "deterministic_pass_rate": {
+      "length_ok": 0.933,
+      "word_count_ok": 1.0,
+      "not_generic": 1.0,
+      "personalized": 0.933,
+      "grounded": 0.867,
+      "no_unsupported_numbers": 1.0,
+      "no_placeholders": 1.0,
+      "all_pass": 0.867
+    }
+  },
+  "predictions": [
+    {
+      "lead_id": "137eca85022c",
+      "scenario": "messy_company",
+      "input": {
+        "name": "Farah Ellery",
+        "raw_company": "juniperloop",
+        "title": "COO"
+      },
+      "labels": {
+        "company": "Juniper Loop",
+        "domain": "juniperloop.example",
+        "role": "Chief Operating Officer",
+        "role_aliases": [
+          "coo"
+        ],
+        "seniority": "c_level",
+        "industry": "hr_tech",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "review",
+      "reasons": [
+        "low_confidence:0.60<0.75"
+      ],
+      "routing_confidence": 0.6,
+      "stop": "submitted",
+      "steps": 4,
+      "cost_usd": 0.045778,
+      "latency_ms": 17932,
+      "enrichment": {
+        "company": {
+          "value": "Juniper Loop",
+          "source": "https://juniperloop.example/",
+          "evidence": "Juniper Loop runs structured onboarding programs for distributed engineering teams.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "juniperloop.example",
+          "source": "https://juniperloop.example/",
+          "evidence": "Contact: hello@juniperloop.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Chief Operating Officer",
+          "source": "https://juniperloop.example/team",
+          "evidence": "Farah Ellery, Chief Operating Officer.",
+          "confidence": 0.95
+        },
+        "seniority": {
+          "value": "c_level",
+          "source": "https://juniperloop.example/team",
+          "evidence": "Farah Ellery, Chief Operating Officer.",
+          "confidence": 0.95
+        },
+        "industry": {
+          "value": "hr_tech",
+          "source": "https://juniperloop.example/",
+          "evidence": "Juniper Loop runs structured onboarding programs for distributed engineering teams.",
+          "confidence": 0.6
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:juniperloop.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.juniperloop.example\", \"mx2.juniperloop.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Farah, running structured onboarding programs for distributed engineering teams out of Tartu since 2015 must give you a sharp view of what makes remote operations scale.",
+          "source": "https://juniperloop.example/about",
+          "evidence": "Juniper Loop was founded in 2015 in Tartu. We structured onboarding programs for distributed engineering teams."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "258005e5cf8a",
+      "scenario": "unidentifiable",
+      "input": {
+        "name": "Farah Abernathy",
+        "raw_company": "acme corp",
+        "title": "Head of Marketing"
+      },
+      "labels": {
+        "company": null,
+        "domain": null,
+        "role": "Head of Marketing",
+        "role_aliases": [
+          "marketing lead"
+        ],
+        "seniority": "director",
+        "industry": null,
+        "accepts_email": null,
+        "should_review": true
+      },
+      "status": "review",
+      "reasons": [
+        "outreach_ungrounded",
+        "low_confidence:0.10<0.75"
+      ],
+      "routing_confidence": 0.1,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.041415,
+      "latency_ms": 15988,
+      "enrichment": {
+        "company": {
+          "value": "Acme Corp",
+          "source": "input",
+          "evidence": "",
+          "confidence": 0.2
+        },
+        "domain": {
+          "value": null,
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.1
+        },
+        "role": {
+          "value": "Head of Marketing",
+          "source": "input",
+          "evidence": "",
+          "confidence": 0.5
+        },
+        "seniority": {
+          "value": "director",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.4
+        },
+        "industry": {
+          "value": "other",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.1
+        },
+        "accepts_email": {
+          "value": null,
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.1
+        },
+        "outreach": {
+          "text": "Hi Farah, I'd like to learn how you approach marketing as Head of Marketing and whether our tool could help your team.",
+          "source": "inferred",
+          "evidence": ""
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": false,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": false
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "36e23e4458a3",
+      "scenario": "clean",
+      "input": {
+        "name": "Xavi Lindqvist",
+        "raw_company": "vellum & vane",
+        "title": "Operations Manager"
+      },
+      "labels": {
+        "company": "Vellum & Vane",
+        "domain": "vellumvane.example",
+        "role": "Operations Manager",
+        "role_aliases": [
+          "ops manager"
+        ],
+        "seniority": "manager",
+        "industry": "legal",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.8,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.043148,
+      "latency_ms": 17006,
+      "enrichment": {
+        "company": {
+          "value": "Vellum & Vane",
+          "source": "https://vellumvane.example/",
+          "evidence": "Vellum & Vane provides contract-review services for venture-backed startups.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "vellumvane.example",
+          "source": "https://vellumvane.example/",
+          "evidence": "Contact: hello@vellumvane.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Operations Manager",
+          "source": "https://vellumvane.example/team",
+          "evidence": "Xavi Lindqvist, Operations Manager",
+          "confidence": 0.9
+        },
+        "seniority": {
+          "value": "manager",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.55
+        },
+        "industry": {
+          "value": "legal",
+          "source": "https://vellumvane.example/",
+          "evidence": "Vellum & Vane provides contract-review services for venture-backed startups.",
+          "confidence": 0.8
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:vellumvane.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.vellumvane.example\", \"mx2.vellumvane.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Xavi, keeping contract reviews moving for venture-backed startups since 2012 must make operations at Vellum & Vane a real balancing act.",
+          "source": "https://vellumvane.example/",
+          "evidence": "Founded in 2012 and based in Adelaide."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "3c446eea4f50",
+      "scenario": "clean",
+      "input": {
+        "name": "Jonas Pemberton",
+        "raw_company": "pinecrest health systems",
+        "title": "Engineering Manager"
+      },
+      "labels": {
+        "company": "Pinecrest Health Systems",
+        "domain": "pinecresthealthsystems.example",
+        "role": "Engineering Manager",
+        "role_aliases": [
+          "engineering manager"
+        ],
+        "seniority": "manager",
+        "industry": "healthcare",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "review",
+      "reasons": [
+        "low_confidence:0.70<0.75"
+      ],
+      "routing_confidence": 0.7,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.046064,
+      "latency_ms": 15204,
+      "enrichment": {
+        "company": {
+          "value": "Pinecrest Health Systems",
+          "source": "https://pinecresthealthsystems.example/",
+          "evidence": "Pinecrest Health Systems builds scheduling software for outpatient physiotherapy clinics.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "pinecresthealthsystems.example",
+          "source": "https://pinecresthealthsystems.example/",
+          "evidence": "Contact: hello@pinecresthealthsystems.example.",
+          "confidence": 0.93
+        },
+        "role": {
+          "value": "Engineering Manager",
+          "source": "https://pinecresthealthsystems.example/team",
+          "evidence": "Jonas Pemberton, Engineering Manager.",
+          "confidence": 0.92
+        },
+        "seniority": {
+          "value": "manager",
+          "source": "https://pinecresthealthsystems.example/team",
+          "evidence": "Uma Hollins, VP of Engineering; Jonas Pemberton, Engineering Manager.",
+          "confidence": 0.85
+        },
+        "industry": {
+          "value": "saas",
+          "source": "https://pinecresthealthsystems.example/",
+          "evidence": "builds scheduling software for outpatient physiotherapy clinics",
+          "confidence": 0.7
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:pinecresthealthsystems.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.pinecresthealthsystems.example\", \"mx2.pinecresthealthsystems.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Jonas, building scheduling software for outpatient physiotherapy clinics means the engineering team has to handle tricky booking logic. Curious how you're scaling that work at Pinecrest.",
+          "source": "https://pinecresthealthsystems.example/",
+          "evidence": "Pinecrest Health Systems builds scheduling software for outpatient physiotherapy clinics."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "45a4aabe5057",
+      "scenario": "clean",
+      "input": {
+        "name": "Goran Galloway",
+        "raw_company": "mosswood robotics",
+        "title": "Operations Manager"
+      },
+      "labels": {
+        "company": "Mosswood Robotics",
+        "domain": "mosswoodrobotics.example",
+        "role": "Operations Manager",
+        "role_aliases": [
+          "ops manager"
+        ],
+        "seniority": "manager",
+        "industry": "manufacturing",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.75,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.043738,
+      "latency_ms": 13685,
+      "enrichment": {
+        "company": {
+          "value": "Mosswood Robotics",
+          "source": "https://mosswoodrobotics.example/",
+          "evidence": "Mosswood Robotics builds collaborative welding robots for small fabrication shops.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "mosswoodrobotics.example",
+          "source": "https://mosswoodrobotics.example/",
+          "evidence": "Contact: hello@mosswoodrobotics.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Operations Manager",
+          "source": "https://mosswoodrobotics.example/team",
+          "evidence": "Goran Galloway, Operations Manager.",
+          "confidence": 0.9
+        },
+        "seniority": {
+          "value": "manager",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.55
+        },
+        "industry": {
+          "value": "manufacturing",
+          "source": "https://mosswoodrobotics.example/",
+          "evidence": "Mosswood Robotics builds collaborative welding robots for small fabrication shops.",
+          "confidence": 0.75
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:mosswoodrobotics.example",
+          "evidence": "mx1.mosswoodrobotics.example",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Goran, putting collaborative welding robots into small fabrication shops must make operations planning interesting. How is Mosswood handling rollout logistics from Rotterdam?",
+          "source": "https://mosswoodrobotics.example/",
+          "evidence": "Mosswood Robotics builds collaborative welding robots for small fabrication shops. Founded in 2014 and based in Rotterdam."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "59d59d2a119b",
+      "scenario": "clean",
+      "input": {
+        "name": "Zeno Thorne",
+        "raw_company": "driftwood delivery",
+        "title": "Operations Manager"
+      },
+      "labels": {
+        "company": "Driftwood Delivery",
+        "domain": "driftwooddelivery.example",
+        "role": "Operations Manager",
+        "role_aliases": [
+          "ops manager"
+        ],
+        "seniority": "manager",
+        "industry": "delivery",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.92,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.045239,
+      "latency_ms": 14968,
+      "enrichment": {
+        "company": {
+          "value": "Driftwood Delivery",
+          "source": "https://driftwooddelivery.example/",
+          "evidence": "Driftwood Delivery operates same-day grocery delivery by cargo bike. Founded in 2012 and based in Tartu.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "driftwooddelivery.example",
+          "source": "https://driftwooddelivery.example/",
+          "evidence": "Contact: hello@driftwooddelivery.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Operations Manager",
+          "source": "https://driftwooddelivery.example/team",
+          "evidence": "Zeno Thorne, Operations Manager",
+          "confidence": 0.92
+        },
+        "seniority": {
+          "value": "manager",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.6
+        },
+        "industry": {
+          "value": "delivery",
+          "source": "https://driftwooddelivery.example/",
+          "evidence": "Driftwood Delivery operates same-day grocery delivery by cargo bike.",
+          "confidence": 0.93
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:driftwooddelivery.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.driftwooddelivery.example\", \"mx2.driftwooddelivery.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Zeno, running same-day grocery delivery by cargo bike in Tartu must make route and rider planning a daily puzzle. How does your operations team handle it today?",
+          "source": "https://driftwooddelivery.example/",
+          "evidence": "Driftwood Delivery operates same-day grocery delivery by cargo bike. Founded in 2012 and based in Tartu."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "6633de7c5804",
+      "scenario": "title_on_site",
+      "input": {
+        "name": "Yara Fairbairn",
+        "raw_company": "clearbrook learning",
+        "title": ""
+      },
+      "labels": {
+        "company": "Clearbrook Learning",
+        "domain": "clearbrooklearning.example",
+        "role": "VP of Engineering",
+        "role_aliases": [
+          "vp engineering",
+          "vice president engineering"
+        ],
+        "seniority": "vp",
+        "industry": "education",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.85,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.043931,
+      "latency_ms": 13830,
+      "enrichment": {
+        "company": {
+          "value": "Clearbrook Learning",
+          "source": "https://clearbrooklearning.example/",
+          "evidence": "Clearbrook Learning teaches data-literacy courses to public-sector employees.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "clearbrooklearning.example",
+          "source": "https://clearbrooklearning.example/",
+          "evidence": "Contact: hello@clearbrooklearning.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "VP of Engineering",
+          "source": "https://clearbrooklearning.example/team",
+          "evidence": "Yara Fairbairn, VP of Engineering.",
+          "confidence": 0.85
+        },
+        "seniority": {
+          "value": "vp",
+          "source": "https://clearbrooklearning.example/team",
+          "evidence": "Yara Fairbairn, VP of Engineering.",
+          "confidence": 0.85
+        },
+        "industry": {
+          "value": "education",
+          "source": "https://clearbrooklearning.example/",
+          "evidence": "Clearbrook Learning teaches data-literacy courses to public-sector employees.",
+          "confidence": 0.85
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:clearbrooklearning.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.clearbrooklearning.example\", \"mx2.clearbrooklearning.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Yara, building the engineering behind data-literacy courses for public-sector employees must bring unique constraints. Curious how your team at Clearbrook Learning approaches that.",
+          "source": "https://clearbrooklearning.example/",
+          "evidence": "Clearbrook Learning teaches data-literacy courses to public-sector employees."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "7290f9322345",
+      "scenario": "title_on_site",
+      "input": {
+        "name": "Yara Jessop",
+        "raw_company": "quillfeather learning",
+        "title": ""
+      },
+      "labels": {
+        "company": "Quillfeather Learning",
+        "domain": "quillfeatherlearning.example",
+        "role": "VP of Engineering",
+        "role_aliases": [
+          "vp engineering",
+          "vice president engineering"
+        ],
+        "seniority": "vp",
+        "industry": "education",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.9,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.043265,
+      "latency_ms": 13631,
+      "enrichment": {
+        "company": {
+          "value": "Quillfeather Learning",
+          "source": "https://quillfeatherlearning.example/",
+          "evidence": "Quillfeather Learning makes adaptive maths practice for secondary-school students.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "quillfeatherlearning.example",
+          "source": "https://quillfeatherlearning.example/",
+          "evidence": "Contact: hello@quillfeatherlearning.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "VP of Engineering",
+          "source": "https://quillfeatherlearning.example/team",
+          "evidence": "Yara Jessop, VP of Engineering.",
+          "confidence": 0.9
+        },
+        "seniority": {
+          "value": "vp",
+          "source": "https://quillfeatherlearning.example/team",
+          "evidence": "Yara Jessop, VP of Engineering.",
+          "confidence": 0.9
+        },
+        "industry": {
+          "value": "education",
+          "source": "https://quillfeatherlearning.example/",
+          "evidence": "Quillfeather Learning makes adaptive maths practice for secondary-school students.",
+          "confidence": 0.9
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:quillfeatherlearning.example",
+          "evidence": "mx1.quillfeatherlearning.example",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Yara, building adaptive maths practice for secondary-school students must create interesting engineering challenges in tailoring each problem to the learner. How is your team approaching that?",
+          "source": "https://quillfeatherlearning.example/",
+          "evidence": "Quillfeather Learning makes adaptive maths practice for secondary-school students."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "72c7031e8c1d",
+      "scenario": "clean",
+      "input": {
+        "name": "Goran Ellery",
+        "raw_company": "tidewater energy labs",
+        "title": "Director of Sales"
+      },
+      "labels": {
+        "company": "Tidewater Energy Labs",
+        "domain": "tidewaterenergylabs.example",
+        "role": "Director of Sales",
+        "role_aliases": [
+          "sales director"
+        ],
+        "seniority": "director",
+        "industry": "energy",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.85,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.044116,
+      "latency_ms": 14027,
+      "enrichment": {
+        "company": {
+          "value": "Tidewater Energy Labs",
+          "source": "https://tidewaterenergylabs.example/",
+          "evidence": "Tidewater Energy Labs develops battery-storage controllers for commercial buildings.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "tidewaterenergylabs.example",
+          "source": "https://tidewaterenergylabs.example/",
+          "evidence": "Contact: hello@tidewaterenergylabs.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Director of Sales",
+          "source": "https://tidewaterenergylabs.example/team",
+          "evidence": "Goran Ellery, Director of Sales",
+          "confidence": 0.93
+        },
+        "seniority": {
+          "value": "director",
+          "source": "https://tidewaterenergylabs.example/team",
+          "evidence": "Goran Ellery, Director of Sales",
+          "confidence": 0.9
+        },
+        "industry": {
+          "value": "energy",
+          "source": "https://tidewaterenergylabs.example/",
+          "evidence": "Tidewater Energy Labs develops battery-storage controllers for commercial buildings.",
+          "confidence": 0.85
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:tidewaterenergylabs.example",
+          "evidence": "mx1.tidewaterenergylabs.example",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Goran, battery-storage controllers for commercial buildings is a sharp niche. Curious how your sales team is pitching building owners from Porto these days.",
+          "source": "https://tidewaterenergylabs.example/",
+          "evidence": "Tidewater Energy Labs develops battery-storage controllers for commercial buildings. Founded in 2019 and based in Porto."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "768e899b9ad9",
+      "scenario": "no_mx",
+      "input": {
+        "name": "Soren Ellery",
+        "raw_company": "copperleaf kitchens",
+        "title": "eng manager"
+      },
+      "labels": {
+        "company": "Copperleaf Kitchens",
+        "domain": "copperleafkitchens.example",
+        "role": "Engineering Manager",
+        "role_aliases": [
+          "engineering manager"
+        ],
+        "seniority": "manager",
+        "industry": "hospitality",
+        "accepts_email": false,
+        "should_review": true
+      },
+      "status": "review",
+      "reasons": [
+        "domain_rejects_mail",
+        "low_confidence:0.60<0.75"
+      ],
+      "routing_confidence": 0.6,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.044467,
+      "latency_ms": 13844,
+      "enrichment": {
+        "company": {
+          "value": "Copperleaf Kitchens",
+          "source": "https://copperleafkitchens.example/",
+          "evidence": "Copperleaf Kitchens runs a group of ghost kitchens serving three city centres.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "copperleafkitchens.example",
+          "source": "https://copperleafkitchens.example/",
+          "evidence": "Contact: hello@copperleafkitchens.example.",
+          "confidence": 0.93
+        },
+        "role": {
+          "value": "Engineering Manager",
+          "source": "https://copperleafkitchens.example/team",
+          "evidence": "Soren Ellery, Engineering Manager.",
+          "confidence": 0.92
+        },
+        "seniority": {
+          "value": "manager",
+          "source": "https://copperleafkitchens.example/team",
+          "evidence": "Soren Ellery, Engineering Manager.",
+          "confidence": 0.8
+        },
+        "industry": {
+          "value": "delivery",
+          "source": "https://copperleafkitchens.example/",
+          "evidence": "Copperleaf Kitchens runs a group of ghost kitchens serving three city centres.",
+          "confidence": 0.6
+        },
+        "accepts_email": {
+          "value": false,
+          "source": "dns:mx:copperleafkitchens.example",
+          "evidence": "\"has_mx\": false",
+          "confidence": 0.85
+        },
+        "outreach": {
+          "text": "Soren, keeping the engineering behind ghost kitchens in three city centres running smoothly must be quite a job. How is your team handling it from Gdansk?",
+          "source": "https://copperleafkitchens.example/",
+          "evidence": "Copperleaf Kitchens runs a group of ghost kitchens serving three city centres. Founded in 2012 and based in Gdansk."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "91ee8893a608",
+      "scenario": "title_unknown",
+      "input": {
+        "name": "Xavi Okafor",
+        "raw_company": "quillfeather learning",
+        "title": ""
+      },
+      "labels": {
+        "company": "Quillfeather Learning",
+        "domain": "quillfeatherlearning.example",
+        "role": null,
+        "role_aliases": [],
+        "seniority": null,
+        "industry": "education",
+        "accepts_email": true,
+        "should_review": true
+      },
+      "status": "review",
+      "reasons": [
+        "low_confidence:0.10<0.75"
+      ],
+      "routing_confidence": 0.1,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.044231,
+      "latency_ms": 14495,
+      "enrichment": {
+        "company": {
+          "value": "Quillfeather Learning",
+          "source": "https://quillfeatherlearning.example/",
+          "evidence": "Quillfeather Learning makes adaptive maths practice for secondary-school students.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "quillfeatherlearning.example",
+          "source": "https://quillfeatherlearning.example/",
+          "evidence": "Contact: hello@quillfeatherlearning.example.",
+          "confidence": 0.93
+        },
+        "role": {
+          "value": "unknown",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.1
+        },
+        "seniority": {
+          "value": "unknown",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.3
+        },
+        "industry": {
+          "value": "education",
+          "source": "https://quillfeatherlearning.example/",
+          "evidence": "Quillfeather Learning makes adaptive maths practice for secondary-school students.",
+          "confidence": 0.9
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:quillfeatherlearning.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.quillfeatherlearning.example\", \"mx2.quillfeatherlearning.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Xavi, adaptive maths practice for secondary-school students is a focused niche. I'd love to hear how Quillfeather Learning is tailoring practice to each learner.",
+          "source": "https://quillfeatherlearning.example/",
+          "evidence": "Quillfeather Learning makes adaptive maths practice for secondary-school students."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "92506ae4a452",
+      "scenario": "messy_company",
+      "input": {
+        "name": "Zeno Hollins",
+        "raw_company": "Vellum & Vane (LLP)",
+        "title": "Head of Marketing"
+      },
+      "labels": {
+        "company": "Vellum & Vane",
+        "domain": "vellumvane.example",
+        "role": "Head of Marketing",
+        "role_aliases": [
+          "marketing lead"
+        ],
+        "seniority": "director",
+        "industry": "legal",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.8,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.044022,
+      "latency_ms": 15876,
+      "enrichment": {
+        "company": {
+          "value": "Vellum & Vane",
+          "source": "https://vellumvane.example/",
+          "evidence": "Vellum & Vane provides contract-review services for venture-backed startups.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "vellumvane.example",
+          "source": "https://vellumvane.example/team",
+          "evidence": "Zeno Hollins, Head of Marketing",
+          "confidence": 0.93
+        },
+        "role": {
+          "value": "Head of Marketing",
+          "source": "https://vellumvane.example/team",
+          "evidence": "Zeno Hollins, Head of Marketing",
+          "confidence": 0.93
+        },
+        "seniority": {
+          "value": "director",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.55
+        },
+        "industry": {
+          "value": "legal",
+          "source": "https://vellumvane.example/",
+          "evidence": "Vellum & Vane provides contract-review services for venture-backed startups.",
+          "confidence": 0.8
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:vellumvane.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.vellumvane.example\", \"mx2.vellumvane.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Zeno, marketing contract-review services to venture-backed startups from Adelaide must mean reaching founders when they're moving fast. How are you getting in front of them?",
+          "source": "https://vellumvane.example/",
+          "evidence": "Vellum & Vane provides contract-review services for venture-backed startups. Founded in 2012 and based in Adelaide."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "99f71041c260",
+      "scenario": "unidentifiable",
+      "input": {
+        "name": "Yara Okafor",
+        "raw_company": "stealth startup",
+        "title": "cto"
+      },
+      "labels": {
+        "company": null,
+        "domain": null,
+        "role": "Chief Technology Officer",
+        "role_aliases": [
+          "cto"
+        ],
+        "seniority": "c_level",
+        "industry": null,
+        "accepts_email": null,
+        "should_review": true
+      },
+      "status": "review",
+      "reasons": [
+        "outreach_empty",
+        "low_confidence:0.10<0.75"
+      ],
+      "routing_confidence": 0.1,
+      "stop": "submitted",
+      "steps": 2,
+      "cost_usd": 0.032653,
+      "latency_ms": 9227,
+      "enrichment": {
+        "company": {
+          "value": "stealth startup",
+          "source": "input",
+          "evidence": "",
+          "confidence": 0.1
+        },
+        "domain": {
+          "value": null,
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.1
+        },
+        "role": {
+          "value": "Chief Technology Officer",
+          "source": "input",
+          "evidence": "",
+          "confidence": 0.6
+        },
+        "seniority": {
+          "value": "c_level",
+          "source": "input",
+          "evidence": "",
+          "confidence": 0.55
+        },
+        "industry": {
+          "value": "other",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.1
+        },
+        "accepts_email": {
+          "value": null,
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.1
+        },
+        "outreach": {
+          "text": "",
+          "source": "inferred",
+          "evidence": ""
+        }
+      },
+      "outreach_checks": {
+        "length_ok": false,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": false,
+        "grounded": false,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": false
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "b1fc959b7733",
+      "scenario": "lookalike",
+      "input": {
+        "name": "Pavel Whitlock",
+        "raw_company": "starling notes",
+        "title": "Head of Growth"
+      },
+      "labels": {
+        "company": "Starling Notes",
+        "domain": "starlingnotes.example",
+        "role": "Head of Growth",
+        "role_aliases": [
+          "growth lead"
+        ],
+        "seniority": "director",
+        "industry": "saas",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.8,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.043877,
+      "latency_ms": 13814,
+      "enrichment": {
+        "company": {
+          "value": "Starling Notes",
+          "source": "https://starlingnotes.example/",
+          "evidence": "Starling Notes makes a meeting-notes tool for customer-success teams.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "starlingnotes.example",
+          "source": "https://starlingnotes.example/",
+          "evidence": "Contact: hello@starlingnotes.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Head of Growth",
+          "source": "https://starlingnotes.example/team",
+          "evidence": "Leadership and team at Starling Notes: Pavel Whitlock, Head of Growth.",
+          "confidence": 0.9
+        },
+        "seniority": {
+          "value": "director",
+          "source": "inferred",
+          "evidence": "",
+          "confidence": 0.55
+        },
+        "industry": {
+          "value": "saas",
+          "source": "https://starlingnotes.example/",
+          "evidence": "Starling Notes makes a meeting-notes tool for customer-success teams.",
+          "confidence": 0.8
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:starlingnotes.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.starlingnotes.example\", \"mx2.starlingnotes.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Pavel, building a meeting-notes tool specifically for customer-success teams is a sharp niche. I'd love to hear how growth is approaching that audience at Starling Notes.",
+          "source": "https://starlingnotes.example/",
+          "evidence": "Starling Notes makes a meeting-notes tool for customer-success teams."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    },
+    {
+      "lead_id": "e0ee5b67a56a",
+      "scenario": "clean",
+      "input": {
+        "name": "Uma Hollins",
+        "raw_company": "pinecrest health systems",
+        "title": "VP of Engineering"
+      },
+      "labels": {
+        "company": "Pinecrest Health Systems",
+        "domain": "pinecresthealthsystems.example",
+        "role": "VP of Engineering",
+        "role_aliases": [
+          "vp engineering",
+          "vice president engineering"
+        ],
+        "seniority": "vp",
+        "industry": "healthcare",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "review",
+      "reasons": [
+        "low_confidence:0.60<0.75"
+      ],
+      "routing_confidence": 0.6,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.046153,
+      "latency_ms": 14669,
+      "enrichment": {
+        "company": {
+          "value": "Pinecrest Health Systems",
+          "source": "https://pinecresthealthsystems.example/",
+          "evidence": "Pinecrest Health Systems builds scheduling software for outpatient physiotherapy clinics.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "pinecresthealthsystems.example",
+          "source": "https://pinecresthealthsystems.example/",
+          "evidence": "Contact: hello@pinecresthealthsystems.example.",
+          "confidence": 0.93
+        },
+        "role": {
+          "value": "VP of Engineering",
+          "source": "https://pinecresthealthsystems.example/team",
+          "evidence": "Uma Hollins, VP of Engineering",
+          "confidence": 0.92
+        },
+        "seniority": {
+          "value": "vp",
+          "source": "https://pinecresthealthsystems.example/team",
+          "evidence": "Uma Hollins, VP of Engineering",
+          "confidence": 0.9
+        },
+        "industry": {
+          "value": "saas",
+          "source": "https://pinecresthealthsystems.example/",
+          "evidence": "Pinecrest Health Systems builds scheduling software for outpatient physiotherapy clinics.",
+          "confidence": 0.6
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:pinecresthealthsystems.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.pinecresthealthsystems.example\", \"mx2.pinecresthealthsystems.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Uma, building scheduling software that outpatient physiotherapy clinics depend on day to day is a demanding engineering problem. I'd love to hear how your team approaches it.",
+          "source": "https://pinecresthealthsystems.example/",
+          "evidence": "Pinecrest Health Systems builds scheduling software for outpatient physiotherapy clinics."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": null
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "fingerprint": "1ece14027510",
+  "lessons": [
+    {
+      "situation": "raw company 'confidential', title 'Co-founder & CEO': you answered role='Co-founder & CEO' (source input)",
+      "guidance": "a reviewer corrected it to 'Chief Executive Officer'. No company with this name could be found; do not guess a company."
+    },
+    {
+      "situation": "raw company 'brightwave ledger', title 'PM': you answered seniority='manager' (source inferred)",
+      "guidance": "a reviewer corrected it to 'ic'. The answer was on the company's own site."
+    },
+    {
+      "situation": "raw company 'HEARTHSTONE REALTY LABS LLC', title 'Product Manager': you answered seniority='manager' (source inferred)",
+      "guidance": "a reviewer corrected it to 'ic'. The raw company string had typos or a legal suffix; normalize it to the name shown on the official site."
+    }
+  ],
+  "addendum": "Verify every enriched field against a current, citable source; record the source URL and retrieval date for each value. Prefer primary sources (official company site, filings, the person's own verified profiles) over aggregators. Confirm identity matches using at least two attributes, such as name plus company, location, or domain, before attaching data to a lead. Check recency: flag titles, employers, or headcounts older than 12 months as possibly stale. Never infer or guess emails, phone numbers, or titles; if a value cannot be verified, leave it blank and mark it unverified. Do not merge data from similarly named entities. When sources conflict, report both with sources rather than choosing silently."
+}
