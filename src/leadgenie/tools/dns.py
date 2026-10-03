@@ -60,7 +60,10 @@ def mx_tool(resolver: MXResolver) -> Tool:
             result = await resolver.lookup(domain)
         except dns.exception.Timeout:
             return ToolResult.error(f"DNS timeout for {domain}; result unknown")
-        return ToolResult.json(result, documents={f"dns:mx:{domain}": str(result)})
+        # The evidence document must be exactly what the model is shown (JSON), or a
+        # correctly copied quote like '"has_mx": true' fails verification.
+        shown = ToolResult.json(result)
+        return ToolResult(shown.content, documents={f"dns:mx:{domain}": shown.content})
 
     return Tool(
         name="check_mx",

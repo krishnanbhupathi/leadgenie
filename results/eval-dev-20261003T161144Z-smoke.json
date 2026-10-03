@@ -1,0 +1,650 @@
+{
+  "meta": {
+    "created_at": "2026-10-03T16:11:44+00:00",
+    "git": "49d9c7d",
+    "split": "dev",
+    "n": 5,
+    "model": "claude-opus-5-5",
+    "effort": "medium",
+    "prompt_fingerprint": "3e8b2cdaa6e9",
+    "lessons": 0,
+    "threshold": 0.75,
+    "budget": {
+      "max_steps": 8,
+      "max_cost_usd": 0.25,
+      "warn_cost_fraction": 0.75
+    },
+    "judge_model": "claude-sonnet-5-5"
+  },
+  "fields": {
+    "company": {
+      "n": 5,
+      "accuracy": 1.0,
+      "coverage": 1.0
+    },
+    "domain": {
+      "n": 5,
+      "accuracy": 1.0,
+      "coverage": 1.0
+    },
+    "role": {
+      "n": 5,
+      "accuracy": 0.8,
+      "coverage": 1.0
+    },
+    "seniority": {
+      "n": 5,
+      "accuracy": 0.6,
+      "coverage": 1.0
+    },
+    "industry": {
+      "n": 5,
+      "accuracy": 1.0,
+      "coverage": 1.0
+    },
+    "accepts_email": {
+      "n": 5,
+      "accuracy": 1.0,
+      "coverage": 1.0
+    }
+  },
+  "calibration": {
+    "ece": 0.0807,
+    "reliability": [
+      {
+        "bin": "0.7-0.8",
+        "n": 2,
+        "mean_confidence": 0.7,
+        "accuracy": 0.0,
+        "gap": -0.7
+      },
+      {
+        "bin": "0.8-0.9",
+        "n": 5,
+        "mean_confidence": 0.846,
+        "accuracy": 1.0,
+        "gap": 0.154
+      },
+      {
+        "bin": "0.9-1.0",
+        "n": 23,
+        "mean_confidence": 0.946,
+        "accuracy": 0.957,
+        "gap": 0.011
+      }
+    ]
+  },
+  "review": {
+    "tp": 2,
+    "fp": 2,
+    "fn": 0,
+    "tn": 1,
+    "precision": 0.5,
+    "recall": 1.0,
+    "f1": 0.667,
+    "review_rate": 0.8,
+    "unsafe_approval_rate": 0.0
+  },
+  "scenarios": {
+    "clean": {
+      "n": 1,
+      "routed_to_review": 0,
+      "needs_review": 0,
+      "key_fields_all_correct": 1
+    },
+    "lookalike": {
+      "n": 1,
+      "routed_to_review": 1,
+      "needs_review": 1,
+      "key_fields_all_correct": 0
+    },
+    "messy_company": {
+      "n": 2,
+      "routed_to_review": 2,
+      "needs_review": 0,
+      "key_fields_all_correct": 2
+    },
+    "no_mx": {
+      "n": 1,
+      "routed_to_review": 1,
+      "needs_review": 1,
+      "key_fields_all_correct": 1
+    }
+  },
+  "cost_usd": {
+    "agent_total": 0.20484,
+    "per_lead_mean": 0.040968,
+    "per_lead_p95": 0.0432008
+  },
+  "latency_ms": {
+    "per_lead_p50": 21922,
+    "per_lead_p95": 24804
+  },
+  "steps_mean": 3.6,
+  "stops": {
+    "submitted": 5
+  },
+  "tools": {
+    "check_mx": {
+      "calls": 5,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p50_latency_ms": 0
+    },
+    "fetch_company_site": {
+      "calls": 13,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p50_latency_ms": 0
+    },
+    "lookup_prior_results": {
+      "calls": 5,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p50_latency_ms": 0
+    },
+    "web_search": {
+      "calls": 5,
+      "errors": 0,
+      "error_rate": 0.0,
+      "p50_latency_ms": 0
+    }
+  },
+  "outreach": {
+    "n": 5,
+    "deterministic_pass_rate": {
+      "length_ok": 1.0,
+      "word_count_ok": 0.8,
+      "not_generic": 1.0,
+      "personalized": 1.0,
+      "grounded": 1.0,
+      "no_unsupported_numbers": 1.0,
+      "no_placeholders": 1.0,
+      "all_pass": 0.8
+    },
+    "judge": {
+      "n": 5,
+      "pass_rate": 0.2,
+      "mean_scores": {
+        "specificity": 3.4,
+        "grounding": 4.2,
+        "relevance": 2.6,
+        "tone": 3.6
+      },
+      "cost_usd": 0.015962
+    }
+  },
+  "predictions": [
+    {
+      "lead_id": "11f75e786256",
+      "scenario": "clean",
+      "input": {
+        "name": "Pavel Jessop",
+        "raw_company": "bramblegate agency",
+        "title": "PM"
+      },
+      "labels": {
+        "company": "Bramblegate Agency",
+        "domain": "bramblegateagency.example",
+        "role": "Product Manager",
+        "role_aliases": [
+          "product manager"
+        ],
+        "seniority": "ic",
+        "industry": "agency",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "approved",
+      "reasons": [],
+      "routing_confidence": 0.92,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.039495,
+      "latency_ms": 21922,
+      "enrichment": {
+        "company": {
+          "value": "Bramblegate Agency",
+          "source": "https://bramblegateagency.example/",
+          "evidence": "Bramblegate Agency runs performance-marketing campaigns for DTC skincare brands.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "bramblegateagency.example",
+          "source": "https://bramblegateagency.example/",
+          "evidence": "Contact: hello@bramblegateagency.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Product Manager",
+          "source": "https://bramblegateagency.example/team",
+          "evidence": "Pavel Jessop, Product Manager",
+          "confidence": 0.93
+        },
+        "seniority": {
+          "value": "manager",
+          "source": "https://bramblegateagency.example/team",
+          "evidence": "Pavel Jessop, Product Manager",
+          "confidence": 0.7
+        },
+        "industry": {
+          "value": "agency",
+          "source": "https://bramblegateagency.example/",
+          "evidence": "Bramblegate Agency runs performance-marketing campaigns for DTC skincare brands.",
+          "confidence": 0.92
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:bramblegateagency.example",
+          "evidence": "mx1.bramblegateagency.example",
+          "confidence": 0.97
+        },
+        "outreach": {
+          "text": "Pavel, running performance-marketing campaigns for DTC skincare brands out of Tartu since 2016 must give you sharp insight into what actually moves conversion.",
+          "source": "https://bramblegateagency.example/",
+          "evidence": "runs performance-marketing campaigns for DTC skincare brands. Founded in 2016 and based in Tartu."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": {
+        "scores": {
+          "specificity": 4,
+          "grounding": 5,
+          "relevance": 2,
+          "tone": 3
+        },
+        "rationale": "All claims (performance marketing, DTC skincare, Tartu, 2016) are supported by the source, and they are specific to this company, but the line never connects to Pavel's Product Manager role or gives a reason to reply, and its flattery ('must give you sharp insight') feels slightly generic.",
+        "passed": false,
+        "cost_usd": 0.00323
+      }
+    },
+    {
+      "lead_id": "243d4a01cfda",
+      "scenario": "lookalike",
+      "input": {
+        "name": "Ada Marchetti",
+        "raw_company": "corvid shield",
+        "title": "Co-founder & CEO"
+      },
+      "labels": {
+        "company": "Corvid Shield",
+        "domain": "corvidshield.example",
+        "role": "Chief Executive Officer",
+        "role_aliases": [
+          "ceo",
+          "founder",
+          "co-founder"
+        ],
+        "seniority": "founder",
+        "industry": "cybersecurity",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "review",
+      "reasons": [
+        "evidence_mismatch:accepts_email"
+      ],
+      "routing_confidence": 0.9,
+      "stop": "submitted",
+      "steps": 4,
+      "cost_usd": 0.043201,
+      "latency_ms": 24804,
+      "enrichment": {
+        "company": {
+          "value": "Corvid Shield",
+          "source": "https://corvidshield.example/",
+          "evidence": "Corvid Shield detects credential-stuffing attacks against customer login pages.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "corvidshield.example",
+          "source": "https://corvidshield.example/team",
+          "evidence": "Leadership and team at Corvid Shield: Ada Marchetti, Chief Executive Officer.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Co-founder & CEO",
+          "source": "https://corvidshield.example/team",
+          "evidence": "Ada Marchetti, Chief Executive Officer.",
+          "confidence": 0.9
+        },
+        "seniority": {
+          "value": "founder",
+          "source": "input",
+          "evidence": "",
+          "confidence": 0.85
+        },
+        "industry": {
+          "value": "cybersecurity",
+          "source": "https://corvidshield.example/",
+          "evidence": "Corvid Shield detects credential-stuffing attacks against customer login pages.",
+          "confidence": 0.95
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:corvidshield.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.corvidshield.example\", \"mx2.corvidshield.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Ada, detecting credential-stuffing attacks against customer login pages is a sharp focus for a team founded in Gdansk just in 2023. Curious how you're scaling it.",
+          "source": "https://corvidshield.example/",
+          "evidence": "Corvid Shield detects credential-stuffing attacks against customer login pages. Founded in 2023 and based in Gdansk."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": {
+        "scores": {
+          "specificity": 4,
+          "grounding": 5,
+          "relevance": 3,
+          "tone": 4
+        },
+        "rationale": "The line uses the specific credential-stuffing focus, the 2023 founding and the Gdansk base, all supported by the source, and it is concise and natural, though 'Curious how you're scaling it' is a generic hook that doesn't strongly tie to the CEO's priorities.",
+        "passed": true,
+        "cost_usd": 0.003172
+      }
+    },
+    {
+      "lead_id": "2c4ff55b7630",
+      "scenario": "messy_company",
+      "input": {
+        "name": "Keiko Okafor",
+        "raw_company": "vellum&vane",
+        "title": "PM"
+      },
+      "labels": {
+        "company": "Vellum & Vane",
+        "domain": "vellumvane.example",
+        "role": "Product Manager",
+        "role_aliases": [
+          "product manager"
+        ],
+        "seniority": "ic",
+        "industry": "legal",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "review",
+      "reasons": [
+        "evidence_mismatch:accepts_email"
+      ],
+      "routing_confidence": 0.85,
+      "stop": "submitted",
+      "steps": 3,
+      "cost_usd": 0.037765,
+      "latency_ms": 19962,
+      "enrichment": {
+        "company": {
+          "value": "Vellum & Vane",
+          "source": "https://vellumvane.example/",
+          "evidence": "Vellum & Vane provides contract-review services for venture-backed startups.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "vellumvane.example",
+          "source": "https://vellumvane.example/",
+          "evidence": "Contact: hello@vellumvane.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Product Manager",
+          "source": "https://vellumvane.example/team",
+          "evidence": "Keiko Okafor, Product Manager.",
+          "confidence": 0.95
+        },
+        "seniority": {
+          "value": "manager",
+          "source": "https://vellumvane.example/team",
+          "evidence": "Keiko Okafor, Product Manager.",
+          "confidence": 0.7
+        },
+        "industry": {
+          "value": "legal",
+          "source": "https://vellumvane.example/",
+          "evidence": "Vellum & Vane provides contract-review services for venture-backed startups.",
+          "confidence": 0.85
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:vellumvane.example",
+          "evidence": "\"has_mx\": true",
+          "confidence": 0.97
+        },
+        "outreach": {
+          "text": "Keiko, product work at a contract-review firm serving venture-backed startups must mean balancing legal rigor with founder speed. How is Vellum & Vane approaching that?",
+          "source": "https://vellumvane.example/",
+          "evidence": "Vellum & Vane provides contract-review services for venture-backed startups."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": {
+        "scores": {
+          "specificity": 3,
+          "grounding": 4,
+          "relevance": 3,
+          "tone": 4
+        },
+        "rationale": "The line correctly uses the source fact that Vellum & Vane does contract review for venture-backed startups, but the 'legal rigor vs founder speed' tension is an unsupported inference and generic, and the closing question is open-ended without a clear hook, though the tone is natural and non-pushy.",
+        "passed": false,
+        "cost_usd": 0.00316
+      }
+    },
+    {
+      "lead_id": "5d5099b8e140",
+      "scenario": "no_mx",
+      "input": {
+        "name": "Farah Galloway",
+        "raw_company": "wavecrest security",
+        "title": "Chief Technology Officer"
+      },
+      "labels": {
+        "company": "Wavecrest Security",
+        "domain": "wavecrestsecurity.example",
+        "role": "Chief Technology Officer",
+        "role_aliases": [
+          "cto"
+        ],
+        "seniority": "c_level",
+        "industry": "cybersecurity",
+        "accepts_email": false,
+        "should_review": true
+      },
+      "status": "review",
+      "reasons": [
+        "evidence_mismatch:accepts_email",
+        "domain_rejects_mail"
+      ],
+      "routing_confidence": 0.88,
+      "stop": "submitted",
+      "steps": 4,
+      "cost_usd": 0.04211,
+      "latency_ms": 23027,
+      "enrichment": {
+        "company": {
+          "value": "Wavecrest Security",
+          "source": "https://wavecrestsecurity.example/",
+          "evidence": "Wavecrest Security runs phishing simulations for hospital staff.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "wavecrestsecurity.example",
+          "source": "https://wavecrestsecurity.example/",
+          "evidence": "Contact: hello@wavecrestsecurity.example.",
+          "confidence": 0.93
+        },
+        "role": {
+          "value": "Chief Technology Officer",
+          "source": "https://wavecrestsecurity.example/team",
+          "evidence": "Farah Galloway, Chief Technology Officer.",
+          "confidence": 0.95
+        },
+        "seniority": {
+          "value": "c_level",
+          "source": "https://wavecrestsecurity.example/team",
+          "evidence": "Farah Galloway, Chief Technology Officer.",
+          "confidence": 0.93
+        },
+        "industry": {
+          "value": "cybersecurity",
+          "source": "https://wavecrestsecurity.example/",
+          "evidence": "Wavecrest Security runs phishing simulations for hospital staff.",
+          "confidence": 0.88
+        },
+        "accepts_email": {
+          "value": false,
+          "source": "dns:mx:wavecrestsecurity.example",
+          "evidence": "\"has_mx\": false",
+          "confidence": 0.85
+        },
+        "outreach": {
+          "text": "Farah, running phishing simulations built specifically for hospital staff is a smart niche. How does your team keep the scenarios realistic for clinicians?",
+          "source": "https://wavecrestsecurity.example/",
+          "evidence": "Wavecrest Security runs phishing simulations for hospital staff."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": true,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": true
+      },
+      "judge": {
+        "scores": {
+          "specificity": 3,
+          "grounding": 4,
+          "relevance": 3,
+          "tone": 4
+        },
+        "rationale": "The line correctly cites the hospital-staff phishing simulation focus, which is specific to Wavecrest, though 'built specifically for' and 'clinicians' slightly stretch the source (hospital staff is broader than clinicians); the question is relevant to a CTO but fairly generic and not strongly tied to a technical role concern.",
+        "passed": false,
+        "cost_usd": 0.003292
+      }
+    },
+    {
+      "lead_id": "60de2984371b",
+      "scenario": "messy_company",
+      "input": {
+        "name": "Esi Dunmore",
+        "raw_company": "vellum&vane",
+        "title": "CTO"
+      },
+      "labels": {
+        "company": "Vellum & Vane",
+        "domain": "vellumvane.example",
+        "role": "Chief Technology Officer",
+        "role_aliases": [
+          "cto"
+        ],
+        "seniority": "c_level",
+        "industry": "legal",
+        "accepts_email": true,
+        "should_review": false
+      },
+      "status": "review",
+      "reasons": [
+        "evidence_mismatch:accepts_email"
+      ],
+      "routing_confidence": 0.8,
+      "stop": "submitted",
+      "steps": 4,
+      "cost_usd": 0.04227,
+      "latency_ms": 14865,
+      "enrichment": {
+        "company": {
+          "value": "Vellum & Vane",
+          "source": "https://vellumvane.example/",
+          "evidence": "Vellum & Vane provides contract-review services for venture-backed startups.",
+          "confidence": 0.95
+        },
+        "domain": {
+          "value": "vellumvane.example",
+          "source": "https://vellumvane.example/",
+          "evidence": "Contact: hello@vellumvane.example.",
+          "confidence": 0.95
+        },
+        "role": {
+          "value": "Chief Technology Officer",
+          "source": "https://vellumvane.example/team",
+          "evidence": "Esi Dunmore, Chief Technology Officer",
+          "confidence": 0.95
+        },
+        "seniority": {
+          "value": "c_level",
+          "source": "https://vellumvane.example/team",
+          "evidence": "Esi Dunmore, Chief Technology Officer",
+          "confidence": 0.95
+        },
+        "industry": {
+          "value": "legal",
+          "source": "https://vellumvane.example/",
+          "evidence": "Vellum & Vane provides contract-review services for venture-backed startups.",
+          "confidence": 0.8
+        },
+        "accepts_email": {
+          "value": true,
+          "source": "dns:mx:vellumvane.example",
+          "evidence": "\"has_mx\": true, \"mx_hosts\": [\"mx1.vellumvane.example\", \"mx2.vellumvane.example\"]",
+          "confidence": 0.95
+        },
+        "outreach": {
+          "text": "Esi, running the tech side of contract review for venture-backed startups since Vellum & Vane started in Adelaide in 2012 must give you a lot of review data to work with.",
+          "source": "https://vellumvane.example/about",
+          "evidence": "Vellum & Vane was founded in 2012 in Adelaide. We contract-review services for venture-backed startups."
+        }
+      },
+      "outreach_checks": {
+        "length_ok": true,
+        "word_count_ok": false,
+        "not_generic": true,
+        "personalized": true,
+        "grounded": true,
+        "no_unsupported_numbers": true,
+        "no_placeholders": true,
+        "all_pass": false
+      },
+      "judge": {
+        "scores": {
+          "specificity": 3,
+          "grounding": 3,
+          "relevance": 2,
+          "tone": 3
+        },
+        "rationale": "The founding year, Adelaide location and venture-backed startup focus match the source, but the claim that Esi has been 'running the tech side' since 2012 is invented (the source never says she was there then), and the 'lot of review data' remark is speculation that only weakly ties to her CTO role or invites a reply.",
+        "passed": false,
+        "cost_usd": 0.003108
+      }
+    }
+  ]
+}

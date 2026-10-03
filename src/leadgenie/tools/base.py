@@ -49,6 +49,14 @@ class Tool:
         }
 
 
+def _json_unescape(text: str) -> str:
+    try:
+        value = json.loads(f'"{text}"')
+    except json.JSONDecodeError:
+        return text
+    return value if isinstance(value, str) else text
+
+
 def _normalize(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip().lower()
 
@@ -68,10 +76,15 @@ class EvidenceLog:
         return url in self.documents
 
     def supports(self, url: str, quote: str) -> bool:
-        """True if `quote` (whitespace/case-normalized) appears in the text retrieved from url."""
+        """True if `quote` (whitespace/case-normalized) appears in the text retrieved from url.
+
+        Tool results reach the model as JSON, so a faithful quote may carry JSON string
+        escapes (\\" or \\u2014); the unescaped form is accepted too.
+        """
         if not quote.strip() or url not in self.documents:
             return False
-        return _normalize(quote) in _normalize(self.documents[url])
+        doc = _normalize(self.documents[url])
+        return any(_normalize(q) in doc for q in (quote, _json_unescape(quote)))
 
 
 class ToolRegistry:

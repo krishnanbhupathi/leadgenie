@@ -83,7 +83,7 @@ def _submission(g: GoldenLead, world: dict[str, Any], conf: float) -> dict[str, 
     else:
         role = sourced("unknown", "inferred", "", 0.3)
         seniority = sourced("unknown", "inferred", "", 0.3)
-    mx = json.dumps(bool(lab.accepts_email)).capitalize()
+    mx = json.dumps(bool(lab.accepts_email))
     return {
         "company": sourced(lab.company, home, lab.company, conf),
         "domain": sourced(lab.domain, home, f"hello@{lab.domain}", conf),
@@ -91,7 +91,7 @@ def _submission(g: GoldenLead, world: dict[str, Any], conf: float) -> dict[str, 
         "seniority": seniority,
         "industry": sourced(lab.industry, home, blurb, conf),
         "accepts_email": sourced(
-            lab.accepts_email, f"dns:mx:{lab.domain}", f"'has_mx': {mx}", conf
+            lab.accepts_email, f"dns:mx:{lab.domain}", f'"has_mx": {mx}', conf
         ),
         "outreach": {
             "text": f"{first}, {lab.company} {blurb.split(' for ')[0]}: what is hardest to scale?",

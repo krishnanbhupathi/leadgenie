@@ -196,3 +196,20 @@ async def test_live_fetch_refuses_private_addresses(monkeypatch):
 async def test_live_fetch_rejects_non_http_schemes():
     with pytest.raises(FetchBlocked):
         await LiveFetcher().fetch("file:///etc/passwd")
+
+
+async def test_mx_evidence_matches_what_the_model_sees(registry):
+    # Regression: the document was a Python repr ('has_mx': True) while the model saw
+    # JSON ("has_mx": true), so faithful quotes failed verification.
+    reg, _ = registry
+    res = await reg.call("check_mx", {"domain": "acme.example"})
+    log = EvidenceLog()
+    log.add(res.documents)
+    assert log.supports("dns:mx:acme.example", '"has_mx": true')
+
+
+def test_evidence_accepts_json_escaped_quotes():
+    log = EvidenceLog()
+    log.add({"https://a.example/": 'We say "hello" — always.'})
+    assert log.supports("https://a.example/", 'say \\"hello\\" \\u2014 always')
+    assert log.supports("https://a.example/", 'say "hello"')
