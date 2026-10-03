@@ -1,0 +1,167 @@
+{
+  "model": "claude-sonnet-5-5",
+  "n": 12,
+  "agreement": 0.667,
+  "cohen_kappa": 0.333,
+  "false_pass": 0,
+  "false_fail": 4,
+  "cost_usd": 0.038002,
+  "rows": [
+    {
+      "line": "Esi, automating AP reconciliation for mid-market finance teams is a crowded space - how is Brightwave handling messy vendor remittance data?",
+      "expected_pass": true,
+      "judge_pass": false,
+      "scores": {
+        "specificity": 3,
+        "grounding": 4,
+        "relevance": 3,
+        "tone": 3
+      },
+      "rationale": "The line accurately reflects the source (AP reconciliation for mid-market finance teams) and asks a relevant question about vendor remittance data, though 'crowded space' is an unsupported opinion and the remittance-data angle is an assumption, and the blunt framing is slightly off-putting while the specificity is only moderate since it restates the homepage tagline.",
+      "cost_usd": 0.003314
+    },
+    {
+      "line": "Esi, congrats on Brightwave's $40M Series B - curious how you'll scale reconciliation next year.",
+      "expected_pass": false,
+      "judge_pass": false,
+      "scores": {
+        "specificity": 3,
+        "grounding": 1,
+        "relevance": 3,
+        "tone": 4
+      },
+      "rationale": "The source text says nothing about a $40M Series B, so the line's central claim is invented; reconciliation is a real product link to Esi's finance ops role and the tone is concise, but the fabricated funding fact makes the line unreliable.",
+      "cost_usd": 0.002892
+    },
+    {
+      "line": "Hi Esi, I hope this finds you well! Would love to connect and share how we help companies like yours grow.",
+      "expected_pass": false,
+      "judge_pass": false,
+      "scores": {
+        "specificity": 1,
+        "grounding": 5,
+        "relevance": 1,
+        "tone": 2
+      },
+      "rationale": "The line is a generic template that could go to any company, makes no claim from the source (so nothing is invented but nothing is used), ignores Esi's finance operations role, and relies on clich\u00e9s like 'hope this finds you well' and 'help companies like yours grow'.",
+      "cost_usd": 0.002958
+    },
+    {
+      "line": "Bram, forecasting rooftop-solar output for grid operators lives or dies on weather data - which inputs have moved your error most?",
+      "expected_pass": true,
+      "judge_pass": false,
+      "scores": {
+        "specificity": 3,
+        "grounding": 4,
+        "relevance": 4,
+        "tone": 4
+      },
+      "rationale": "The line correctly reflects that Sundial Grid forecasts rooftop-solar output for grid operators, and its question about weather inputs and error is relevant to a CTO, though the claim that forecasting 'lives or dies on weather data' is general industry knowledge not in the source, and the specificity stops at the one-line company description.",
+      "cost_usd": 0.003154
+    },
+    {
+      "line": "Bram, Sundial Grid's wind-farm analytics platform caught my eye - how do you model turbine downtime?",
+      "expected_pass": false,
+      "judge_pass": false,
+      "scores": {
+        "specificity": 2,
+        "grounding": 1,
+        "relevance": 2,
+        "tone": 4
+      },
+      "rationale": "The line says Sundial Grid has a wind-farm analytics platform and asks about turbine downtime, but the source says it forecasts rooftop-solar output for grid operators, so the central claim is invented and contradicts the source, which also makes the question irrelevant to Bram's actual work, though the tone is concise and natural.",
+      "cost_usd": 0.003138
+    },
+    {
+      "line": "Hana, selling collaborative welding robots to small fabrication shops means long payback conversations - what usually tips a shop owner to yes?",
+      "expected_pass": true,
+      "judge_pass": false,
+      "scores": {
+        "specificity": 4,
+        "grounding": 3,
+        "relevance": 4,
+        "tone": 4
+      },
+      "rationale": "The line correctly references collaborative welding robots for small fabrication shops, which is specific to Mosswood, but the claim that this means 'long payback conversations' is not in the source and is an unsupported assumption, though it is framed as a question and ties naturally to a VP of Sales's role.",
+      "cost_usd": 0.003058
+    },
+    {
+      "line": "Hana, Mosswood is clearly doing great things in robotics. Open to a quick chat?",
+      "expected_pass": false,
+      "judge_pass": false,
+      "scores": {
+        "specificity": 1,
+        "grounding": 3,
+        "relevance": 1,
+        "tone": 2
+      },
+      "rationale": "The line is generic filler ('doing great things in robotics') that could go to any robotics company, uses no concrete fact from the source (welding cobots, small fabrication shops, Rotterdam), ties nothing to Hana's sales role, and its vague flattery plus bare 'quick chat?' ask feels clich\u00e9d, though nothing in it is outright false.",
+      "cost_usd": 0.003262
+    },
+    {
+      "line": "Luca, scheduling for outpatient physio clinics has nasty no-show patterns - does Pinecrest predict them or just fill gaps after?",
+      "expected_pass": true,
+      "judge_pass": false,
+      "scores": {
+        "specificity": 3,
+        "grounding": 3,
+        "relevance": 4,
+        "tone": 4
+      },
+      "rationale": "The line correctly draws on Pinecrest building scheduling software for outpatient physio clinics and ties a no-show prediction question to a PM's remit, but the claim that no-show patterns are 'nasty' is general industry assertion not in the source, and the question about whether Pinecrest predicts them is not grounded, so specificity is moderate since it relies on one fact and could fit any competitor in the niche.",
+      "cost_usd": 0.00348
+    },
+    {
+      "line": "Luca, with Pinecrest now serving 400 clinics across Europe, how are you prioritising the roadmap?",
+      "expected_pass": false,
+      "judge_pass": false,
+      "scores": {
+        "specificity": 2,
+        "grounding": 1,
+        "relevance": 3,
+        "tone": 4
+      },
+      "rationale": "The claim that Pinecrest serves 400 clinics across Europe appears nowhere in the source text, which only says it builds scheduling software for outpatient physiotherapy clinics from Rotterdam, so the key fact is invented; the roadmap question is relevant to a PM and the tone is fine, but it is generic beyond the fabricated number.",
+      "cost_usd": 0.00328
+    },
+    {
+      "line": "Mira, same-day grocery delivery by cargo bike in Tartu winters sounds like an ops puzzle - how do you plan routes when it snows?",
+      "expected_pass": true,
+      "judge_pass": true,
+      "scores": {
+        "specificity": 4,
+        "grounding": 4,
+        "relevance": 4,
+        "tone": 4
+      },
+      "rationale": "The line uses supported facts (same-day grocery delivery by cargo bike, based in Tartu) and ties winter snow routing to an operations manager's work with a natural question, though the snow/winter challenge is an inference rather than a sourced fact and the line is only moderately specific beyond the Tartu and cargo-bike details.",
+      "cost_usd": 0.003212
+    },
+    {
+      "line": "Soren, structured onboarding for distributed engineering teams is a sharp niche - which channel brings you the most engineering leaders?",
+      "expected_pass": true,
+      "judge_pass": true,
+      "scores": {
+        "specificity": 4,
+        "grounding": 5,
+        "relevance": 4,
+        "tone": 4
+      },
+      "rationale": "The line accurately reflects the source's description of structured onboarding for distributed engineering teams and ties it to a growth-relevant question about acquiring engineering leaders, though it could be pasted to any similar onboarding company and 'sharp niche' is mild flattery.",
+      "cost_usd": 0.002962
+    },
+    {
+      "line": "Soren, as a leading AI-powered HR platform, Juniper Loop must be seeing huge demand - want to swap notes?",
+      "expected_pass": false,
+      "judge_pass": false,
+      "scores": {
+        "specificity": 2,
+        "grounding": 1,
+        "relevance": 2,
+        "tone": 2
+      },
+      "rationale": "The line calls Juniper Loop a 'leading AI-powered HR platform' with 'huge demand', but the source only says it runs structured onboarding programs for distributed engineering teams, so the AI, HR platform, leading, and demand claims are invented; it is generic, ties nothing to Soren's growth role, and uses a clich\u00e9d 'swap notes' close.",
+      "cost_usd": 0.003292
+    }
+  ]
+}
