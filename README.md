@@ -155,10 +155,102 @@ scoring stale behaviour.
 
 ## Results
 
-**No eval has been run against a real model yet.** Running the evals costs API money, and
-the spend has not been approved yet. Until it is, this section has no numbers. When runs
-happen, every number here will link to its committed file in `results/`, and each file
-records the git revision it came from.
+Every number below is copied from a committed results file. Each file records the git
+revision and prompt fingerprint it was produced with. Model: `claude-opus-5-5`, effort
+`medium`, base prompt `3e8b2cdaa6e9`. All runs are on the offline fixture world.
+
+### Baseline on the held-out test split (15 leads)
+
+Source: [`results/eval-test-20261003T161547Z-baseline.json`](results/eval-test-20261003T161547Z-baseline.json)
+(git `433755f`).
+
+| field | n labelled | accuracy |
+|---|---|---|
+| company | 13 | 1.000 |
+| domain | 13 | 1.000 |
+| role | 14 | 1.000 |
+| seniority | 14 | 1.000 |
+| industry | 13 | 0.769 |
+| accepts_email | 13 | 1.000 |
+
+| review queue | value |
+|---|---|
+| precision / recall / F1 | 0.857 / 1.000 / 0.923 |
+| review rate | 0.467 |
+| unsafe approval rate | **0.000** |
+
+| cost and latency per lead | value |
+|---|---|
+| cost, mean / p95 | $0.0402 / $0.0470 |
+| latency, p50 / p95 | 14.1 s / 19.5 s |
+| model calls, mean | 3.2 |
+| stopped by submitting (no budget hits) | 15 of 15 |
+
+Calibration: ECE **0.0795**, from 80 (field confidence, correct) pairs.
+
+| confidence bin | n | mean confidence | accuracy |
+|---|---|---|---|
+| 0.5–0.6 | 2 | 0.525 | 1.000 |
+| 0.6–0.7 | 8 | 0.606 | 0.625 |
+| 0.7–0.8 | 1 | 0.750 | 1.000 |
+| 0.8–0.9 | 11 | 0.852 | 1.000 |
+| 0.9–1.0 | 58 | 0.942 | 1.000 |
+
+The model is slightly *under*-confident at the top end and roughly calibrated in the
+0.6–0.7 bin, where its genuine uncertainty lives.
+
+All three industry misses are label ambiguity, not hallucination. Twice, scheduling
+software for physiotherapy clinics was labelled `healthcare` and predicted `saas`, and
+ghost kitchens were labelled `hospitality` and predicted `delivery`. The model gave
+0.60–0.65 confidence on each, and all three went to review. The labels were left
+unchanged: editing them after seeing the model's test answers would bias the eval toward
+the model.
+
+**Outreach (15 lines).** Deterministic checks all passed on 0.80 of lines (grounded 0.867,
+personalized 0.933, no unsupported figures 1.0). The LLM judge passed 0.067, with mean
+scores of specificity 2.8, grounding 4.2, relevance 3.0 and tone 3.87. Read the judge
+number together with the next table.
+
+### How far to trust the judge
+
+Source: [`results/judge-check.json`](results/judge-check.json). `claude-sonnet-5-5` was
+scored against 12 hand-labelled lines (6 good, 6 bad).
+
+| agreement | Cohen's kappa | false passes | false fails |
+|---|---|---|---|
+| 0.667 | 0.333 | 0 | 4 |
+
+The judge never passed a bad line: it caught the invented funding round, the invented
+number, the wrong product and the generic lines. But it failed 4 of 6 lines a human
+labelled good, mostly on specificity. So the judge's pass rate is a **lower bound**, and
+its mean scores are only useful for comparing runs. I did not retune the pass rule on
+these same 12 lines, because that would overfit the yardstick to its own test.
+
+### Self-improving loop, first live run
+
+Source: [`results/improve_log.jsonl`](results/improve_log.jsonl) and `results/improve/`.
+Total spend $7.52.
+
+| iteration | candidate | corrections used | dev objective (incumbent → candidate) | decision |
+|---|---|---|---|---|
+| 0 | baseline | 3 | 0.900 | n/a |
+| 1 | few-shot lessons | 3 | 0.900 → 0.945 | accepted |
+| 2 | LLM prompt revision | **0** | 0.945 → 1.000 | accepted |
+| 3 | few-shot lessons | 1 | 1.000 → 1.000 | rejected |
+
+| held-out test (15 leads) | baseline prompt | prompt the loop kept |
+|---|---|---|
+| objective | 0.923 | 0.923 |
+| review F1 / unsafe approval | 0.923 / 0.000 | 0.923 / 0.000 |
+| ECE | 0.0926 | 0.1129 |
+| cost per lead | $0.0408 | $0.0435 |
+
+**The dev gains did not transfer to test.** The loop "improved" 0.900 → 1.000 on 15 dev
+leads, but scored exactly the baseline on test, with worse calibration and 6.5% higher
+cost. The kept prompt is therefore archived
+([`results/improve/prompt-1ece14027510.json`](results/improve/prompt-1ece14027510.json))
+and **not** installed as the default. Each accepted dev gain (+0.045, then +0.055) is
+about one lead's worth on 15 leads. Neither held on test.
 
 ## What failed and what I changed
 
@@ -179,15 +271,38 @@ Each item below is a failure that showed up while building this, and the fix it 
 - **Unknown models cost $0.** v1's `cost_usd` returned 0 for any model missing from the
   price table, which would silently void cost budgets. Fix: it raises. v1 also priced
   Sonnet 5 at $3/$15 per MTok instead of $2/$10.
+- **Evidence checking rejected faithful quotes.** In the first live run
+  ([smoke result](results/eval-dev-20261003T161144Z-smoke.json)), 4 of 5 leads went to
+  review, 3 of them only for `evidence_mismatch:accepts_email`. The model quoted the MX
+  result as it saw it (`"has_mx": true`), but the evidence log stored a Python repr
+  (`'has_mx': True`). My scripted test agent quoted the repr, so the tests passed. Fix:
+  evidence is exactly what the model is shown, and JSON-escaped quotes are accepted.
+- **Prior results leaked between concurrent leads.** Two dev leads at the same company ran
+  at once, and `lookup_prior_results` handed lead A's fresh answer to lead B. Results then
+  depended on timing, which a cassette replay exposed. Fix: "prior" means earlier runs
+  only.
+- **The self-improving loop accepted noise.** See *Self-improving loop* above.
+  - Its first lesson came from a metric bug: "Co-founder & CEO" was scored wrong against
+    "Chief Executive Officer". Fixed, so roles now match when they contain an accepted form.
+  - Its accepted revision was written from zero corrections. Fixed: no corrections means
+    the iteration is skipped.
+  - The deeper cause, 15-lead dev noise, is not fixed. It is the first limitation below.
 - **Citations alone prove nothing.** A schema can force a `source` field, but not a true
   one. Fix: every tool result records the text it retrieved, and validation requires that
   the cited URL was retrieved in this run and that the quote appears in it.
 
 ## Known limitations
 
-- **Small, synthetic eval set.** Dev and test have 15 leads each, so one lead moves a
-  metric by about 6.7 points and differences of one or two leads are noise. Each
-  configuration is run once; there is no repeated-run variance estimate yet.
+- **Small, synthetic eval set, and it showed.** Dev and test have 15 leads each, so one
+  lead moves a metric by about 6.7 points. The loop's accept rule (`min_delta` 0.03 on a
+  single dev run) can be met by a one-lead swing, which is how it accepted two changes
+  that didn't hold on test. Run-to-run variance is not yet measured, except incidentally:
+  the same prompt on the same test leads scored ECE 0.0795 and 0.0926 in two runs, with an
+  identical objective. The next steps would be a larger dev split and repeated dev runs per
+  candidate, with the candidate accepted only if it wins consistently.
+- **The judge is conservative** (kappa 0.333 against hand labels; see above).
+- **Industry labels can be ambiguous** (`saas` vs `healthcare` for clinic software). A
+  multi-label or "acceptable alternatives" scheme would score this more fairly.
 - **The fixture world tests reasoning, not retrieval.** It measures how well the agent
   uses tool outputs, not how well live fetching and search work on the real web.
 - **Simulated reviewers.** No human reviewers exist for the synthetic set. The loop's
@@ -205,7 +320,8 @@ Each item below is a failure that showed up while building this, and the fix it 
   missing from the price table, it is priced as the requested model, and the span records
   that substitution.
 - **`lookup_prior_results` is unexercised by evals.** Each eval starts from an empty
-  database so that no prior results leak in.
+  database, and the tool never returns results from the current run, so it always comes
+  back empty in evals.
 
 ## License
 
